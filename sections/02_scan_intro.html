@@ -1,20 +1,41 @@
-<div style="text-align: left; max-width: 1000px; display: flex; gap: 30px; align-items: center;">
-    <div>
-        <h2 style="color: var(--primary-color);">1. Khái quát về Scan Design & MUX-DFF</h2>
-        <p><b>Động lực:</b> Mạch tuần tự (Sequential) rất khó kiểm thử vì kết quả bị khoá trong các Flip-flops (State
-            lưu lại).</p>
-        <ul>
-            <li><b>Giải pháp:</b> Hoán cải mạch bằng cách thay thế DFF thường thành <b>Scan Flip-Flop (MUX-DFF)</b>.
-            </li>
-            <li>Khi mạch ở <b style="color:red">Normal Mode (SE=0)</b>: Nhận dữ liệu Data In như hoạt động hệ thống.
-            </li>
-            <li>Khi mạch ở <b style="color:green">Test Mode (SE=1)</b>: Toàn bộ Flip-flop nối thành <b>Thanh ghi dịch
-                    (Shift Register)</b> dài để bơm Test Vector vào (Scan In) và đẩy output lưu trữ ra (Scan Out).</li>
-        </ul>
-    </div>
-    <div style="flex-shrink: 0; text-align: center;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Multiplexer_D_flip_flop.png/400px-Multiplexer_D_flip_flop.png"
-            alt="MUX-DFF" style="width: 350px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-        <p style="font-size: 1rem; color: #666; font-style: italic;">Cấu trúc MUX-DFF với chân Scan Enable (SE)</p>
+<div class="slide-content">
+    <h2>1. Giới thiệu về DFT & Chèn tính kiểm thử</h2>
+
+    <div class="split-layout">
+        <div class="text-column">
+            <h3>Sự cần thiết của DFT</h3>
+            <ul>
+                <li><strong>Khó khăn ban đầu:</strong> Mạch như một "hộp đen", chỉ có thể điều khiển/quan sát qua các
+                    chân I/O sơ cấp.</li>
+                <li><strong>Đánh đổi (Tradeoffs):</strong> Thêm phần cứng kiểm thử giúp giảm thời gian test và tăng độ
+                    phủ lỗi, nhưng tốn diện tích, thêm pins và tăng trễ tín hiệu.</li>
+                <li><strong>Giải pháp cho mạch tuần tự:</strong> Sử dụng mô hình Huffman trải phẳng (Unfolded Model) để
+                    tách biệt thanh ghi và mạch tổ hợp.</li>
+            </ul>
+
+            <h3>Kỹ thuật chèn tính kiểm thử (Testability Insertion)</h3>
+            <ul>
+                <li><strong>Khả năng quan sát (Observability):</strong> Đưa các tín hiệu nội bộ khó thấy ra chân output
+                    chính (VD: chân select của MUX).</li>
+                <li><strong>Khả năng điều khiển (Controllability):</strong> Kỹ thuật 0-insertion, 1-insertion, hoặc MUX
+                    chèn dữ liệu kiểm thử trực tiếp vào khối logic.</li>
+                <li><strong>Chia sẻ phần cứng:</strong> Dùng MUX/DEMUX hoặc Counter để giảm thiểu số lượng chân kiểm thử
+                    phụ thêm.</li>
+            </ul>
+        </div>
+        <div class="image-column">
+            <div class="image-placeholder">
+                <img src="images/mux_dff.png" alt="Testability Techniques"
+                    style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <p style="text-align: center; font-style: italic; color: #666; font-size: 0.9em; margin-top: 10px;">Cấu
+                    trúc MUX-DFF cơ bản cải thiện quan sát và điều khiển</p>
+            </div>
+            <div class="code-box" style="margin-top: 20px; text-align: left;">
+                <h4 style="margin: 0 0 10px 0; color: #333;">Isolated Serial Scan</h4>
+                <p style="font-size: 0.9em; line-height: 1.4; color: #555;">Kỹ thuật sử dụng thanh ghi dịch (Shift
+                    Register) để nạp nối tiếp Dữ Liệu Kiểm Thử (tạo Controllability) và xuất nối tiếp Kết Quả (tạo
+                    Observability) mà chỉ tốn vài chân tín hiệu.</p>
+            </div>
+        </div>
     </div>
 </div>

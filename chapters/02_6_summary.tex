@@ -1,0 +1,12 @@
+\subsection{Tóm lược (Summary)}
+Các kỹ thuật DFT chuyển đổi mạch từ cấu trúc hộp đen hoặc mô hình trạng thái (State Machine, Huffman Model) phức tạp thành luồng mạch tổ hợp thuần túy để thực thi việc sinh mẫu kiểm tra (ATP Generation). 
+
+Trong thực tế, quy trình chèn quét scan được vận hành theo các bước: 
+\begin{enumerate}
+    \item Chạy sơ đồ chức năng (RTL);
+    \item Nhanh chóng đưa chuỗi (Partial hoặc Full Scan) qua công cụ tổng hợp;
+    \item Cắt gãy vòng phản hồi (Break Feedback Loop) thông qua Unfolding;
+    \item Nạp tổ hợp MUX-DFF (Dùng NbarT chuyển chế độ);
+    \item Tạo Testbench hoặc bộ kiểm thử Virtual Tester bằng Verilog;
+    \item Nén và chạy tối giản chuỗi Test Vector thông qua các kĩ thuật Test Compaction tiên tiến nhất. Tối ưu thời gian là bài toán chi phí (Tradeoff) giữa số chân I/O vật lý trên bo mạch (Package pins) và số Clock Cycle thực tế mỗi khi kích hoạt kiểm duyệt chip.
+\end{enumerate}

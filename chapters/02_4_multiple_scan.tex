@@ -1,0 +1,29 @@
+\subsection{Quét đa luồng (Multiple Scan)}
+Mặc dù kỹ thuật quét chuỗi đơn (Single Scan Chain) giúp toàn bộ chip trở thành tổ hợp và sinh mẫu kiểm tra tự động dễ dàng với độ phủ đạt 100\%, nhưng nó gặp hạn chế đáng kể ở thời gian kiểm thử do việc nạp/xuất nối tiếp (Shift-in/Shift-out) diễn ra rất lâu qua một chuỗi quét dài.
+
+Thời gian cho một lần kiểm thử với số lượng flip-flop là $N_{FF}$ có chu kỳ là $N_{FF} + 1$. Tổng thời gian kiểm tra cho $N_{Test}$ vector sẽ là:
+\[ T_{test} = N_{Test} \times (N_{FF} + 1) + N_{FF} \]
+Sự trả giá quá lớn cho một chip với hàng triệu bóng bán dẫn dẫn đến nguyên lý **đa chuỗi quét song song (Multiple Scans)** ra đời. Ý tưởng cơ bản là thay vì một đường hầm độc đạo đi qua mọi thanh ghi, hệ thống sẽ tách chuỗi dài ra thành thành $k$ nhánh nhỏ chạy song song với nhau. 
+
+Do đó, mỗi nhánh sẽ có độ dài $N'_{FF} = \lceil N_{FF} / k \rceil$. Thời gian kiểm tra nay giảm đi $k$ lần, chỉ còn:
+\[ T_{test\_multiple} = N_{Test} \times (N'_{FF} + 1) + N'_{FF} \]
+
+\subsubsection{Mạng Cấp số cộng (Full Scan on Adding Machine)}
+Chi phí cho tốc độ quét trong cơ chế đa luồng là số lượng chân xuất nhập sẽ tăng lên khi mỗi nhánh quét đều cần những pin nối tiếp đặc thù là (Serial In và Serial Out riêng). Ví dụ với vi xử lý nhỏ (CPU Adding Machine), chia ra 3 luồng riêng rẽ:
+\begin{enumerate}
+    \item \textbf{Chuỗi 1: Instruction Register (IR):} \texttt{ir\_Si} $\rightarrow$ \texttt{ir\_So} (8 Flip-flops)
+    \item \textbf{Chuỗi 2: Accumulator (AC):} \texttt{ac\_Si} $\rightarrow$ \texttt{ac\_So} (8 Flip-flops)
+    \item \textbf{Chuỗi 3: Program Counter (PC):} \texttt{pc\_Si} $\rightarrow$ \texttt{cntrl\_So} (8 Flip-flops)
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/scan_chain.png}
+    \caption{\textit{Kết nối đa chuỗi quét song song cho cỗ máy cộng Adding Machine}}
+\end{figure}
+
+Việc sử dụng 3 cụm quét song song yêu cầu 3 chân lấy tín hiệu vào nối tiếp (Si), 3 chân xuất (So), và một chân \texttt{NbarT} điều khiển chế độ dung chung.
+
+\subsubsection{Trình kiểm thử ảo cho luồng đa quét (Virtual Tester for Multiple Scans)}
+Trong môi trường mô phỏng Verilog, Virtual Tester cũng phải cập nhật cho phù hợp. Thay vì thu 24 bits serial cho một mạch theo cụm duy nhất, Tester phải tách mảng data test ra 3 chùm (mỗi chùm 8 bits) và đẩy vào \texttt{ir\_Si}, \texttt{ac\_Si}, \texttt{pc\_Si} song song trên từng clock cạnh nhịp. Tương tự, bộ thu nhận mẫu từ 3 cổng xuất (\texttt{ir\_So}, \texttt{ac\_So}, \texttt{cntrl\_So}) cần phân tích dữ liệu gộp mảng theo đúng thứ tự rồi đem so sánh với kỳ vọng.
+Khối lệnh nạp dữ liệu cũng giảm số lần lặp đi từ 24 chu kì xuống 8 chu kì.

@@ -1,0 +1,50 @@
+\subsection{Chèn Tính Kiểm Thử (Testability Insertion)}
+Chỉ cần thêm một bộ dẫn tín hiệu, hay một chân input/output, ta đã biến mạch trở nên dễ kiểm thử hơn. Mục này sẽ đề cập đến các lựa chọn cấu trúc phần cứng giúp kiểm thử mạch qua việc điều khiển và quan sát các node.
+
+\subsubsection{Cải thiện Khả năng Quan sát (Improving Observability)}
+Cải thiện khả năng quan sát giúp hiệu ứng lỗi dễ dàng truyền ra ngoài qua các chân đầu ra sơ cấp thay vì bị kẹt trong mạch. Theo tính toán quan sát (như SCOAP), các đường tín hiệu có độ quan sát thấp nên được nối ra chân ngoài hoặc đưa qua các kỹ thuật như kéo đầu ra flip-flop trạng thái ra thẳng chân output chính.
+Trong thiết kế ở mức RTL, các đường cờ điều khiển từ controller sang datapath là những vị trí lý tưởng để quan sát. Trạng thái của multiplexer select, register load, count tín hiệu, v.v. cũng rất phù hợp.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/mux_dff.png}
+    \caption{\textit{Kỹ thuật cải thiện khả năng quan sát và điều khiển cơ bản.}}
+\end{figure}
+
+\subsubsection{Cải thiện Khả năng Điều khiển (Improving Controllability)}
+Để tạo tính kiểm thử cho các khối tổ hợp sâu bên trong, ta có thể dùng phần cứng can thiệp vào đường tín hiệu giữa 2 khối logic. Có nhiều kỹ thuật chèn:
+\begin{itemize}
+    \item \textbf{0-insertion:} Ép một đường dây mang giá trị 0 bằng cấu trúc cổng logic và một chân test.
+    \item \textbf{1-insertion:} Ép một đường dây mang giá trị 1 bằng cấu trúc OR gate.
+    \item \textbf{0 and 1-insertion:} Cho phép điều khiển chèn cả giá trị 0 lẫn 1 thông qua cấu trúc phức hợp.
+    \item \textbf{Test Data Multiplexing (Chèn dữ liệu kiểm thử):} Dùng bộ dồn kênh (MUX) điều khiển bởi tín hiệu \texttt{NbarT}. Khi $\texttt{NbarT} = 0$, mạch ở chế độ thường. Khi $\texttt{NbarT} = 1$, tín hiệu kiểm thử từ input ngoài sẽ được đưa thẳng vào ngõ vào của khối logic cần kiểm tra.
+\end{itemize}
+
+\subsubsection{Chia sẻ Chân Quan sát và Chân Điều khiển}
+Việc thêm quá nhiều chân đầu ra hoặc đầu vào sơ cấp là không thực tế. Do đó, mạch sử dụng Multiplexer để dồn nhiều node quan sát vào một chân output duy nhất (cần $\log_2 n$ chân chọn select). Tương tự, một bộ Demultiplexer có thể được dùng để luân phiên điều khiển nhiều đường dây khác nhau (Test point) chỉ với một cổng đầu vào, tiết kiệm $n$ chân kiểm thử.
+
+Để tiết kiệm chân select của MUX/DEMUX hơn nữa, một bộ đếm (Counter) có thể được tích hợp trong chip. Chỉ cần cấp xung nhịp cho Counter, nó sẽ tự đếm vòng và chọn các node tương ứng, đổi lấy thời gian kiểm thử dài hơn nhưng không tốn diện tích chân chip.
+
+\subsubsection{Điều khiển và Quan sát Đồng thời (Simultaneous Control and Observation)}
+Để điều khiển các tín hiệu đồng thời với số chân hạn chế, kỹ thuật thanh ghi dịch (Shift Register) được áp dụng để tải nối tiếp dữ liệu sau đó xuất song song vào các điểm kiểm thử. Tương tự đối với thu thập đầu ra: thu song song và dịch nối tiếp ra ngoài.
+\paragraph{Isolated Serial Scan} kết hợp hai thao tác trên vào chung một thanh ghi dịch. Thanh ghi này cô lập khỏi luồng điều khiển chính qua tín hiệu phân vùng \texttt{NbarT}, vừa dịch dữ liệu kiểm thử vào, vừa nhận phản hồi và dịch ra trong suốt một số chu kỳ kiểm thử.  
+
+\begin{lstlisting}[language=Verilog, caption={Mã giả Verilog cho hệ thống Isolated Serial Scan (Shift-register)}]
+module shiftreg #(parameter size = 4) (
+    input [size-1:0] parin, 
+    input TestClock, SerialTestDataIn, 
+    input [1:0] TestMode,
+    output SerialTestDataOut,
+    output reg [size-1:0] parout
+);
+    always @(posedge TestClock) begin
+        case (TestMode) 
+            0: parout <= parout;          
+            1: parout <= {SerialTestDataIn, parout[size-1:1]}; // Shift mode
+            2: parout <= parin; // Parallel load
+            3: parout <= 0;     // Reset
+        endcase    
+    end 
+    assign SerialTestDataOut = parout[0]; 
+endmodule
+\end{lstlisting}

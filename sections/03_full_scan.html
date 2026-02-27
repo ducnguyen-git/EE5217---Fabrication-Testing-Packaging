@@ -1,16 +1,47 @@
-<div style="text-align: left; max-width: 900px;">
-    <h2 style="color: var(--primary-color);">2. Kiểm thử Quét Toàn cục (Full Scan)</h2>
-    <p>Ví dụ: Mạch <b>Adding Machine</b> có $24$ Flip-flops.</p>
-    <ul>
-        <li><b>Kết nối:</b> Toàn bộ 24 Flip-flops được xâu chuỗi thành 1 đường duy nhất (1 Scan Chain dài 24 bits).</li>
-        <li><b>Quy trình 3 bước (Shift - Capture - Shift):</b>
-            <ol>
-                <li>Dịch 24 bit vào chuỗi (Tốn 24 chu kỳ/cycles).</li>
-                <li>Chuyển chế độ sang Normal (Capture kết quả logic thực tế trong 1 chu kỳ).</li>
-                <li>Dịch 24 bit kết quả ra ngoài để đối chiếu (Tốn 24 chu kỳ).</li>
-            </ol>
-        </li>
-        <li><b>Nhược điểm lớn:</b> "Test Time" (Thời gian test) quá lâu do chuỗi quét dài. (Công thức số chu kỳ: $Cycles
-            \approx V \times L$ với $V$ là số Test Vector, $L$ là độ dài chuỗi).</li>
-    </ul>
+<div class="slide-content">
+    <h2>2. Kỹ thuật Quét Toàn Phần (Full Scan DFT)</h2>
+
+    <div class="split-layout">
+        <div class="text-column" style="flex: 1.5;">
+            <h3>Chèn Full Scan</h3>
+            <ul>
+                <li><strong>Mục tiêu:</strong> Biến mạch mô hình tuần tự phức tạp thành mô hình tổ hợp bằng cách chèn
+                    thanh ghi dịch (Shift Register).</li>
+                <li><strong>Cơ chế NbarT:</strong> Khi thử nghiệm (NbarT=1), nối tiếp các STDI vào thanh ghi thành chuỗi
+                    (Scan Chain). Khi hoạt động bình thường (NbarT=0), nạp song song trạng thái mới.</li>
+                <li><strong>Mở rộng:</strong> Hỗ trợ quan sát/điều khiển toàn diện qua các đầu vào giả (PPI) và đầu ra
+                    giả (PPO).</li>
+            </ul>
+
+            <h3>Tối ưu hóa Cấu trúc Flip-flop</h3>
+            <ul>
+                <li><strong>Dữ liệu Dồn Kênh (Muxed FF):</strong> Bổ sung MUX trước đầu vào D của Flip-flop. Dễ thực
+                    hiện nhưng tăng độ trễ (Delay) mạch chính.</li>
+                <li><strong>Xung nhịp Kép (Dual Clocking):</strong> Dùng Clock riêng (DataClock & TestClock), giảm trễ
+                    MUX nhưng dễ nhiễu.</li>
+                <li><strong>LSSD (Two-port FF):</strong> Giải pháp dùng 2 Latch chuyên rẽ nhánh xung nhịp đọc song song
+                    và độc lập.</li>
+            </ul>
+        </div>
+        <div class="code-column" style="flex: 1;">
+            <div class="code-box" style="margin-bottom: 10px;">
+                <h4 style="margin: 0 0 10px 0; color: #fff;">Logic Trải phẳng PPO/PPI</h4>
+                <div
+                    style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 5px; color: #98c379; font-family: monospace; font-size: 0.85em; text-align: left; line-height: 1.5;">
+                    assign PPI0 = out_0;<br>
+                    assign PPI1 = out_1;<br>
+                    ...<br>
+                    dff (out_0, wire_1, clk, ..., NbarT, Si);<br>
+                    ...<br>
+                    assign So = out_2; // Scan Output
+                </div>
+            </div>
+            <div class="feature-card"
+                style="background-color: #f8f9fa; padding: 15px; border-left: 4px solid #007bff; border-radius: 4px; color: #333;">
+                <h4 style="margin: 0 0 5px 0;">Sức mạnh của Full Scan</h4>
+                <p style="margin: 0; font-size: 0.9em;">Ví dụ trên mạch Residue-5, việc chèn Full Scan thay biến lỗi
+                    sinh tự động từ 82.4% lên tới <strong>100% Fault Coverage</strong>.</p>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,13 +1,13 @@
-\chapter{Giới thiệu chung}
+\section{Giới thiệu chung}
 
-\section{Đặt vấn đề}
+\subsection{Đặt vấn đề}
 Trong lĩnh vực thiết kế vi mạch (IC Design) hiện đại, mức độ tích hợp của các bóng bán dẫn (transistors) trên một chip duy nhất đã có thể đạt đến con số hàng tỉ đơn vị. Sự phức tạp khổng lồ này mang lại khả năng xử lý và tính toán tính toán vượt trội, nhưng đồng thời cũng đặt ra một thách thức vô cùng to lớn ở khâu kiểm thử (Testing) sau khi chế tạo. Việc đảm bảo một vi mạch không chứa bất kỳ lỗi vật lý nào (như đứt dây, chập mạch hay lỗi kẹt cứng logic - stuck-at faults) trước khi xuất xưởng là yêu cầu sống còn, quyết định đến chất lượng và uy tín của mọi nhà sản xuất. 
 
 Tuy nhiên, đối với các loại mạch tuần tự (Sequential Circuits) chứa số lượng lớn các phần tử nhớ (Flip-flops hoặc Registers), việc cố gắng điều khiển và quan sát trạng thái của mạch thông qua các chân Input/Output truyền thống là một bài toán gần như bất khả thi do vướng phải nội tại liên quan đến các trạng thái chìm (Internal States). Nhận thức được "nút thắt cổ chai" này, ngành công nghiệp bán dẫn đã hình thành nên lĩnh vực Thiết kế Khả kiểm (Design for Test - DFT).
 
 Môn học EE5217 đóng vai trò định hướng và trang bị cho kỹ sư những khái niệm thực tiễn nhất của lĩnh vực kiểm thử vi mạch DFT. Dựa trên kiến thức đó, nhóm đã lựa chọn kỹ thuật Thiết kế Quét (Scan Design) làm đề tài trọng tâm để tiến hành nghiên cứu, dịch thuật tài liệu chuẩn xác và thiết kế bài báo cáo phân tích một cách toàn diện.
 
-\section{Mục tiêu của Đề tài}
+\subsection{Mục tiêu của Đề tài}
 Bản báo cáo này được nhóm biên soạn với những mục tiêu cốt lõi sau đây:
 \begin{itemize}
     \item \textbf{Nghiên cứu nguyên lý DFT:} Khảo sát sự phức tạp trong việc kiểm thử mạch tuần tự và tìm hiểu cơ chế giải quyết mang tính nền tảng thông qua kỹ thuật gài chuỗi quét (Scan Chain).
@@ -15,7 +15,7 @@ Bản báo cáo này được nhóm biên soạn với những mục tiêu cốt
     \item \textbf{Trình bày chuyên nghiệp:} Xây dựng hệ thống văn bản báo cáo có tính phân tầng, áp dụng sức mạnh sắp xếp chuẩn học thuật của LaTeX để báo cáo đạt mức độ hoàn thiện cao nhất về hình thức lẫn học thuật. Đi kèm với báo cáo bản cứng là hệ thống Slide HTML/CSS tương tác phục vụ cho công tác thuyết trình sinh động.
 \end{itemize}
 
-\section{Bố cục của báo cáo}
+\subsection{Bố cục của báo cáo}
 Tránh việc dàn trải nội dung, cấu trúc của báo cáo được nhóm thiết kế cô đọng thành 2 chương chính nối tiếp nhau, mang tính kế thừa về mặt kỹ thuật và tập trung thẳng vào phân tích chi tiết:
 \begin{itemize}
     \item \textbf{Chương 1: Giới thiệu chung.} Cung cấp thông tin nền, bức tranh tổng quan quan trọng về lĩnh vực DFT, chỉ ra nguyên do khách quan thúc đẩy sự ra đời của Scan Design và tóm lược các mục tiêu cốt lõi của bài báo cáo trong môn học EE5217.
@@ -26,3 +26,4 @@ Tránh việc dàn trải nội dung, cấu trúc của báo cáo được nhóm
 \begin{flushright}
 \textit{Báo cáo được hoàn thiện với tinh thần cầu thị nghiêm túc nhất, sẵn sàng thuyết phục các tiêu chuẩn đánh giá khắt khe cả về chuyên môn phần cứng lẫn hình thức báo cáo 4.0.}
 \end{flushright}
+

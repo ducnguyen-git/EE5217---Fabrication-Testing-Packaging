@@ -1,0 +1,8 @@
+\subsection{Thiết kế Scan góc độ RTL (RT Level Scan Design)}
+Thiết kế kiến trúc quét bằng phương pháp quét toàn phần sau sơ đồ tổng hợp cổng logic (Gate-level Full Scan) là cách tiếp cận đi từ dưới lên (Bottom-up). Nhược điểm là đôi khi Tool không hiểu được vai trò của từng block mạch, dẫn đến chèn mù quáng và cồng kềnh. Góc tiếp cận quét thiết kế ngay từ tầng chuyển giao thanh ghi (Registers-Transfer Level - RTL) sẽ đem lại tối ưu hóa cấp độ kiến trúc.
+
+\paragraph{Quét mức bộ phận (Partial Scan):}
+Ở quy mô RTL, lập trình viên có thể chỉ định phần khối chức năng nào cần có scan chain (có thể là Data Path) và bỏ qua bộ điều khiển (Control Path). Việc lựa chọn dựa trên phân tích cấu trúc tổng tải RTL sẽ tiết kiệm logic so với quét 100\%. 
+
+\paragraph{Quét Cục bộ Độc lập (Multiple Independent Scans):}
+Các mô-đun riêng lẻ (Datapath, Controller, Register File) được liên kết thành các chuỗi vòng độc lập (isolated scans). Khi kiểm thử Datapath, ta có thể tái sử dụng Controller hoặc thanh ghi không ở trạng thái scan để cung cấp dữ liệu ổn định, tránh xung đột về tài nguyên. 
