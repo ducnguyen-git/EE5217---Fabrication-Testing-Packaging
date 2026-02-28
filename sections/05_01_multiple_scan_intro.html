@@ -1,7 +1,6 @@
 <div class="slide slide-container">
     <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">9.
-        Nút thắt
-        Thời gian & Kỹ thuật Multiple Scan</h1>
+        Nút thắt Thời gian & Kỹ thuật Multiple Scan (Phần 1)</h1>
 
     <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
         <div
@@ -14,9 +13,6 @@
                     nhịp Clock cho <i>mỗi mẫu test</i>.</li>
                 <li style="margin-bottom: 15px;"><b>Giải pháp Multiple Scan</b>: Cắt nhỏ chuỗi Shift Register khổng lồ
                     thành nhiều chuỗi ngắn song song (Multiple Chains).</li>
-                <li style="margin-bottom: 15px;"><b>Đánh đổi</b>: Giảm thời gian kiểm thử (Test Time) đi nhiều lần nhưng
-                    bù lại sẽ tiêu hao thêm chân tín hiệu $T_{in}$ và $T_{out}$ tương ứng cho mỗi chuỗi bổ sung trên IC.
-                </li>
             </ul>
         </div>
 
@@ -25,14 +21,39 @@
             <div
                 style="background: #fff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
                 <img src="images/MultipleParallelScanChains.png" alt="Multiple Parallel Scan Chains"
-                    style="max-height: 200px; width: auto; border-radius: 8px;">
+                    style="max-height: 480px; width: auto; border-radius: 8px;">
                 <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.51. Kiến trúc
                     Nhiều Chuỗi Quét Song Song (Multiple Parallel Scan Chains).</p>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide slide-container">
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">9.
+        Nút thắt Thời gian & Kỹ thuật Multiple Scan (Phần 2)</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div
+            style="flex: 1; min-width: 0; max-width: 50%; text-align: left; background: #FAFCFF; padding: 30px; border-radius: 16px; box-shadow: 0 15px 35px rgba(3, 78, 162, 0.08); border-top: 5px solid #00d2ff;">
+            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-expand-arrows-alt"></i> Phân
+                Mảnh Dữ Liệu</h2>
+            <ul style="font-size: 1.25rem; color: var(--text-color); margin-left: 20px; line-height: 1.5;">
+                <li style="margin-bottom: 15px;"><b>Phân bổ Test Vector</b>: Mẫu thử nghiệm (Test Vector) đơn khối bị
+                    phân mảnh rải đều nạp đồng thời cho các chuỗi nhỏ tương ứng.</li>
+                <li style="margin-bottom: 15px;"><b>Đánh đổi (Trade-off)</b>: Giảm thời gian kiểm thử (Test Time) đi
+                    nhiều lần tỷ lệ thuận với số lượng chuỗi, nhưng bù lại sẽ tiêu hao thêm chân phần cứng tín hiệu
+                    $T_{in}$ và $T_{out}$ tương ứng cho mỗi chuỗi trên bề mặt IC.
+                </li>
+            </ul>
+        </div>
+
+        <div
+            style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
             <div
                 style="background: #fff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
                 <img src="images/TestVectorArrangement.png" alt="Test Vector Arrangement for Multiple Chains"
-                    style="max-height: 200px; width: auto; border-radius: 8px;">
+                    style="max-height: 480px; width: auto; border-radius: 8px;">
                 <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.50. Sự sắp xếp
                     Vector thử nghiệm bị phân mảnh cho các chuỗi song song.</p>
             </div>

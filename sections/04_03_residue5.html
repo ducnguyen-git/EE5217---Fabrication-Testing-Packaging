@@ -1,24 +1,17 @@
 <div class="slide slide-container">
     <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">7.
-        Case
-        Study: Hệ Đếm Residue-5</h1>
+        Case Study: Hệ Đếm Residue-5 (Phần 1)</h1>
 
     <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
         <div
             style="flex: 1; min-width: 0; max-width: 50%; text-align: left; background: #FAFCFF; padding: 30px; border-radius: 16px; box-shadow: 0 15px 35px rgba(3, 78, 162, 0.08); border-top: 5px solid #00d2ff;">
-            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-sync"></i> Mạch đếm Modulo-5
+            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-sync"></i> Netlist Cơ Bản
             </h2>
             <ul style="font-size: 1.25rem; color: var(--text-color); margin-left: 20px; line-height: 1.5;">
                 <li style="margin-bottom: 15px;"><b>Residue-5 Counter</b>: Một mạch đếm tuần tự trạng thái hữu hạn (FSM)
-                    có
-                    3 Flip-Flops để tạo ra 5 trạng thái đếm $0, 1, 2, 3, 4, 0\dots$</li>
+                    có 3 Flip-Flops để tạo ra 5 trạng thái đếm $0, 1, 2, 3, 4, 0\dots$</li>
                 <li style="margin-bottom: 15px;"><b>Biến đổi Netlist</b>: Mạch gốc chứa Flip-Flop thường. Để áp dụng
-                    Full
-                    Scan, toàn bộ $D\text{-}FF$ được thay thế bằng cell thư viện $SD\text{-}FF$ (Scan D-FF).</li>
-                <li style="margin-bottom: 15px;"><b>Nối chuỗi Scan Chain</b>: $Q$ của FF trước được nối cắm vào $TI$ của
-                    FF
-                    sau. Chân $TE$ (Scan Enable) điều khiển toàn bộ khối. Đầu vào là $T_{in}$ (Test Data In) và đầu ra
-                    là $T_{out}$ (Test Data Out).</li>
+                    Full Scan, toàn bộ $D\text{-}FF$ được thay thế bằng cell thư viện $SD\text{-}FF$ (Scan D-FF).</li>
             </ul>
         </div>
 
@@ -27,15 +20,38 @@
             <div
                 style="background: #fff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
                 <img src="images/PostsynthesisResidue5Netlist.png" alt="Postsynthesis Residue-5 Netlist"
-                    style="max-height: 200px; width: auto; border-radius: 8px;">
+                    style="max-height: 480px; width: auto; border-radius: 8px;">
                 <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.34. Netlist
-                    tổng
-                    hợp mạch Residue-5 (Sau khi thêm phần cứng Scan).</p>
+                    tổng hợp mạch Residue-5 (Sau khi thêm phần cứng Scan).</p>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide slide-container">
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">7.
+        Case Study: Hệ Đếm Residue-5 (Phần 2)</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div
+            style="flex: 1; min-width: 0; max-width: 50%; text-align: left; background: #FAFCFF; padding: 30px; border-radius: 16px; box-shadow: 0 15px 35px rgba(3, 78, 162, 0.08); border-top: 5px solid #00d2ff;">
+            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-sync"></i> Scan Chain Khổng Lồ
+            </h2>
+            <ul style="font-size: 1.25rem; color: var(--text-color); margin-left: 20px; line-height: 1.5;">
+                <li style="margin-bottom: 15px;"><b>Nối chuỗi Scan Chain</b>: $Q$ của FF trước được nối cắm vào $TI$ của
+                    FF sau.</li>
+                <li style="margin-bottom: 15px;">Chân $TE$ (Scan Enable) điều khiển toàn bộ khối hoạt động đồng bộ.</li>
+                <li style="margin-bottom: 15px;">Đầu vào là $T_{in}$ (Test Data In) và đầu ra là $T_{out}$ (Test Data
+                    Out). Thiết kế này tiêm dữ liệu trực tiếp bỏ qua cổng kết nối Primary In.</li>
+            </ul>
+        </div>
+
+        <div
+            style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
             <div
                 style="background: #fff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
                 <img src="images/Residue5ScanChain.png" alt="Residue 5 Scan Chain"
-                    style="max-height: 180px; width: auto; border-radius: 8px;">
+                    style="max-height: 480px; width: auto; border-radius: 8px;">
                 <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.36. Ba phần tử
                     SFF được nối tạo thành chuỗi Shift Register khổng lồ.</p>
             </div>

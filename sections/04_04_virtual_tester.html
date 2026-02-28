@@ -1,7 +1,6 @@
 <div class="slide slide-container">
     <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">8.
-        Môi
-        trường Giả lập: Virtual Tester</h1>
+        Môi trường Giả lập: Virtual Tester (Phần 1)</h1>
 
     <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
         <div
@@ -11,14 +10,42 @@
             </h2>
             <ul style="font-size: 1.3rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
                 <li style="margin-bottom: 15px;"><b>Mục tiêu</b>: Máy ATE (Automated Test Equipment) bơm chuỗi vector
-                    mẫu
-                    (Test Vector) vào mạch và so sánh ngõ ra với giá trị Vàng (Golden Response).</li>
+                    mẫu (Test Vector) vào mạch và so sánh ngõ ra với giá trị Vàng (Golden Response).</li>
+                <li style="margin-bottom: 15px;">Hệ thống bao gồm các chân kết nối trực tiếp với <b>Primary
+                        Inputs/Outputs</b> và các chân <b>Test In/Test Out</b>.</li>
+            </ul>
+        </div>
+
+        <div
+            style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+            <div
+                style="background: #fff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+                <img src="images/VirtualTesterFullScanResidue5.png" alt="Virtual Tester"
+                    style="max-height: 480px; width: auto; border-radius: 8px;">
+                <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.40. Giao thức
+                    ATE bơm dữ liệu vào Scan Chain mạch Residue-5.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide slide-container">
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">8.
+        Môi trường Giả lập: Virtual Tester (Phần 2)</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div
+            style="flex: 1; min-width: 0; max-width: 50%; text-align: left; background: #FAFCFF; padding: 30px; border-radius: 16px; box-shadow: 0 15px 35px rgba(3, 78, 162, 0.08); border-top: 5px solid #005ce6;">
+            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-desktop"></i> Thu Thập Phản Hồi
+            </h2>
+            <ul style="font-size: 1.3rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
                 <li style="margin-bottom: 15px;"><b>Qui trình Test (Test Application)</b>:
                     <ol style="margin-top:10px; font-size: 1.15rem; color: #555;">
                         <li>Bơm Dữ Liệu (Shift-In) trạng thái nội bộ.</li>
                         <li>Đẩy Dữ Liệu ngõ vào (Primary Inputs).</li>
                         <li>Nhấp 1 nhịp Clock (Capture) để lấy mạch phản hồi vào các FF.</li>
-                        <li>Trích Dữ Liệu ra (Shift-Out) để quan sát và so sánh.</li>
+                        <li><b>Trích Dữ Liệu ra (Shift-Out)</b>: Song song đó, ca trích này ghi đè trùng vào kì nạp
+                            Vector mới tiếp theo.</li>
                     </ol>
                 </li>
             </ul>
@@ -28,18 +55,10 @@
             style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
             <div
                 style="background: #fff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-                <img src="images/VirtualTesterFullScanResidue5.png" alt="Virtual Tester Residue 5"
-                    style="max-height: 250px; width: auto; border-radius: 8px;">
-                <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.40. Giao thức
-                    ATE bơm dữ liệu vào Scan Chain mạch Residue-5.</p>
-            </div>
-            <div
-                style="background: #fff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
                 <img src="images/TestApplicationResponseCollection.png" alt="Test Application Collection"
-                    style="max-height: 150px; width: auto; border-radius: 8px;">
+                    style="max-height: 480px; width: auto; border-radius: 8px;">
                 <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.42. Qui trình
-                    Nhấp Clock Capture kết quả (Response Collection). Quá trình shift Out trùng luôn lên shift In mẫu
-                    sau nó.</p>
+                    Nhấp Clock Capture kết quả (Response Collection). Quá trình shift Out trùng luôn lên shift In.</p>
             </div>
         </div>
     </div>

@@ -39,7 +39,7 @@ function initResizeObserver() {
 
 // Hàm tính toán cốt lõi (Tách biệt khỏi sự kiện UI)
 function recalculateScale(activeSlide) {
-    let baseWidth = 1600;
+    let baseWidth = 1440;
     let baseHeight = 900;
 
     // Lấy kích thước thật của Slide bao gồm padding/margin
@@ -83,16 +83,20 @@ async function loadSlides() {
 
         const contents = await Promise.all(promises);
 
-        contents.forEach((html, index) => {
+        let globalIndex = 0;
+        contents.forEach((html) => {
             const div = document.createElement('div');
-            // Extract the body content or just inject raw if it's a fragment
-            // Ideally fragments should just be the .slide-container
             div.innerHTML = html;
-            // Ensure the root element is correct
-            const slide = div.querySelector('.slide-container') || div.firstElementChild;
-            if (slide) {
-                slide.id = `slide-${index}`;
-                wrapper.appendChild(slide);
+            // Cho phép 1 file HTML có chứa NHIỀU thẻ .slide-container (phục vụ tách hình)
+            const subSlides = div.querySelectorAll('.slide-container');
+            if (subSlides.length > 0) {
+                subSlides.forEach(slide => {
+                    slide.id = `slide-${globalIndex++}`;
+                    wrapper.appendChild(slide);
+                });
+            } else if (div.firstElementChild) {
+                div.firstElementChild.id = `slide-${globalIndex++}`;
+                wrapper.appendChild(div.firstElementChild);
             }
         });
 

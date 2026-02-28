@@ -1,25 +1,18 @@
 <div class="slide slide-container">
     <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">6.
-        Kiến trúc
-        Scan Flip-Flop hiện đại</h1>
+        Kiến trúc Scan Flip-Flop (Phần 1)</h1>
 
     <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
         <div
             style="flex: 1; min-width: 0; max-width: 50%; text-align: left; background: #FAFCFF; padding: 30px; border-radius: 16px; box-shadow: 0 15px 35px rgba(3, 78, 162, 0.08); border-top: 5px solid #005ce6;">
-            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-microchip"></i> MUX-DFF và
-                Chuẩn LSSD
+            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-microchip"></i> MUX-DFF
             </h2>
             <ul style="font-size: 1.25rem; color: var(--text-color); margin-left: 20px; line-height: 1.5;">
                 <li style="margin-bottom: 12px;"><b>Muxed-DFF</b>: D-Flip-Flop thông thường được dán thêm một bộ Mux 2:1
-                    ở
-                    ngõ vào $D$. Chân $TE$ (Test Enable) sẽ chọn tín hiệu $D$ (Normal Mode) hoặc $TI$ (Test In Mode).
+                    ở ngõ vào $D$. Chân $TE$ (Test Enable) sẽ chọn tín hiệu $D$ (Normal Mode) hoặc $TI$ (Test In Mode).
                     Đây là nền tảng của mọi mạch Full Scan.</li>
                 <li style="margin-bottom: 12px;"><b>Nhược điểm Mux-DFF</b>: Mux làm tăng trễ truyền qua (Delay overhead)
                     đường dữ liệu Normal, vi phạm quy tắc thời gian (Setup time).</li>
-                <li style="margin-bottom: 12px;"><b>Chuẩn LSSD (Level Sensitive Scan Design) của IBM</b>: Giải quyết
-                    triệt
-                    để vấn đề thời gian bằng cách dùng 2 Clock độc lập không chồng lấn (Non-overlapping Clocks). LSSD
-                    rất an toàn và đảm bảo timing 100%.</li>
             </ul>
         </div>
 
@@ -28,14 +21,38 @@
             <div
                 style="background: #fff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
                 <img src="images/MultiplexedScanElement.png" alt="Mux-DFF"
-                    style="max-height: 200px; width: auto; border-radius: 8px;">
+                    style="max-height: 480px; width: auto; border-radius: 8px;">
                 <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.23. Cấu trúc
                     Mux-DFF kinh điển (Scan Element).</p>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide slide-container">
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">6.
+        Kiến trúc Scan Flip-Flop (Phần 2)</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div
+            style="flex: 1; min-width: 0; max-width: 50%; text-align: left; background: #FAFCFF; padding: 30px; border-radius: 16px; box-shadow: 0 15px 35px rgba(3, 78, 162, 0.08); border-top: 5px solid #005ce6;">
+            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-microchip"></i> Chuẩn LSSD
+            </h2>
+            <ul style="font-size: 1.25rem; color: var(--text-color); margin-left: 20px; line-height: 1.5;">
+                <li style="margin-bottom: 12px;"><b>Chuẩn LSSD (Level Sensitive Scan Design) của IBM</b>: Giải quyết
+                    triệt để vấn đề thời gian bằng cách dùng 2 Clock độc lập không chồng lấn (Non-overlapping Clocks).
+                </li>
+                <li style="margin-bottom: 12px;">LSSD rất an toàn và đảm bảo timing 100% nhưng phải trả giá bằng diện
+                    tích chip cao hơn.</li>
+            </ul>
+        </div>
+
+        <div
+            style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
             <div
                 style="background: #fff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
                 <img src="images/LssdDesign.png" alt="LSSD Design"
-                    style="max-height: 200px; width: auto; border-radius: 8px;">
+                    style="max-height: 480px; width: auto; border-radius: 8px;">
                 <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.31. Cấu trúc
                     LSSD an toàn nhưng tốn phần cứng (2 chốt Latches).</p>
             </div>
