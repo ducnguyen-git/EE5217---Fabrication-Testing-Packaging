@@ -29,8 +29,11 @@ body {
 }
 
 body.presentation-mode {
-  background-color: #000;
-  /* Pure black */
+  background-color: #ffffff;
+  /* Chuyển Background Circuit Board ra Body để Scale tràn viền Vô cực */
+  background-image: radial-gradient(#e2e8f0 2px, transparent 2px), radial-gradient(#e2e8f0 2px, #ffffff 2px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
   overflow: hidden;
   /* Hide scrollbars for presentation */
 }
@@ -87,6 +90,9 @@ body.presentation-mode .slide {
   max-width: none;
   border-radius: 0;
   box-shadow: none;
+  background: transparent;
+  /* Trở nên trong suốt để hòa vào pattern vô cực của body */
+  background-image: none;
   opacity: 0;
   visibility: hidden;
   /* Fix WebKit bug where gradient-text bleeds through opacity:0 */
