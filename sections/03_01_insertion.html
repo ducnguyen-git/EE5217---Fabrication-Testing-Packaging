@@ -1,16 +1,30 @@
 <div class="slide slide-container">
-    <h1 style="color: var(--primary-color);">Chương 3: Chèn Testability</h1>
-    <h2>Cải thiện Khả năng Quan sát & Điều khiển</h2>
-    <div style="display:flex; gap: 20px; align-items:center;">
-        <div style="flex: 1.2;">
-            <ul>
-                <li><b>Observability:</b> Kéo các tín hiệu chìm (flags, MUX selects) ra cổng output chính.</li>
-                <li><b>Controllability:</b> Dùng phần cứng (0-insertion, 1-insertion). Thêm MUX có cờ <code>NbarT</code> để can thiệp Data Path.</li>
+    <h1 style="border-bottom: 3px solid var(--primary-color); padding-bottom: 15px; display: inline-block;">2. Chèn Điểm
+        Kiểm Thử (Testability Insertion)</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div
+            style="flex: 1; text-align: left; background: #fdfdfd; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #cc6600;">
+            <h2 style="color: #cc6600; margin-bottom: 15px;"><i class="fa-solid fa-vial"></i> Vai trò của Điểm Kiểm Thử
+            </h2>
+            <ul style="font-size: 1.35rem; color: #444; margin-left: 20px; line-height: 1.6;">
+                <li style="margin-bottom: 15px;">Dùng phần cứng bổ sung (Test Points) để <b>Cải thiện Khả năng Quan sát
+                        (Observability)</b> hoặc <b>Điều khiển (Controllability)</b>.</li>
+                <li style="margin-bottom: 15px;"><b>Mục đích</b>: Gỡ rối (debug) mạch khó nhằn mà ATPG không giải quyết
+                    được, chia khối rác khổng lồ thành nhiều phần nhỏ để test độc lập.</li>
+                <li style="margin-bottom: 15px;"><b>Hạn chế</b>: Tốn thêm chân I/O trên vi mạch. Phải có chiến thuật kết
+                    hợp thông minh: <b>Dồn kênh (Multiplexing)</b>.</li>
             </ul>
         </div>
-        <div style="flex: 0.8; text-align: center;">
-            <img src="images/AddingControllability.png" style="border-radius:8px; margin-bottom: 15px; max-width:100%;"><br>
-            <img src="images/PutCircuitToDesiredState.png" style="border-radius:8px; max-width:100%;">
+
+        <div style="flex: 1; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+            <div style="background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #eee;">
+                <img src="images/MultiplexingObservation.png" alt="Multiplexing Observation"
+                    style="max-width: 90%; height: auto; border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <p style="margin-top: 15px; font-style: italic; color: #666; font-size: 1.1rem;">Hình 7.6. Quan sát Dồn
+                    kênh: Chia sẻ chân ra O giữa Logic 1 và Logic 2 bằng MUX thông qua tín hiệu Mode (M). Giảm tải chân
+                    kiểm thử I/O vật lý.</p>
+            </div>
         </div>
     </div>
 </div>

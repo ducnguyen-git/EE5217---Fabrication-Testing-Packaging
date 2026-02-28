@@ -1,18 +1,40 @@
 <div class="slide slide-container">
-    <h1 style="color: var(--primary-color);">Cấu Trúc Scan Flip-Flop</h1>
-    <div style="display:flex; gap: 20px; align-items:center;">
-        <div style="flex: 1;">
-            <h3>Muxed Scan Element</h3>
-            <ul><li>Dùng Mux 2-1 cắm ngay chân D. Chuyển đổi DataIn/SerialIn. Đơn giản phổ biến.</li></ul>
-            <h3>Dual Clocking</h3>
-            <ul><li>Dùng 2 xung nhịp riêng (DataClock, TestClock) không qua Mux, giảm delay logic.</li></ul>
-            <h3>LSSD (Level Sensitive Scan Design)</h3>
-            <ul><li>Thiết kế danh tiếng từ IBM gồm Master/Slave Latch tách biệt pha clock hoàn toàn.</li></ul>
+    <h1 style="border-bottom: 3px solid var(--primary-color); padding-bottom: 15px; display: inline-block;">6. Kiến trúc
+        Scan Flip-Flop hiện đại</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div
+            style="flex: 1; text-align: left; background: #fdfdfd; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #005ce6;">
+            <h2 style="color: #005ce6; margin-bottom: 15px;"><i class="fa-solid fa-microchip"></i> MUX-DFF và Chuẩn LSSD
+            </h2>
+            <ul style="font-size: 1.25rem; color: #444; margin-left: 20px; line-height: 1.5;">
+                <li style="margin-bottom: 12px;"><b>Muxed-DFF</b>: D-Flip-Flop thông thường được dán thêm một bộ Mux 2:1
+                    ở
+                    ngõ vào $D$. Chân $TE$ (Test Enable) sẽ chọn tín hiệu $D$ (Normal Mode) hoặc $TI$ (Test In Mode).
+                    Đây là nền tảng của mọi mạch Full Scan.</li>
+                <li style="margin-bottom: 12px;"><b>Nhược điểm Mux-DFF</b>: Mux làm tăng trễ truyền qua (Delay overhead)
+                    đường dữ liệu Normal, vi phạm quy tắc thời gian (Setup time).</li>
+                <li style="margin-bottom: 12px;"><b>Chuẩn LSSD (Level Sensitive Scan Design) của IBM</b>: Giải quyết
+                    triệt
+                    để vấn đề thời gian bằng cách dùng 2 Clock độc lập không chồng lấn (Non-overlapping Clocks). LSSD
+                    rất an toàn và đảm bảo timing 100%.</li>
+            </ul>
         </div>
-        <div style="flex: 1; text-align: center;">
-            <img src="images/MultiplexedScanElement.png" style="max-height: 120px; margin-bottom:10px;"><br>
-            <img src="images/ScanFlipFlopDualClocking.png" style="max-height: 120px; margin-bottom:10px;"><br>
-            <img src="images/LssdDesign.png" style="max-height: 120px;">
+
+        <div
+            style="flex: 1; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 15px;">
+            <div style="background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #eee;">
+                <img src="images/MultiplexedScanElement.png" alt="Mux-DFF"
+                    style="max-height: 200px; width: auto; border-radius: 5px;">
+                <p style="margin-top: 5px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.23. Cấu trúc
+                    Mux-DFF kinh điển (Scan Element).</p>
+            </div>
+            <div style="background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #eee;">
+                <img src="images/LssdDesign.png" alt="LSSD Design"
+                    style="max-height: 200px; width: auto; border-radius: 5px;">
+                <p style="margin-top: 5px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.31. Cấu trúc
+                    LSSD an toàn nhưng tốn phần cứng (2 chốt Latches).</p>
+            </div>
         </div>
     </div>
 </div>

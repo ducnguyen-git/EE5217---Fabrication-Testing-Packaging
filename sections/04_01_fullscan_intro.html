@@ -1,16 +1,33 @@
 <div class="slide slide-container">
-    <h1 style="color: var(--primary-color);">Chương 4: Full Scan DFT</h1>
-    <h2>Kỹ Thuật Đỉnh Cao Biến Tuần Tự Thành Tổ Hợp</h2>
-    <div style="display:flex; gap: 20px; align-items:center;">
-        <div style="flex: 1;">
-            <ul>
-                <li>Tích hợp hẳn chức năng Shift Register vào tất cả các Flip-flops trạng thái.</li>
-                <li>Mọi DFF đều nối thành chuỗi domino (Scan Chain).</li>
-                <li>Chế độ kiểm thử nạp/xuất data nối tiếp với <b>Fault Coverage lên đến 100%</b>.</li>
+    <h1 style="border-bottom: 3px solid var(--primary-color); padding-bottom: 15px; display: inline-block;">5. Kỹ thuật
+        Full Scan - Lõi của DFT</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div
+            style="flex: 1; text-align: left; background: #fdfdfd; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #e60000;">
+            <h2 style="color: #e60000; margin-bottom: 15px;"><i class="fa-solid fa-cogs"></i> Khái quát Full Scan</h2>
+            <ul style="font-size: 1.3rem; color: #444; margin-left: 20px; line-height: 1.6;">
+                <li style="margin-bottom: 15px;"><b>Ý tưởng đột phá</b>: Biến tất cả các phần tử nhớ
+                    (Flip-Flops/Latches)
+                    nội bộ có sẵn trong thiết kế thành một thanh ghi dịch (Shift Register) khổng lồ khi ở chế độ Test
+                    Mode.</li>
+                <li style="margin-bottom: 15px;"><b>Không cần linh kiện thừa</b>: Thay vì dùng Register ảo bên ngoài
+                    (như
+                    Isolated Scan), Full Scan "tái sử dụng" chính Flip-Flop của mạch gốc.</li>
+                <li style="margin-bottom: 15px;"><b>Lợi ích kép</b>: Triệt tiêu tính "tuần tự" (Sequential). Mạch bây
+                    giờ
+                    hoạt động như một mạch tổ hợp 100%, dễ dàng dùng ATPG với độ phủ lỗ hổng (Fault Coverage) > 99%.
+                </li>
             </ul>
         </div>
-        <div style="flex: 1; text-align: center;">
-            <img src="images/ScanInsertion.png" style="border-radius:8px; max-height:300px;">
+
+        <div style="flex: 1; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+            <div style="background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #eee;">
+                <img src="images/FullScanDftTechnique.png" alt="Full Scan DFT Technique"
+                    style="max-height: 350px; width: auto; border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <p style="margin-top: 15px; font-style: italic; color: #666; font-size: 1.05rem;">Hình 7.45. Mô hình
+                    Full Scan: Nối chuỗi toàn bộ Flip-Flops. Tiết kiệm phần cứng so với Isolated Scan.</p>
+            </div>
         </div>
     </div>
 </div>

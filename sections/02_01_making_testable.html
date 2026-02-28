@@ -1,12 +1,37 @@
 <div class="slide slide-container">
-    <h1 style="color: var(--primary-color);">Chương 2: Làm Mạch Khả Kiểm</h1>
-    <h2>Making Circuits Testable</h2>
-    <ul>
-        <li>Một mạch dễ kiểm thử khi các test vectors sinh ra dễ dàng và đạt độ phủ lỗi (fault coverage) cao, tốn ít thời gian.</li>
-        <li>Điều kiện cốt lõi: Tăng <b>Khả năng điều khiển (Controllability)</b> và <b>Khả năng quan sát (Observability)</b>.</li>
-        <li><b>Tradeoffs:</b> Chèn hardware -> Tăng area, timing delay, power consumption... Bù lại giảm mạnh Test Time.</li>
-    </ul>
-    <div style="text-align: center; margin-top:20px;">
-        <img src="images/mux_dff.png" style="max-height: 250px; border-radius:10px;" onerror="this.src='https://fakeimg.pl/600x250/?text=Controllability+%26+Observability+Tradeoffs&font=noto';">
+    <h1 style="border-bottom: 3px solid var(--primary-color); padding-bottom: 15px; display: inline-block;">1. Mạch Khả
+        Kiểm (Tiếp)</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div
+            style="flex: 1; text-align: left; background: #fdfdfd; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #009966;">
+            <h2 style="color: #009966; margin-bottom: 15px;"><i class="fa-solid fa-project-diagram"></i> Mô Hình Mạch
+                Tuần Tự (Huffman Model)</h2>
+            <ul style="font-size: 1.3rem; color: #444; margin-left: 20px; text-align: justify;">
+                <li style="margin-bottom: 8px;"><b>Mạch tổ hợp (Combinational):</b> Đầu ra chỉ phụ thuộc vào đầu vào
+                    hiện tại. Rất dễ sinh mẫu kiểm thử (ATPG).</li>
+                <li style="margin-bottom: 8px;"><b>Mạch tuần tự (Sequential):</b> Gồm Khối Logic Tổ Hợp và Tập hợp các
+                    phần tử nhớ (Trạng thái - Flip-Flops). Đầu ra phụ thuộc cả vào quá khứ.</li>
+                <li style="margin-bottom: 8px;"><b>Vấn đề Cốt lõi:</b> Rất khó kiểm thử do trạng thái nội bộ bị ẩn. Cần
+                    chuỗi Vector Test kéo dài qua nhiều chu kỳ Clock (Time Frames).</li>
+            </ul>
+        </div>
+
+        <div
+            style="flex: 1; text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+            <div
+                style="background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #eee; margin-bottom: 15px;">
+                <img src="images/HuffmanCircuitModel.png" alt="Huffman Circuit Model"
+                    style="max-width: 90%; height: auto; border-radius: 5px;">
+                <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 1rem;">Hình 7.1. Mô hình mạch
+                    tuần tự của Huffman.</p>
+            </div>
+            <div style="background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #eee;">
+                <img src="images/UnfoldedCircuitModel.png" alt="Unfolded Circuit Model"
+                    style="max-width: 90%; height: auto; border-radius: 5px;">
+                <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 1rem;">Hình 7.2. Tương đương
+                    mạch tổ hợp được "mở rải" theo thời gian.</p>
+            </div>
+        </div>
     </div>
 </div>

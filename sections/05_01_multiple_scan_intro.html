@@ -1,17 +1,38 @@
 <div class="slide slide-container">
-    <h1 style="color: var(--primary-color);">Chương 5: Quét Đa Luồng</h1>
-    <h2>Giải Hạn Chế Của Chuỗi Dài</h2>
-    <div style="display:flex; gap: 20px; align-items:center;">
-        <div style="flex: 1;">
-            <ul>
-                <li>1 chuỗi Scan với hàng triệu Flip-Flop mất quá lâu cho việc Shift tín hiệu.</li>
-                <li>Công thức: Thời gian Test Time ~ $O(N_{FF})$.</li>
-                <li><b>Multiple Scans:</b> Chia cắt chuỗi lớn thành $k$ luồng song song chạy cùng lúc. $N_{FF}$ giảm mạnh, $T_{Test}$ giảm cực sâu.</li>
-                <li>Chi Phí: Tốn IO Pins phụ.</li>
+    <h1 style="border-bottom: 3px solid var(--primary-color); padding-bottom: 15px; display: inline-block;">9. Nút thắt
+        Thời gian & Kỹ thuật Multiple Scan</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div
+            style="flex: 1; text-align: left; background: #fdfdfd; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #ffcc00;">
+            <h2 style="color: #ffcc00; margin-bottom: 15px;"><i class="fa-solid fa-tachometer-alt"></i> Giải quyết
+                Bottleneck</h2>
+            <ul style="font-size: 1.25rem; color: #444; margin-left: 20px; line-height: 1.5;">
+                <li style="margin-bottom: 15px;"><b>Vấn đề nghiêm trọng</b>: Đối với VLSI khổng lồ có hàng chục vạn
+                    Flip-Flops. Nối thành 1 chuỗi Full Scan duy nhất sẽ khiến thời gian Shift In/Out tốn vài chục ngàn
+                    nhịp Clock cho <i>mỗi mẫu test</i>.</li>
+                <li style="margin-bottom: 15px;"><b>Giải pháp Multiple Scan</b>: Cắt nhỏ chuỗi Shift Register khổng lồ
+                    thành nhiều chuỗi ngắn song song (Multiple Chains).</li>
+                <li style="margin-bottom: 15px;"><b>Đánh đổi</b>: Giảm thời gian kiểm thử (Test Time) đi nhiều lần nhưng
+                    bù lại sẽ tiêu hao thêm chân tín hiệu $T_{in}$ và $T_{out}$ tương ứng cho mỗi chuỗi bổ sung trên IC.
+                </li>
             </ul>
         </div>
-        <div style="flex: 1; text-align: center;">
-            <img src="images/MultipleParallelScanChains.png" style="max-height:300px; border-radius:8px;">
+
+        <div
+            style="flex: 1; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 15px;">
+            <div style="background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #eee;">
+                <img src="images/MultipleParallelScanChains.png" alt="Multiple Parallel Scan Chains"
+                    style="max-height: 200px; width: auto; border-radius: 5px;">
+                <p style="margin-top: 5px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.51. Kiến trúc
+                    Nhiều Chuỗi Quét Song Song (Multiple Parallel Scan Chains).</p>
+            </div>
+            <div style="background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #eee;">
+                <img src="images/TestVectorArrangement.png" alt="Test Vector Arrangement for Multiple Chains"
+                    style="max-height: 200px; width: auto; border-radius: 5px;">
+                <p style="margin-top: 5px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.50. Sự sắp xếp
+                    Vector thử nghiệm bị phân mảnh cho các chuỗi song song.</p>
+            </div>
         </div>
     </div>
 </div>

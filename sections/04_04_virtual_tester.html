@@ -1,15 +1,42 @@
 <div class="slide slide-container">
-    <h1 style="color: var(--primary-color);">Virtual Tester (ATE)</h1>
-    <div style="display:flex; gap: 20px;">
-        <div style="flex: 1.2;">
-            <ul>
-                <li>Mô phỏng ATE nạp liên tục 26 vectors, tiêm lỗi tĩnh (Fault Injection).</li>
-                <li>Toán định kì: Shift-in -> Phóng Clock -> Shift-out -> Check Expected Data.</li>
-                <li>Khẳng định Fault Coverage hoàn hảo trước khi sản xuất IC.</li>
+    <h1 style="border-bottom: 3px solid var(--primary-color); padding-bottom: 15px; display: inline-block;">8. Môi
+        trường Giả lập: Virtual Tester</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div
+            style="flex: 1; text-align: left; background: #fdfdfd; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #ff4d4d;">
+            <h2 style="color: #ff4d4d; margin-bottom: 15px;"><i class="fa-solid fa-desktop"></i> Cơ chế Máy Tester (ATE)
+            </h2>
+            <ul style="font-size: 1.3rem; color: #444; margin-left: 20px; line-height: 1.6;">
+                <li style="margin-bottom: 15px;"><b>Mục tiêu</b>: Máy ATE (Automated Test Equipment) bơm chuỗi vector
+                    mẫu
+                    (Test Vector) vào mạch và so sánh ngõ ra với giá trị Vàng (Golden Response).</li>
+                <li style="margin-bottom: 15px;"><b>Qui trình Test (Test Application)</b>:
+                    <ol style="margin-top:10px; font-size: 1.15rem; color: #555;">
+                        <li>Bơm Dữ Liệu (Shift-In) trạng thái nội bộ.</li>
+                        <li>Đẩy Dữ Liệu ngõ vào (Primary Inputs).</li>
+                        <li>Nhấp 1 nhịp Clock (Capture) để lấy mạch phản hồi vào các FF.</li>
+                        <li>Trích Dữ Liệu ra (Shift-Out) để quan sát và so sánh.</li>
+                    </ol>
+                </li>
             </ul>
         </div>
-        <div style="flex: 0.8; text-align: center;">
-            <img src="images/TestApplicationResponseCollection.png" style="max-width:100%; border-radius:8px;">
+
+        <div
+            style="flex: 1; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 15px;">
+            <div style="background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #eee;">
+                <img src="images/VirtualTesterFullScanResidue5.png" alt="Virtual Tester Residue 5"
+                    style="max-height: 250px; width: auto; border-radius: 5px;">
+                <p style="margin-top: 5px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.40. Giao thức
+                    ATE bơm dữ liệu vào Scan Chain mạch Residue-5.</p>
+            </div>
+            <div style="background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #eee;">
+                <img src="images/TestApplicationResponseCollection.png" alt="Test Application Collection"
+                    style="max-height: 150px; width: auto; border-radius: 5px;">
+                <p style="margin-top: 5px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.42. Qui trình
+                    Nhấp Clock Capture kết quả (Response Collection). Quá trình shift Out trùng luôn lên shift In mẫu
+                    sau nó.</p>
+            </div>
         </div>
     </div>
 </div>

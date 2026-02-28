@@ -1,9 +1,47 @@
-<div class="slide slide-container">
-    <h1 style="color: var(--primary-color);">Chương 7: Tổng Kết</h1>
-    <ul>
-        <li>Khoa học <b>DFT</b> quyết định sống còn tỷ lệ lỗi (Yield) của nhà máy đúc Chip. Mạch nào cũng phải được gài Test Logic.</li>
-        <li><b>Scan Design</b> mang lại hiệu suất kiểm tra đột phá (đến 100% fault coverage), biến mạch tuần tự hóc búa thành các tổ hợp lôgic cô lập để sinh ATPG Vector dễ dàng.</li>
-        <li>Bắt đầu đi từ Partial Scan đến Memory BIST hay Boundary Scan 1149.1 đem lại nền tảng chip SoC hiện đại.</li>
-    </ul>
-    <h2 style="margin-top: 50px; color:#bb0000; text-align:center;">XIN CẢM ƠN THẦY VÀ CÁC CHIẾN HỮU ĐÃ LẮNG NGHE!</h2>
+<div class="slide slide-container"
+    style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100%;">
+    <h1
+        style="color: var(--primary-color); font-size: 3rem; margin-bottom: 30px; text-transform: uppercase; border-bottom: 4px solid #006699; padding-bottom: 10px;">
+        <i class="fa-solid fa-flag-checkered"></i> 12. Tóm tắt & Kết Luận</h1>
+
+    <div
+        style="display: flex; justify-content: space-around; width: 90%; gap: 30px; margin-top: 20px; text-align: left;">
+        <div
+            style="background: #f9fdf9; padding: 30px; border-radius: 12px; border-top: 6px solid #28a745; box-shadow: 0 10px 20px rgba(0,0,0,0.05); flex: 1;">
+            <h3
+                style="color: #28a745; font-size: 1.6rem; margin-bottom: 15px; display:flex; align-items:center; gap: 10px;">
+                <i class="fa-solid fa-check-circle"></i> Ưu Điểm Lõi</h3>
+            <ul style="font-size: 1.25rem; color: #555; line-height: 1.6;">
+                <li style="margin-bottom: 10px;">Là <b>tiêu chuẩn Công nghiệp (De Facto)</b> cho thiết kế IC tự động
+                    (DFT).</li>
+                <li style="margin-bottom: 10px;">Triệt tiêu mạch tuần tự, biến hóa bài toán test tuần tự phức tạp thành
+                    Tổ hợp đơn giản đơn luồng.</li>
+                <li style="margin-bottom: 10px;">Hỗ trợ 100% việc sinh mẫu qua công cụ ATPG (Automatic Test Pattern
+                    Generation). Cho phép độ bao phủ kiểm thử cao.</li>
+            </ul>
+        </div>
+
+        <div
+            style="background: #fffafa; padding: 30px; border-radius: 12px; border-top: 6px solid #dc3545; box-shadow: 0 10px 20px rgba(0,0,0,0.05); flex: 1;">
+            <h3
+                style="color: #dc3545; font-size: 1.6rem; margin-bottom: 15px; display:flex; align-items:center; gap: 10px;">
+                <i class="fa-solid fa-exclamation-triangle"></i> Yếu Điểm Cần Đổi Lấy</h3>
+            <ul style="font-size: 1.25rem; color: #555; line-height: 1.6;">
+                <li style="margin-bottom: 10px;">Gia tăng tài nguyên (<b>Area Overhead</b>) lên đến 20% do bộ ghép kênh
+                    Mux-DFF.</li>
+                <li style="margin-bottom: 10px;">Gây tụt giảm hiệu suất logic chung: Nút thắt cổ chai về Delay do cổng
+                    logic nội bộ bị dán ghép.</li>
+                <li style="margin-bottom: 10px;">Số lượng chân Test I/O sẽ tăng tỷ lệ thuận với số làn Multiple Scan
+                    Chains. Thời gian test Test Time kéo dài.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div
+        style="margin-top: 50px; background: linear-gradient(135deg, #001f3f, #003366); padding: 25px 50px; border-radius: 50px; color: white; display: inline-block; box-shadow: 0 8px 15px rgba(0,51,102,0.3);">
+        <h2 style="margin: 0; font-size: 2rem; letter-spacing: 1px;"><i class="fa-solid fa-heart"
+                style="color:#ffcccc;"></i> XIN CẢM ƠN THẦY VÀ CÁC BẠN <i class="fa-solid fa-heart"
+                style="color:#ffcccc;"></i></h2>
+        <p style="margin-top: 10px; font-size: 1.1rem; opacity: 0.8;">Nhóm 7 - EE5217 - Design for Testability</p>
+    </div>
 </div>

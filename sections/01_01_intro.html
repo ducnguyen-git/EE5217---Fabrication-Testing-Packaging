@@ -1,12 +1,32 @@
 <div class="slide slide-container">
-    <h1 style="color: var(--primary-color);">Chương 1: Đặt Vấn Đề</h1>
-    <ul>
-        <li>Hàng tỷ bóng bán dẫn trên một chip gây ra thách thức khổng lồ về mặt kiểm thử (Testing).</li>
-        <li>Việc đảm bảo không có lỗi vật lý (stuck-at faults, short, open) là yếu cầu sống còn.</li>
-        <li>Với mạch tuần tự (Sequential Circuits), việc điều khiển (controllability) và quan sát (observability) là vô cùng khó khăn.</li>
-        <li><b style="color:var(--primary-color)">Giải pháp:</b> DFT (Design For Test) - Thiết kế Khả kiểm bằng phương pháp Quét (Scan Chain).</li>
-    </ul>
-    <div style="text-align: center; margin-top:20px;">
-        <img src="https://fakeimg.pl/800x250/?text=Testing+Complexity+in+VLSI&font=noto" style="border-radius:10px;box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+    <h1 style="border-bottom: 3px solid var(--primary-color); padding-bottom: 15px; display: inline-block;">1. Mạch Khả
+        Kiểm (Making Circuits Testable)</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: center;">
+        <div
+            style="flex: 1; text-align: left; background: #fdfdfd; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #006699;">
+            <h2 style="color: #006699; margin-bottom: 15px;"><i class="fa-solid fa-microchip"></i> Bài toán Kiểm thử IC
+            </h2>
+            <ul style="font-size: 1.4rem; color: #444; margin-left: 20px;">
+                <li style="margin-bottom: 12px;">Các IC kỹ thuật số hiện đại chứa hàng triệu transistor, việc kiểm thử
+                    bằng mũi đo vật lý (physical probes) là bất khả thi.</li>
+                <li style="margin-bottom: 12px;">Chỉ có thể kiểm thử thông qua các cổng giao tiếp (I/O pins) hạn chế ở
+                    rìa chip.</li>
+                <li style="margin-bottom: 12px;"><b>Thách thức:</b> Làm sao đưa các node bên trong sâu của vi mạch về
+                    các trạng thái mong muốn (Controllability) và quan sát được kết quả trạng thái của chúng
+                    (Observability)?</li>
+            </ul>
+        </div>
+
+        <div style="flex: 1; text-align: center;">
+            <div
+                style="background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #eee; display: inline-block;">
+                <img src="images/AddingControllability.png" alt="Concept of Controllability"
+                    style="max-width: 100%; height: auto; border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <p style="margin-top: 15px; font-style: italic; color: #666; font-size: 1.1rem;">Hình 7.4. Thêm khả năng
+                    điều khiển (Controllability) vào một node nội bộ (A) bằng cách sử dụng cổng OR và chân kiểm thử bổ
+                    sung (T).</p>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,11 +1,39 @@
 <div class="slide slide-container">
-    <h1 style="color: var(--primary-color);">Quy trình: Mạch Đếm Residue-5</h1>
-    <ul>
-        <li><b>Post-synthesis -> Unfolded & ATPG:</b> Trải phẳng tạo Combinational model, phần mềm ATPG sinh 26 tests lấy 100% Coverage.</li>
-        <li><b>Scan Insertion:</b> Móc nối ngõ <code>Si</code>-><code>So</code> làm liền mạch chuỗi Flip-Flop trong thiết kế RTL.</li>
-    </ul>
-    <div style="text-align: center; margin-top:20px; display:flex; justify-content:center; gap:20px;">
-        <img src="images/PostsynthesisResidue5Netlist.png" style="max-height:250px; border-radius:8px; width:45%;">
-        <img src="images/Residue5ScanChain.png" style="max-height:250px; border-radius:8px; width:45%;">
+    <h1 style="border-bottom: 3px solid var(--primary-color); padding-bottom: 15px; display: inline-block;">7. Case
+        Study: Hệ Đếm Residue-5</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div
+            style="flex: 1; text-align: left; background: #fdfdfd; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #20c997;">
+            <h2 style="color: #20c997; margin-bottom: 15px;"><i class="fa-solid fa-sync"></i> Mạch đếm Modulo-5</h2>
+            <ul style="font-size: 1.25rem; color: #444; margin-left: 20px; line-height: 1.5;">
+                <li style="margin-bottom: 15px;"><b>Residue-5 Counter</b>: Một mạch đếm tuần tự trạng thái hữu hạn (FSM)
+                    có
+                    3 Flip-Flops để tạo ra 5 trạng thái đếm $0, 1, 2, 3, 4, 0\dots$</li>
+                <li style="margin-bottom: 15px;"><b>Biến đổi Netlist</b>: Mạch gốc chứa Flip-Flop thường. Để áp dụng
+                    Full
+                    Scan, toàn bộ $D\_FF$ được thay thế bằng cell thư viện $SD\_FF$ (Scan D-FF).</li>
+                <li style="margin-bottom: 15px;"><b>Nối chuỗi Scan Chain</b>: $Q$ của FF trước được nối cắm vào $TI$ của
+                    FF
+                    sau. Chân $TE$ (Scan Enable) điều khiển toàn bộ khối. Đầu vào là $T_{in}$ (Test Data In) và đầu ra
+                    là $T_{out}$ (Test Data Out).</li>
+            </ul>
+        </div>
+
+        <div
+            style="flex: 1; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 15px;">
+            <div style="background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #eee;">
+                <img src="images/PostsynthesisResidue5Netlist.png" alt="Postsynthesis Residue-5 Netlist"
+                    style="max-height: 200px; width: auto; border-radius: 5px;">
+                <p style="margin-top: 5px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.34. Netlist tổng
+                    hợp mạch Residue-5 (Sau khi thêm phần cứng Scan).</p>
+            </div>
+            <div style="background: #fff; padding: 15px; border-radius: 10px; border: 1px solid #eee;">
+                <img src="images/Residue5ScanChain.png" alt="Residue 5 Scan Chain"
+                    style="max-height: 180px; width: auto; border-radius: 5px;">
+                <p style="margin-top: 5px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.36. Ba phần tử
+                    SFF được nối tạo thành chuỗi Shift Register khổng lồ.</p>
+            </div>
+        </div>
     </div>
 </div>

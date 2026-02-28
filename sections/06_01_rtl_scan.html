@@ -1,16 +1,32 @@
 <div class="slide slide-container">
-    <h1 style="color: var(--primary-color);">Chương 6: RTL Scan Optimization</h1>
-    <h2>Tối Ưu Hóa Tầm Kiến Trúc Gốc</h2>
-    <div style="display:flex; gap: 20px; align-items:center;">
-        <div style="flex: 1;">
-            <ul>
-                <li><b>Partial Scan:</b> Không chèn 100% ngây ngô Gate-Level. Chủ đích nhắm DataPath bỏ Control Path giúp giảm Area Routing Overheads.</li>
-                <li><b>Independent Scans:</b> Mở rộng quy mô, điều động Controller đóng vai trò buffer cho Pipeline trong quá trình kiểm thử phần DataPath. Ràng buộc thiết kế kiến trúc thông minh.</li>
+    <h1 style="border-bottom: 3px solid var(--primary-color); padding-bottom: 15px; display: inline-block;">11. Quét Cục
+        Bộ Từ Mức RTL (Partial Scan)</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div
+            style="flex: 1; text-align: left; background: #fdfdfd; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #ff6600;">
+            <h2 style="color: #ff6600; margin-bottom: 15px;"><i class="fa-solid fa-code"></i> Tối ưu chi phí từ cấp độ
+                Hệ thống</h2>
+            <ul style="font-size: 1.25rem; color: #444; margin-left: 20px; line-height: 1.5;">
+                <li style="margin-bottom: 15px;"><b>Nhược điểm Full Scan</b>: Thay thế 100% Flip-flop tiêu tốn lên đến
+                    20% diện tích Silicon và làm chậm mạch đáng kể.</li>
+                <li style="margin-bottom: 15px;"><b>Giải pháp Partial Scan</b>: Chỉ biến các Flip-Flop nào <i>thực sự
+                        cần thiết</i> thành Scan-FF. Các FF còn lại giữ nguyên.</li>
+                <li style="margin-bottom: 15px;"><b>Chiến thuật chọn lọc RTL</b>: Nhắm vào việc phá vỡ các vòng lặp phản
+                    hồi (Feedback loops) và giảm "độ sâu tuần tự" (Sequential depth).</li>
+                <li style="margin-bottom: 15px;">Giảm chi phí Area Overhead nhưng bộ ATPG sẽ phải vận dụng toán học phức
+                    tạp hơn để tính toán Test Vector.</li>
             </ul>
         </div>
-        <div style="flex: 1; text-align: center;">
-            <img src="images/PartialScanDatapath.png" style="max-height: 180px; margin-bottom:15px;"><br>
-            <img src="images/TestVectorArrangement.png" style="max-height: 180px;">
+
+        <div style="flex: 1; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+            <div style="background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #eee;">
+                <img src="images/PartialScanDatapath.png" alt="Partial Scan Datapath"
+                    style="max-height: 350px; width: auto; border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <p style="margin-top: 15px; font-style: italic; color: #666; font-size: 1.05rem;">Hình 7.48. Mạch đường
+                    truyền dữ liệu (Data path) áp dụng Scan cục bộ ở mức RTL. Tiết kiệm diện tích so với thay toàn bộ
+                    FF.</p>
+            </div>
         </div>
     </div>
 </div>

@@ -1,17 +1,30 @@
 <div class="slide slide-container">
-    <h1 style="color: var(--primary-color);">Multiple Scan Bài Toán Adding Machine</h1>
-    <div style="display:flex; gap: 20px; align-items:center;">
-        <div style="flex: 1;">
-            <ul>
-                <li>Vi xử lý Adding Machine phân rã 3 luồng hoạt hóa độc lập:</li>
-                <li><b>IR Chain:</b> 8 FFs</li>
-                <li><b>AC Chain:</b> 8 FFs</li>
-                <li><b>PC Chain:</b> 8 FFs</li>
-                <li>Test vector time giảm sút tận 3 lần, tiết kiệm lớn thời gian nạp test trên IC Tester ATE đắt tiền.</li>
+    <h1 style="border-bottom: 3px solid var(--primary-color); padding-bottom: 15px; display: inline-block;">10. Ứng
+        dụng: Cấu trúc Adding Machine</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div
+            style="flex: 1; text-align: left; background: #fdfdfd; padding: 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 5px solid #00cccc;">
+            <h2 style="color: #00cccc; margin-bottom: 15px;"><i class="fa-solid fa-microchip"></i> System-Level Scan
+                Design</h2>
+            <ul style="font-size: 1.3rem; color: #444; margin-left: 20px; line-height: 1.6;">
+                <li style="margin-bottom: 15px;"><b>Adding Machine</b>: Một hệ thống cấp cao chuẩn (RTL) bao gồm Data
+                    Path (ALU, MUX, Registers) và Control Unit (FSM). Chứa hàng trăm đường tín hiệu.</li>
+                <li style="margin-bottom: 15px;"><b>Phân vùng (Partitioning)</b>: Chia mạch thành 2 chuỗi Scan độc lập
+                    (Ví dụ: Chuỗi 1 cho Control Unit, Chuỗi 2 cho các thanh ghi Data Path).</li>
+                <li style="margin-bottom: 15px;"><b>Virtual Tester ATE</b>: Máy test có thể thao tác đồng thời bơm tín
+                    hiệu độc lập vào Control Unit và Data Path, giúp test coverage tiệm cận mức hoàn hảo ở mức Data
+                    Level.</li>
             </ul>
         </div>
-        <div style="flex: 1.2; text-align: center;">
-            <img src="images/scan_chain.png" style="max-width:90%; border-radius:8px; box-shadow:0 4px 6px rgba(0,0,0,0.1);">
+
+        <div style="flex: 1; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+            <div style="background: #fff; padding: 20px; border-radius: 10px; border: 1px solid #eee;">
+                <img src="images/FullScanAddingMachineVirtualTester.png" alt="Virtual Tester cho Adding Machine"
+                    style="max-height: 350px; width: auto; border-radius: 5px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <p style="margin-top: 15px; font-style: italic; color: #666; font-size: 1.05rem;">Hình 7.53. Virtual
+                    tester áp dụng dải Full Scan cho hệ thống CPU đơn giản Adding Machine qua 2 kênh T_in1, T_in2.</p>
+            </div>
         </div>
     </div>
 </div>
