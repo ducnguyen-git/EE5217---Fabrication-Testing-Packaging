@@ -39,7 +39,7 @@ function initResizeObserver() {
 
 // Hàm tính toán cốt lõi (Tách biệt khỏi sự kiện UI)
 function recalculateScale(activeSlide) {
-    let baseWidth = 1440;
+    let baseWidth = 1600;
     let baseHeight = 900;
 
     // Lấy kích thước thật của Slide bao gồm padding/margin

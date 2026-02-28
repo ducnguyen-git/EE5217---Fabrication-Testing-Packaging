@@ -57,7 +57,7 @@ body.presentation-mode #slides_wrapper {
 .slide {
   position: relative;
   width: 90vw;
-  max-width: 1440px;
+  max-width: 1600px;
   min-height: 900px;
   display: flex;
   flex-direction: column;
@@ -81,7 +81,7 @@ body.presentation-mode .slide {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 1440px;
+  width: 1600px;
   height: max-content;
   min-height: 900px;
   max-width: none;
