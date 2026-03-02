@@ -1,0 +1,38 @@
+<div class="slide slide-container">
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">1.
+        Giới thiệu chung (Tiếp)</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div class="text-block-shadow"
+            style="flex: 1; min-width: 0; text-align: left; background: #ffffff; padding: 30px; border-radius: 16px; border-top: 5px solid #ff4d4f;">
+            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-bug"></i> Logic Fault Models
+                (Mô hình lỗi)</h2>
+            <p style="font-size: 1.25rem; margin-bottom: 15px;">Để làm rõ tại sao cần SCAN khi kiểm thử logic, ta cần
+                định nghĩa các mô hình lỗi cơ bản có thể xảy ra trong quá trình sản xuất vi mạch:</p>
+            <ul style="font-size: 1.25rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
+                <li style="margin-bottom: 15px;"><b>Stuck-at Faults (Lỗi kẹt):</b> Lỗi phổ biến nhất. Một node logic bị
+                    "kẹt" cố định ở mức 0 (Stuck-at-0) hoặc mức 1 (Stuck-at-1), bất kể đầu vào là gì.</li>
+                <li style="margin-bottom: 15px;"><b>Transition/Delay Faults (Lỗi trễ):</b> Lỗi về mặt thời gian. Node
+                    phân phối chậm khi chuyển từ 0 lên 1 (Slow-to-Rise) hoặc 1 xuống 0 (Slow-to-Fall).</li>
+                <li style="margin-bottom: 15px;"><b>Bridging Faults (Lỗi chập chập):</b> Xảy ra khi hai dây tín hiệu bị
+                    ngắn mạch (shorted) với nhau do lỗi gia công.</li>
+            </ul>
+        </div>
+
+        <div class="text-block-shadow"
+            style="flex: 1; min-width: 0; text-align: left; background: #ffffff; padding: 30px; border-radius: 16px; border-top: 5px solid #005ce6;">
+            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-microchip"></i> Tại sao cần
+                SCAN Design?</h2>
+            <ul style="font-size: 1.25rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
+                <li style="margin-bottom: 15px;">Trong mạch dãy (Sequential Circuit), trạng thái nằm ẩn bên trong các
+                    Flip-Flops. Việc phát hiện các <b>lỗi logic này</b> bằng cách điều khiển đầu vào từ ngoài và quan
+                    sát đầu ra là siêu khó khăn.</li>
+                <li style="margin-bottom: 15px;"><b>Giải pháp SCAN:</b> Biến các Flip-Flops thành dây chuyền dịch (Shift
+                    Register). Cho phép <b>"Shift"</b> trực tiếp dữ liệu (1/0) vào bất cứ vị trí FF nào
+                    (Controllability).</li>
+                <li style="margin-bottom: 15px;">Việc test mạch tuần tự bài toán giờ đây quy về giống bài toán test mạch
+                    tổ hợp có thể quan sát đầu ra dễ dàng (Observability).</li>
+            </ul>
+        </div>
+    </div>
+</div>

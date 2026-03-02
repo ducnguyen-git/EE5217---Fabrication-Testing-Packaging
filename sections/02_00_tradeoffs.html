@@ -1,0 +1,47 @@
+<div class="slide slide-container">
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">2.
+        Đưa Kiểm Thử Vào Thiết Kế</h1>
+
+    <div style="display: flex; flex-direction: column; gap: 30px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div class="text-block-shadow"
+            style="text-align: left; background: #ffffff; padding: 30px; border-radius: 16px; border-top: 5px solid #ff9900;">
+            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-balance-scale"></i> 2.1 Đánh
+                Đổi (Tradeoffs) Trong Testability</h2>
+            <p style="font-size: 1.35rem; margin-bottom: 15px;">Việc chèn thêm mạch DFT (như chuỗi quét Scan Chain) mang
+                lại vô vàn lợi thế cho bài toán kiểm tra độ bao phủ lõi, nhưng chi phí tương ứng cũng cần được cân nhắc
+                kỹ:</p>
+
+            <div style="display: flex; gap: 40px; margin-top: 20px;">
+                <div style="flex: 1;">
+                    <h3 style="color: #ff4d4f; margin-bottom: 15px; font-size: 1.3rem;"><i
+                            class="fa-solid fa-arrow-up-right-dots"></i> Chi phí gia tăng (Cost)</h3>
+                    <ul style="font-size: 1.25rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
+                        <li style="margin-bottom: 12px;"><b>Hardware Overhead:</b> Tăng diện tích mạch vi chip do chứa
+                            các cổng thiết kế rời (MUX trước đầu vào FF).</li>
+                        <li style="margin-bottom: 12px;"><b>Pin Count:</b> Yêu cầu thêm từ 3 đến 5 chân tín hiệu I/O
+                            chuyên dụng: Scan In, Scan Out, Scan Enable, Test Clock.</li>
+                        <li style="margin-bottom: 12px;"><b>Performance Penalty:</b> Ảnh hưởng nhỏ tới tốc độ Datapath
+                            do độ trễ truyền qua MUX.</li>
+                        <li><b>Test Application Time:</b> Tốn nhiều chu kỳ xung nhịp để quét dịch tuần tự vector mạch
+                            chuỗi.</li>
+                    </ul>
+                </div>
+
+                <div style="flex: 1;">
+                    <h3 style="color: #00cc66; margin-bottom: 15px; font-size: 1.3rem;"><i
+                            class="fa-solid fa-check-circle"></i> Lợi ích thực tiễn (Benefits)</h3>
+                    <ul style="font-size: 1.25rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
+                        <li style="margin-bottom: 12px;"><b>Fault Coverage:</b> Nâng cao đáng kể tỉ lệ phủ mảng phát
+                            hiện lỗi rủi ro (đạt mức > 95% - 99%). Hạn chế chi phí phát sinh nếu gặp lỗi trễ trên luồng
+                            xuất xưởng.</li>
+                        <li style="margin-bottom: 12px;"><b>Test Generation Time:</b> Quá trình sinh mẫu ATPG (Automatic
+                            Test Pattern Generation) sẽ chạy một cách êm dịu, nhờ giải pháp bẻ chuỗi tự động thành dạng
+                            tổ hợp.</li>
+                        <li style="margin-bottom: 12px;"><b>Diagnostic:</b> Phân tích và truy vấn đúng linh kiện
+                            Flip-Flop lỗi dễ dàng nhờ ánh xạ cấu trúc logic.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
