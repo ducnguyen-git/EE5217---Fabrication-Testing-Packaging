@@ -1,0 +1,30 @@
+<div class="slide slide-container">
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">6.
+        Thiết Kế Scan Cấp RTL (Tiếp)</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div class="text-block-shadow"
+            style="flex: 1; min-width: 0; text-align: left; background: #ffffff; padding: 30px; border-radius: 16px; border-top: 5px solid #ff4d4f;">
+            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-bolt"></i> Kiểm Thử Dòng Rò
+                (IDDQ Test)</h2>
+            <ul style="font-size: 1.25rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
+                <li style="margin-bottom: 15px;"><b>Khái niệm IDDQ:</b> IDD (Dòng Cấp) Q (Quiescent - Tức thời, yên
+                    tĩnh). Đây là phép đo dòng tiêu thụ tĩnh của toàn vi mạch khi hệ thống ở trạng thái ổn định lâu.
+                </li>
+                <li style="margin-bottom: 15px;"><b>Nguyên lý phát hiện lỗi:</b> Vi mạch CMOS bình thường chỉ tiêu tốn
+                    nano-Ampe rò. Nếu trong quá trình gia công một lỗi vật lý chập/ngắn mạch rò bên trong (cổng hỏng
+                    oxit, bridge), đường dẫn điện VDD xuống GND sẽ rò qua và mức cường độ tĩnh đội vọt lên mili-Ampe.
+                </li>
+                <li style="margin-bottom: 15px;"><b>Đặc quyền IDDQ Testing:</b>
+                    <ul style="margin-top: 5px;">
+                        <li>Phát hiện được lỗi cực kỳ khó mà dòng tín hiệu 1/0 "mù mờ" không thể báo (VD lỗi chập Weak
+                            faults).</li>
+                        <li>Khả năng Observability = 100% nhờ việc đo nguồn điện tổng vạch ra cả lô lỗi.</li>
+                    </ul>
+                </li>
+                <li style="margin-bottom: 15px;">Nhược điểm ở tiến trình sâu (Deep Sub-Micron), mức dòng rò tự nhiên
+                    cũng to theo, làm kỹ thuật IDDQ truyền thống gặp nhiều thử thách lớn.</li>
+            </ul>
+        </div>
+    </div>
+</div>

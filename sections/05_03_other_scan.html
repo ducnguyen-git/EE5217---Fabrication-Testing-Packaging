@@ -1,0 +1,31 @@
+<div class="slide slide-container">
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">5.
+        Các Kiến Trúc Scan (Tiếp)</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div class="text-block-shadow"
+            style="flex: 1; min-width: 0; text-align: left; background: #ffffff; padding: 30px; border-radius: 16px; border-top: 5px solid #8a2be2;">
+            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-puzzle-piece"></i> 5.5 Các
+                Phương Pháp Quét Khác</h2>
+            <p style="font-size: 1.25rem; margin-bottom: 15px;">Bên cạnh Full Scan, Shadow Register và Multiple Scan, kỹ
+                thuật DFT còn hỗ trợ các biến thể thiết kế sau để tối ưu hóa hiệu năng, độ trễ và cả chi phí die diện
+                tích:</p>
+            <ul style="font-size: 1.25rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
+                <li style="margin-bottom: 15px;"><b>Partial Scan (Quét một phần):</b>
+                    <ul style="margin-top: 5px;">
+                        <li>Chỉ chèn rải rác Scan-FF cho một tập hợp con các Flip-Flop trong thiết kế.</li>
+                        <li>Tránh đụng chạm mạch khắt khe yếu tố Critical Path / Delay.</li>
+                        <li><b>Nhược điểm:</b> ATPG phải giải bài toán phức tạp hơn so với mạch tổ hợp Full-Scan.</li>
+                    </ul>
+                </li>
+                <li style="margin-bottom: 15px;"><b>LSSD (Level-Sensitive Scan Design):</b>
+                    <ul style="margin-top: 5px;">
+                        <li>Thiết kế đặc trưng của IBM dựa trên Mạch chốt (Latch) thay vì Flip-Flop.</li>
+                        <li>Sử dụng cấu hình 2 chế độ xung nhịp <i>không gối lặp (non-overlapping)</i>.</li>
+                        <li>Loại bỏ hoàn toàn rủi ro Delay Faults / Race Condition dọc chuỗi truyền tín hiệu.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="slide slide-container">
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">5.
+        Các Kiến Trúc Scan (Tiếp)</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div class="text-block-shadow"
+            style="flex: 1; min-width: 0; text-align: left; background: #ffffff; padding: 30px; border-radius: 16px; border-top: 5px solid #00d2ff;">
+            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-clone"></i> 5.2 Shadow Register
+                DFT</h2>
+            <ul style="font-size: 1.25rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
+                <li style="margin-bottom: 15px;"><b>Vấn đề của Full Scan:</b> Full Scan yêu cầu phần cứng quét chèn lên
+                    đường truyền dữ liệu chính (data path), gây trễ tín hiệu (performance penalty) và làm thay đổi đặc
+                    tính thời gian thực của Flip-Flop.</li>
+                <li style="margin-bottom: 15px;"><b>Giải pháp Shadow Register:</b> Sử dụng một thanh ghi "bóng" (shadow
+                    register) đặt song song với thanh ghi hệ thống. Nghĩa là mỗi Flip-Flop làm việc (System FF) sẽ có
+                    một Flip-Flop quét riêng tư (Scan FF) được nối chập đi kèm.</li>
+                <li style="margin-bottom: 15px;"><b>Ưu điểm rõ rệt:</b>
+                    <ul style="margin-top: 5px;">
+                        <li>Mạch truyền nhận dữ liệu chính không bị ảnh hưởng (Zero delay penalty).</li>
+                        <li>Có thể Dump dữ liệu ra hoặc Load test đè vào ở bất kỳ thì nhịp hoạt động.</li>
+                        <li>Cho phép <i>Snapshot / Debug on the fly</i> ở hiện trường (Debug in field) mà không gián
+                            đoạn hệ thống.</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="text-block-shadow"
+            style="flex: 1; min-width: 0; text-align: left; background: #ffffff; padding: 25px; border-radius: 16px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <img src="images/ShadowRegister.png" alt="Shadow Register"
+                style="max-width: 90%; height: auto; border-radius: 8px; border: 1px solid #e2e8f0;"
+                onerror="this.src=''; this.alt='(Sẽ thêm hình minh họa Shadow Register)'; this.style.color='#888'; this.style.fontStyle='italic';">
+            <p style="margin-top: 15px; font-style: italic; color: #666; font-size: 1.1rem; text-align: center;">Mô
+                hình: Dữ liệu được sao lưu và đọc ghi thông qua "Bóng" khi mạch đang chạy.</p>
+        </div>
+    </div>
+</div>

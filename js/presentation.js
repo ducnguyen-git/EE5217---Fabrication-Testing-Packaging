@@ -1,18 +1,25 @@
 const slidesList = [
     'sections/00_cover.html',
     'sections/01_01_intro.html',
+    'sections/01_02_fault_models.html',
+    'sections/02_00_tradeoffs.html',
     'sections/02_01_making_testable.html',
     'sections/02_02_huffman.html',
+    'sections/02_03_combinational_testability.html',
     'sections/03_01_insertion.html',
     'sections/03_02_muxdemux.html',
     'sections/03_03_isolated_scan.html',
+    'sections/03_04_basic_scan_concept.html',
     'sections/04_01_fullscan_intro.html',
     'sections/04_02_ff_structures.html',
     'sections/04_03_residue5.html',
     'sections/04_04_virtual_tester.html',
     'sections/05_01_multiple_scan_intro.html',
+    'sections/05_02_shadow_register.html',
+    'sections/05_03_other_scan.html',
     'sections/05_02_adding_machine.html',
     'sections/06_01_rtl_scan.html',
+    'sections/06_02_iddq_test.html',
     'sections/07_01_summary.html'
 ];
 
