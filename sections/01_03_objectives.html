@@ -1,37 +1,220 @@
 <div class="slide slide-container">
     <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">3.
-        Mục tiêu của Scan Design</h1>
+        Mục tiêu của Scan Design (1/3)</h1>
 
-    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
-        <div class="text-block-shadow"
-            style="flex: 1; text-align: left; background: #ffffff; padding: 30px; border-radius: 16px; border-top: 5px solid #005ce6;">
-            <p style="font-size: 1.4rem; margin-bottom: 20px;">Mục tiêu cốt lõi của phương pháp Scan Design trong thiết
-                kế vi mạch hướng kiểm thử (DFT) là đảm bảo vi mạch có thể được kiểm tra chính xác, nhanh chóng với chi
-                phí hợp lý. Cụ thể bao gồm 3 mục tiêu chính:</p>
+    <p style="font-size: 1.4rem; margin-bottom: 25px;">Mục tiêu cốt lõi của phương pháp Scan Design trong thiết
+        kế vi mạch hướng kiểm thử (DFT) là đảm bảo vi mạch có thể được kiểm tra chính xác, nhanh chóng với chi
+        phí hợp lý. Cụ thể bao gồm 3 mục tiêu chính:</p>
 
+    <div style="display: flex; gap: 40px; margin-top: 20px; align-items: stretch; width: 100%;">
+        <div
+            style="flex: 1; min-width: 0; max-width: 50%; text-align: left; background: #FAFCFF; padding: 30px; border-radius: 16px; border-top: 5px solid #005ce6; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);">
             <ul style="font-size: 1.4rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
                 <li style="margin-bottom: 25px;">
-                    <b style="color: #005ce6;"><i class="fa-solid fa-gamepad"></i> Tăng khả năng điều khiển
-                        (Controllability):</b><br>
+                    <b style="color: #005ce6; font-size: 1.6rem;"><i class="fa-solid fa-gamepad"></i> Tăng khả năng điều
+                        khiển
+                        (Controllability)</b><br><br>
                     Cho phép áp đặt một trạng thái logic bất kỳ (0 hoặc 1) vào các node nội bộ của mạch một cách dễ dàng
                     thông qua các chuỗi Scan Chain, không phụ thuộc vào trạng thái khởi tạo hay các rào cản từ mạch tuần
                     tự.
                 </li>
+            </ul>
+        </div>
+
+        <div
+            style="flex: 1; min-width: 0; max-width: 50%; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+            <style>
+                @keyframes joystick-move {
+
+                    0%,
+                    100% {
+                        transform: rotate(0deg) translate(0, 0);
+                    }
+
+                    25% {
+                        transform: rotate(-15deg) translate(-10px, 5px);
+                        color: #3b82f6;
+                    }
+
+                    50% {
+                        transform: rotate(15deg) translate(10px, -5px);
+                        color: #ef4444;
+                    }
+
+                    75% {
+                        transform: rotate(0deg) translate(0, 10px);
+                        color: #10b981;
+                    }
+                }
+
+                .anim-joystick {
+                    animation: joystick-move 3s infinite ease-in-out;
+                }
+            </style>
+
+            <div class="text-block-shadow"
+                style="background: white; padding: 30px; border-radius: 16px; border: 2px dashed #bfdbfe; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; position: relative;">
+
+                <h3 style="color: #1d4ed8; margin-bottom: 20px; font-size: 1.4rem;">Override Internal States</h3>
+
+                <div
+                    style="display: flex; align-items: center; justify-content: center; width: 100%; position: relative;">
+                    <i class="fa-solid fa-gamepad anim-joystick"
+                        style="font-size: 6rem; color: #64748b; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2)); z-index: 2;"></i>
+
+                    <div
+                        style="position: absolute; right: 10%; top: -10px; background: #fee2e2; color: #b91c1c; padding: 5px 15px; border-radius: 8px; font-weight: bold; border: 1px solid #fca5a5; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        Force [1]
+                    </div>
+                    <div
+                        style="position: absolute; right: 20%; bottom: -10px; background: #e0f2fe; color: #0369a1; padding: 5px 15px; border-radius: 8px; font-weight: bold; border: 1px solid #7dd3fc; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        Force [0]
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; color: #64748b; font-style: italic; font-size: 0.95rem;">Minh họa: Quyền năng
+                ép trạng thái bất kỳ thông qua Scan Chain.</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide slide-container">
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">3.
+        Mục tiêu của Scan Design (2/3)</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 40px; align-items: stretch; width: 100%;">
+        <div
+            style="flex: 1; min-width: 0; max-width: 50%; text-align: left; background: #fff1f2; padding: 30px; border-radius: 16px; border-top: 5px solid #ff4d4f; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);">
+            <ul style="font-size: 1.4rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
                 <li style="margin-bottom: 25px;">
-                    <b style="color: #ff4d4f;"><i class="fa-solid fa-eye"></i> Tăng khả năng quan sát
-                        (Observability):</b><br>
+                    <b style="color: #ff4d4f; font-size: 1.6rem;"><i class="fa-solid fa-eye"></i> Tăng khả năng quan sát
+                        (Observability)</b><br><br>
                     Giúp dễ dàng thu thập và đọc được trạng thái tại bất cứ node nội bộ nào sau khi thực thi một lệnh
                     test. Kết quả sẽ được dịch chuyển (shift) ra mặt ngoài thông qua các chân Scan Out để so sánh với
                     kết quả kỳ vọng.
                 </li>
+            </ul>
+        </div>
+
+        <div
+            style="flex: 1; min-width: 0; max-width: 50%; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+            <style>
+                @keyframes scan-radar {
+                    0% {
+                        transform: scale(0.5);
+                        opacity: 0.8;
+                    }
+
+                    100% {
+                        transform: scale(2.5);
+                        opacity: 0;
+                    }
+                }
+
+                .anim-radar {
+                    animation: scan-radar 2s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);
+                    border-radius: 50%;
+                    border: 3px solid #f87171;
+                    position: absolute;
+                }
+            </style>
+
+            <div class="text-block-shadow"
+                style="background: white; padding: 30px; border-radius: 16px; border: 2px dashed #fca5a5; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; position: relative; overflow: hidden;">
+
+                <h3
+                    style="color: #b91c1c; margin-bottom: 20px; font-size: 1.4rem; z-index: 2; position: relative; background: white; padding: 0 10px;">
+                    Extract Hidden Data</h3>
+
+                <div
+                    style="display: flex; align-items: center; justify-content: center; width: 100%; position: relative; height: 150px;">
+                    <div
+                        style="width: 80px; height: 80px; background: #fee2e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2; border: 3px solid #ef4444; position: relative;">
+                        <i class="fa-solid fa-eye" style="font-size: 2.5rem; color: #b91c1c;"></i>
+                        <div class="anim-radar" style="width: 100%; height: 100%;"></div>
+                        <div class="anim-radar" style="width: 100%; height: 100%; animation-delay: 1s;"></div>
+                    </div>
+
+                    <div style="position: absolute; right: 10%; display: flex; align-items: center; gap: 5px;">
+                        <i class="fa-solid fa-satellite-dish" style="font-size: 2rem; color: #64748b;"></i>
+                        <span
+                            style="font-family: monospace; font-weight: bold; font-size: 1.2rem; color: #0f172a;">Capture()</span>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; color: #64748b; font-style: italic; font-size: 0.95rem;">Minh họa: Tầm nhìn
+                X-Ray siêu thanh thâm nhập vào các Node sâu.</p>
+        </div>
+    </div>
+</div>
+
+<div class="slide slide-container">
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">3.
+        Mục tiêu của Scan Design (3/3)</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 40px; align-items: stretch; width: 100%;">
+        <div
+            style="flex: 1; min-width: 0; max-width: 50%; text-align: left; background: #f0fdf4; padding: 30px; border-radius: 16px; border-top: 5px solid #52c41a; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);">
+            <ul style="font-size: 1.4rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
                 <li style="margin-bottom: 15px;">
-                    <b style="color: #52c41a;"><i class="fa-solid fa-magnifying-glass-chart"></i> Tăng khả năng phát
-                        hiện lỗi (Fault Detection):</b><br>
+                    <b style="color: #22c55e; font-size: 1.6rem;"><i class="fa-solid fa-magnifying-glass-chart"></i>
+                        Tăng khả năng phát hiện lỗi (Fault Detection)</b><br><br>
                     Sự kết hợp giữa điều khiển và quan sát tốt dẫn đến độ bao phủ lỗi (Fault Coverage) cao. Dễ dàng phát
                     hiện các lỗi vật lý như Stuck-at, Transition hay Bridging faults trước khi chip được giao cho khách
                     hàng.
                 </li>
             </ul>
+        </div>
+
+        <div
+            style="flex: 1; min-width: 0; max-width: 50%; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+            <style>
+                @keyframes target-scan {
+                    0% {
+                        transform: translateY(-30px);
+                        opacity: 0;
+                    }
+
+                    20% {
+                        opacity: 1;
+                    }
+
+                    80% {
+                        opacity: 1;
+                    }
+
+                    100% {
+                        transform: translateY(30px);
+                        opacity: 0;
+                    }
+                }
+
+                .anim-scanner-laser {
+                    animation: target-scan 2s infinite linear;
+                }
+            </style>
+
+            <div class="text-block-shadow"
+                style="background: white; padding: 30px; border-radius: 16px; border: 2px dashed #86efac; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; position: relative;">
+
+                <h3 style="color: #15803d; margin-bottom: 20px; font-size: 1.4rem;">High Fault Coverage Output</h3>
+
+                <div
+                    style="position: relative; width: 150px; height: 120px; border: 4px solid #cbd5e1; border-radius: 12px; display: flex; align-items: center; justify-content: center; 
+                    background: linear-gradient(45deg, #f8fafc 25%, #f1f5f9 25%, #f1f5f9 50%, #f8fafc 50%, #f8fafc 75%, #f1f5f9 75%, #f1f5f9 100%); background-size: 20px 20px;">
+
+                    <i class="fa-solid fa-bug"
+                        style="font-size: 3rem; color: #ef4444; position: absolute; left: 20px; top: 20px; transform: rotate(-15deg);"></i>
+                    <i class="fa-solid fa-bolt"
+                        style="font-size: 2.5rem; color: #f59e0b; position: absolute; right: 25px; bottom: 15px;"></i>
+
+                    <div class="anim-scanner-laser"
+                        style="width: 120%; height: 4px; background: #22c55e; position: absolute; border-radius: 2px; box-shadow: 0 0 10px 2px rgba(34,197,94,0.6);">
+                    </div>
+                </div>
+            </div>
+            <p style="text-align: center; color: #64748b; font-style: italic; font-size: 0.95rem;">Minh họa: Radar quét
+                Laser truy lùng và phát hiện mọi mẫu lỗi vật lý.</p>
         </div>
     </div>
 </div>
