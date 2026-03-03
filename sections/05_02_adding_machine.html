@@ -22,12 +22,102 @@
 
         <div
             style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+            <style>
+                @keyframes scan-pump {
+                    0% {
+                        transform: translateY(-10px);
+                        opacity: 0;
+                    }
+
+                    50% {
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+
+                    100% {
+                        transform: translateY(10px);
+                        opacity: 0;
+                    }
+                }
+            </style>
             <div class="text-block-shadow"
-                style="background: #ffffff; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0;">
-                <img src="images/FullScanAddingMachineVirtualTester.png" alt="Virtual Tester cho Adding Machine"
-                    style="max-height: 350px; width: auto; border-radius: 8px;">
-                <p style="margin-top: 15px; font-style: italic; color: #666; font-size: 1.05rem;">Hình 7.53. Virtual
-                    tester áp dụng dải Full Scan cho hệ thống CPU đơn giản Adding Machine qua 2 kênh T_in1, T_in2.</p>
+                style="background: white; padding: 25px; border-radius: 16px; border: 2px dashed #3b82f6; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+
+                <h3 style="color: #1e40af; margin-bottom: 25px; text-transform: uppercase;">Adding Machine Scanning</h3>
+
+                <div
+                    style="position: relative; width: 320px; height: 260px; display: flex; flex-direction: column; align-items: center;">
+
+                    <!-- ATE Tester Source -->
+                    <div
+                        style="width: 120px; height: 50px; background: #1e293b; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #38bdf8; z-index: 3; box-shadow: 0 5px 15px rgba(0,0,0,0.4);">
+                        <i class="fa-solid fa-server" style="margin-right: 8px;"></i> ATE Tester
+                    </div>
+
+                    <!-- Flow Wires -->
+                    <svg width="200" height="50" style="margin-top: -5px; z-index: 2;">
+                        <path d="M 100 0 L 100 20 L 40 20 L 40 50" fill="none" stroke="#f43f5e" stroke-width="3"
+                            stroke-dasharray="6 3" style="animation: scan-pump 1.5s infinite linear;" />
+                        <path d="M 100 0 L 100 20 L 160 20 L 160 50" fill="none" stroke="#22c55e" stroke-width="3"
+                            stroke-dasharray="6 3"
+                            style="animation: scan-pump 1.5s infinite linear; animation-delay: 0.5s;" />
+                    </svg>
+
+                    <!-- Core Partitions -->
+                    <div style="display: flex; gap: 20px; margin-top: -5px; z-index: 3;">
+
+                        <!-- Control Unit -->
+                        <div
+                            style="width: 100px; height: 120px; background: #fff1f2; border: 2px solid #f43f5e; border-radius: 8px; display: flex; flex-direction: column; align-items: center; padding: 5px;">
+                            <span style="font-size: 0.75rem; font-weight: bold; color: #be123c;">Control
+                                Unit<br>(FSM)</span>
+                            <div
+                                style="margin-top: 10px; width: 60px; height: 20px; background: #fda4af; border-radius: 3px; font-size: 0.6rem; line-height: 20px; color: #9f1239;">
+                                Chain 1</div>
+                            <div
+                                style="margin-top: 5px; width: 60px; height: 20px; background: #fda4af; border-radius: 3px; font-size: 0.6rem; line-height: 20px; color: #9f1239;">
+                                SD-FFs</div>
+                            <i class="fa-solid fa-microchip" style="margin-top: 10px; color: #e11d48;"></i>
+                        </div>
+
+                        <!-- Data Path -->
+                        <div
+                            style="width: 150px; height: 120px; background: #f0fdf4; border: 2px solid #22c55e; border-radius: 8px; display: flex; flex-direction: column; align-items: center; padding: 5px;">
+                            <span style="font-size: 0.75rem; font-weight: bold; color: #15803d;">Data
+                                Path<br>(ALU/Regs)</span>
+                            <div style="display: flex; gap: 5px; margin-top: 10px;">
+                                <div
+                                    style="width: 40px; height: 20px; background: #86efac; border-radius: 3px; font-size: 0.6rem; line-height: 20px; color: #166534;">
+                                    Chain 2</div>
+                                <div
+                                    style="width: 40px; height: 20px; background: #86efac; border-radius: 3px; font-size: 0.6rem; line-height: 20px; color: #166534;">
+                                    Chain 3</div>
+                            </div>
+                            <div style="display: flex; gap: 5px; margin-top: 5px;">
+                                <div
+                                    style="width: 40px; height: 20px; background: #86efac; border-radius: 3px; font-size: 0.6rem; line-height: 20px; color: #166534;">
+                                    Chain 4</div>
+                                <div
+                                    style="width: 40px; height: 20px; background: #86efac; border-radius: 3px; font-size: 0.6rem; line-height: 20px; color: #166534;">
+                                    ...</div>
+                            </div>
+                            <i class="fa-solid fa-calculator" style="margin-top: 10px; color: #16a34a;"></i>
+                        </div>
+                    </div>
+
+                    <!-- Flow Out -->
+                    <svg width="200" height="40" style="margin-top: 0; z-index: 2;">
+                        <path d="M 40 0 L 40 20 L 100 20 L 100 40" fill="none" stroke="#f43f5e" stroke-width="3"
+                            stroke-dasharray="6 3" style="animation: scan-pump 1.5s infinite linear;" />
+                        <path d="M 160 0 L 160 20 L 100 20 L 100 40" fill="none" stroke="#22c55e" stroke-width="3"
+                            stroke-dasharray="6 3"
+                            style="animation: scan-pump 1.5s infinite linear; animation-delay: 0.5s;" />
+                    </svg>
+                </div>
+
+                <p
+                    style="margin-top: 15px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
+                    Minh họa: ATE điều khiển độc lập và bóc tách Control Part với Data Part trong cùng 1 IC.</p>
             </div>
         </div>
     </div>

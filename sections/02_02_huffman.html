@@ -17,12 +17,64 @@
         </div>
         <div
             style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; gap: 20px; justify-content:center;">
+            <style>
+                @keyframes huffman-flow {
+                    0% {
+                        stroke-dashoffset: 40;
+                        opacity: 1;
+                    }
+
+                    100% {
+                        stroke-dashoffset: 0;
+                        opacity: 1;
+                    }
+                }
+            </style>
             <div class="text-block-shadow"
-                style="background: #ffffff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0;">
-                <img src="images/HuffmanCircuitModel.png"
-                    style="border-radius:8px; max-height: 480px; max-width: 100%;">
-                <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.1. Mô hình mạch
-                    chia nửa ranh giới theo lý thuyết Huffman.</p>
+                style="background: #ffffff; padding: 25px; border-radius: 16px; border: 2px dashed #3b82f6; display: flex; flex-direction: column; align-items: center; position: relative;">
+
+                <h3 style="color: #1e40af; margin-bottom: 25px; text-transform: uppercase;">Sequential Circuit Model
+                </h3>
+
+                <div style="position: relative; width: 280px; height: 160px;">
+                    <!-- Comb Block -->
+                    <div
+                        style="position: absolute; left: 60px; top: 0; width: 160px; height: 70px; background: #e0f2fe; border: 2px solid #3b82f6; border-radius: 8px; display: flex; align-items: center; justify-content: center; z-index: 2; font-weight: bold; font-size: 1.1rem; color: #1e40af;">
+                        Combinational Logic</div>
+
+                    <!-- Memory Elements -->
+                    <div
+                        style="position: absolute; left: 80px; bottom: 0; width: 120px; height: 50px; background: #fce7f3; border: 2px solid #ec4899; border-radius: 6px; display: flex; align-items: center; justify-content: center; z-index: 2; font-weight: bold; color: #9d174d; font-size: 1rem;">
+                        Memory (FFs)</div>
+
+                    <!-- Primary IO Wires -->
+                    <svg width="280" height="160" style="position: absolute; left: 0; top: 0; z-index: 1;">
+                        <!-- PI -->
+                        <path d="M 0 35 L 60 35" fill="none" stroke="#64748b" stroke-width="3" stroke-dasharray="6 3"
+                            style="animation: huffman-flow 2s infinite linear;" />
+                        <text x="5" y="25" font-family="monospace" font-size="12" font-weight="bold"
+                            fill="#64748b">Inputs (PI)</text>
+
+                        <!-- PO -->
+                        <path d="M 220 35 L 280 35" fill="none" stroke="#64748b" stroke-width="3" stroke-dasharray="6 3"
+                            style="animation: huffman-flow 2s infinite linear;" />
+                        <text x="225" y="25" font-family="monospace" font-size="12" font-weight="bold"
+                            fill="#64748b">Outputs (PO)</text>
+
+                        <!-- Feedback loops -->
+                        <path d="M 190 70 L 190 135 L 165 135 M 100 135 L 70 135 L 70 70" fill="none" stroke="#ec4899"
+                            stroke-width="3" stroke-dasharray="8 4"
+                            style="animation: huffman-flow 1.5s infinite linear;" />
+                        <text x="200" y="100" font-family="monospace" font-size="10" font-weight="bold"
+                            fill="#db2777">Next State</text>
+                        <text x="5" y="100" font-family="monospace" font-size="10" font-weight="bold"
+                            fill="#db2777">Current State</text>
+                    </svg>
+                </div>
+
+                <p
+                    style="margin-top: 15px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
+                    Minh họa: Mạch tuần tự được tách tháo thành Mạch Tổ Hợp thuần túy ghép với chốt nhớ phản hồi.</p>
             </div>
         </div>
     </div>
@@ -186,10 +238,67 @@
         </div>
         <div
             style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; gap: 20px; justify-content:center;">
+            <style>
+                @keyframes huffman-flow {
+                    0% {
+                        stroke-dashoffset: 40;
+                        opacity: 1;
+                    }
+
+                    100% {
+                        stroke-dashoffset: 0;
+                        opacity: 1;
+                    }
+                }
+            </style>
             <div class="text-block-shadow"
-                style="background: #ffffff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0;">
-                <img src="images/HuffmanCircuitModel.png"
-                    style="border-radius:8px; max-height: 480px; max-width: 100%;">
+                style="background: #ffffff; padding: 25px; border-radius: 16px; border: 2px dashed #3b82f6; display: flex; flex-direction: column; align-items: center; position: relative;">
+
+                <h3 style="color: #1e40af; margin-bottom: 25px; text-transform: uppercase;">Pseudo-IO Configuration</h3>
+
+                <div style="position: relative; width: 280px; height: 160px;">
+                    <!-- Comb Block -->
+                    <div
+                        style="position: absolute; left: 60px; top: 0; width: 160px; height: 70px; background: #e0f2fe; border: 2px solid #3b82f6; border-radius: 8px; display: flex; align-items: center; justify-content: center; z-index: 2; font-weight: bold; font-size: 1.1rem; color: #1e40af;">
+                        Combinational Logic</div>
+
+                    <!-- Virtual Terminals -->
+                    <div
+                        style="position: absolute; left: 70px; bottom: 0; padding: 5px; background: #dcfce7; border: 2px dashed #22c55e; border-radius: 4px; font-size: 0.7rem; font-weight: bold; color: #166534; z-index: 2;">
+                        Pseudo-PI (PPI)</div>
+                    <div
+                        style="position: absolute; right: 70px; bottom: 0; padding: 5px; background: #fef08a; border: 2px dashed #ca8a04; border-radius: 4px; font-size: 0.7rem; font-weight: bold; color: #854d0e; z-index: 2;">
+                        Pseudo-PO (PPO)</div>
+
+                    <!-- Primary IO Wires -->
+                    <svg width="280" height="160" style="position: absolute; left: 0; top: 0; z-index: 1;">
+                        <!-- PI -->
+                        <path d="M 0 35 L 60 35" fill="none" stroke="#64748b" stroke-width="3" stroke-dasharray="6 3"
+                            style="animation: huffman-flow 2s infinite linear;" />
+                        <text x="5" y="25" font-family="monospace" font-size="12" font-weight="bold" fill="#64748b">Real
+                            PI</text>
+
+                        <!-- PO -->
+                        <path d="M 220 35 L 280 35" fill="none" stroke="#64748b" stroke-width="3" stroke-dasharray="6 3"
+                            style="animation: huffman-flow 2s infinite linear;" />
+                        <text x="225" y="25" font-family="monospace" font-size="12" font-weight="bold"
+                            fill="#64748b">Real PO</text>
+
+                        <!-- Disconnected loops -->
+                        <path d="M 190 70 L 190 135 L 165 135" fill="none" stroke="#ca8a04" stroke-width="3"
+                            stroke-dasharray="4" style="animation: huffman-flow 1.5s infinite linear;" />
+                        <path d="M 100 135 L 70 135 L 70 70" fill="none" stroke="#22c55e" stroke-width="3"
+                            stroke-dasharray="4" style="animation: huffman-flow 1.5s infinite linear;" />
+
+                        <!-- Scissors cutting -->
+                        <text x="130" y="145" font-family="monospace" font-size="20" fill="#ef4444">✂️</text>
+                    </svg>
+                </div>
+
+                <p
+                    style="margin-top: 15px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
+                    Minh họa: Vòng lặp feedback bị cắt đứt. Ngõ vào/ra của FF trở thành Pseudo-PI/PO để ATPG sinh mẫu.
+                </p>
             </div>
         </div>
     </div>
@@ -214,12 +323,72 @@
         </div>
         <div
             style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; gap: 20px; justify-content:center;">
+            <style>
+                @keyframes unfold-flow {
+                    0% {
+                        stroke-dashoffset: 40;
+                        opacity: 0;
+                    }
+
+                    50%,
+                    100% {
+                        stroke-dashoffset: 0;
+                        opacity: 1;
+                    }
+                }
+            </style>
+
             <div class="text-block-shadow"
-                style="background: #ffffff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0;">
-                <img src="images/UnfoldedCircuitModel.png"
-                    style="border-radius:8px; max-height: 480px; max-width: 100%;">
-                <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.2. "Duỗi thẳng"
-                    mạch vòng bị bẻ gãy theo trục ngang Unfolding Time.</p>
+                style="background: white; padding: 25px; border-radius: 16px; border: 2px dashed #8b5cf6; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+
+                <h3 style="color: #6d28d9; margin-bottom: 25px; text-transform: uppercase;">Iterative Logic Array
+                    (Unfolded)</h3>
+
+                <div
+                    style="position: relative; width: 340px; height: 120px; display: flex; align-items: center; justify-content: space-between;">
+
+                    <!-- Frame t-1 -->
+                    <div
+                        style="width: 80px; height: 80px; background: #fdf4ff; border: 2px dashed #d946ef; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <span style="font-size: 0.8rem; font-weight: bold; color: #a21caf;">Comb Block</span>
+                        <span
+                            style="font-family: monospace; font-size: 0.9rem; font-weight: bold; color: #c026d3; margin-top: 5px;">t-1</span>
+                    </div>
+
+                    <svg width="60" height="20" style="z-index: 1;">
+                        <path d="M 0 10 L 60 10" fill="none" stroke="#d946ef" stroke-width="3" stroke-dasharray="8 4"
+                            style="animation: unfold-flow 2s infinite linear;" />
+                        <text x="15" y="8" font-size="10" font-weight="bold" fill="#d946ef">State</text>
+                    </svg>
+
+                    <!-- Frame t -->
+                    <div
+                        style="width: 80px; height: 80px; background: #e0e7ff; border: 2px dashed #4f46e5; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <span style="font-size: 0.8rem; font-weight: bold; color: #3730a3;">Comb Block</span>
+                        <span
+                            style="font-family: monospace; font-size: 0.9rem; font-weight: bold; color: #4338ca; margin-top: 5px;">t</span>
+                    </div>
+
+                    <svg width="60" height="20" style="z-index: 1;">
+                        <path d="M 0 10 L 60 10" fill="none" stroke="#4f46e5" stroke-width="3" stroke-dasharray="8 4"
+                            style="animation: unfold-flow 2s infinite linear; animation-delay: 1s;" />
+                        <text x="15" y="8" font-size="10" font-weight="bold" fill="#4f46e5">State</text>
+                    </svg>
+
+                    <!-- Frame t+1 -->
+                    <div
+                        style="width: 80px; height: 80px; background: #dcfce7; border: 2px dashed #10b981; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                        <span style="font-size: 0.8rem; font-weight: bold; color: #065f46;">Comb Block</span>
+                        <span
+                            style="font-family: monospace; font-size: 0.9rem; font-weight: bold; color: #059669; margin-top: 5px;">t+1</span>
+                    </div>
+
+                </div>
+
+                <p
+                    style="margin-top: 15px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
+                    Minh họa: Mạch được nhân bản trải dài theo rãnh thời gian, nắn đường cong phản hồi thành đường thẳng
+                    ILA.</p>
             </div>
         </div>
     </div>

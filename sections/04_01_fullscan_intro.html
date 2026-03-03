@@ -24,13 +24,128 @@
         </div>
 
         <div
-            style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+            style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+            <style>
+                @keyframes stitch-connect {
+
+                    0%,
+                    45% {
+                        stroke: transparent;
+                        stroke-dashoffset: 50;
+                    }
+
+                    50%,
+                    100% {
+                        stroke: #22c55e;
+                        stroke-dashoffset: 0;
+                    }
+                }
+
+                @keyframes block-disable {
+
+                    0%,
+                    45% {
+                        opacity: 1;
+                        filter: grayscale(0);
+                        border-color: #3b82f6;
+                    }
+
+                    50%,
+                    100% {
+                        opacity: 0.3;
+                        filter: grayscale(1);
+                        border-color: #94a3b8;
+                    }
+                }
+
+                @keyframes scan-glow {
+
+                    0%,
+                    45% {
+                        box-shadow: none;
+                        border-color: #64748b;
+                        background: white;
+                    }
+
+                    50%,
+                    100% {
+                        box-shadow: 0 0 10px rgba(34, 197, 94, 0.6);
+                        border-color: #22c55e;
+                        background: #f0fdf4;
+                    }
+                }
+            </style>
+
             <div class="text-block-shadow"
-                style="background: #ffffff; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0;">
-                <img src="images/FullScanDftTechnique.png" alt="Full Scan DFT Technique"
-                    style="max-height: 350px; width: auto; border-radius: 8px;">
-                <p style="margin-top: 15px; font-style: italic; color: #666; font-size: 1.05rem;">Hình 7.45. Mô hình
-                    Full Scan: Nối chuỗi toàn bộ Flip-Flops. Tiết kiệm phần cứng so với Isolated Scan.</p>
+                style="background: white; padding: 25px; border-radius: 16px; border: 2px dashed #00d2ff; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; height: 100%;">
+
+                <h3 style="color: #0284c7; margin-bottom: 25px; text-transform: uppercase;">Full Scan Topology</h3>
+
+                <div
+                    style="position: relative; width: 320px; height: 220px; display: flex; flex-direction: column; justify-content: space-around; align-items: center; border: 2px solid #e2e8f0; border-radius: 12px; background: #f8fafc;">
+
+                    <span
+                        style="position: absolute; top: 10px; left: 15px; font-size: 0.8rem; font-weight: bold; color: #475569; animation: block-disable 6s infinite reverse;">[
+                        NORMAL MODE ]</span>
+                    <span
+                        style="position: absolute; top: 10px; right: 15px; font-size: 0.8rem; font-weight: bold; color: #166534; opacity: 0; animation: block-disable 6s infinite;">[
+                        TEST MODE ]</span>
+
+                    <!-- Logic Block 1 -->
+                    <div
+                        style="width: 250px; height: 40px; background: #e0f2fe; border: 2px solid; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #1e40af; font-weight: bold; z-index: 2; animation: block-disable 6s infinite;">
+                        Combinational Cloud A</div>
+
+                    <!-- Row of Flip-Flops -->
+                    <div style="display: flex; gap: 30px; position: relative; z-index: 3;">
+                        <div
+                            style="width: 40px; height: 50px; border: 2px solid; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: bold; animation: scan-glow 6s infinite;">
+                            FF1</div>
+                        <div
+                            style="width: 40px; height: 50px; border: 2px solid; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: bold; animation: scan-glow 6s infinite;">
+                            FF2</div>
+                        <div
+                            style="width: 40px; height: 50px; border: 2px solid; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: bold; animation: scan-glow 6s infinite;">
+                            FF3</div>
+                        <div
+                            style="width: 40px; height: 50px; border: 2px solid; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: bold; animation: scan-glow 6s infinite;">
+                            FF4</div>
+                    </div>
+
+                    <!-- Scan Chain Wiring (Hidden in Normal mode) -->
+                    <svg width="250" height="50"
+                        style="position: absolute; top: 110px; left: 35px; z-index: 2; pointer-events: none;">
+                        <path d="M 0 0 L -25 0 L -25 40 L 40 40 L 40 0" fill="none" stroke-width="3"
+                            stroke-dasharray="6 3"
+                            style="animation: stitch-connect 6s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);" />
+                        <path d="M 40 40 L 110 40 L 110 0" fill="none" stroke-width="3" stroke-dasharray="6 3"
+                            style="animation: stitch-connect 6s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);" />
+                        <path d="M 110 40 L 180 40 L 180 0" fill="none" stroke-width="3" stroke-dasharray="6 3"
+                            style="animation: stitch-connect 6s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);" />
+                        <path d="M 180 40 L 250 40 L 250 0 M 250 40 L 280 40" fill="none" stroke-width="3"
+                            stroke-dasharray="6 3"
+                            style="animation: stitch-connect 6s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);" />
+                    </svg>
+
+                    <!-- Scan IN / OUT labels -->
+                    <div
+                        style="position: absolute; left: -10px; top: 145px; font-size: 0.7rem; font-weight: bold; color: #166534; opacity: 0; animation: block-disable 6s infinite;">
+                        Scan In</div>
+                    <div
+                        style="position: absolute; right: -10px; top: 145px; font-size: 0.7rem; font-weight: bold; color: #166534; opacity: 0; animation: block-disable 6s infinite;">
+                        Scan Out</div>
+
+                    <!-- Logic Block 2 -->
+                    <div
+                        style="width: 250px; height: 40px; background: #e0f2fe; border: 2px solid; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #1e40af; font-weight: bold; z-index: 2; animation: block-disable 6s infinite;">
+                        Combinational Cloud B</div>
+
+                </div>
+
+                <p
+                    style="margin-top: 15px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
+                    Minh họa: Ở Test Mode, mạch Logic bị phong tỏa, các D-FF được khâu (stitch) lại thành 1 chuỗi dài.
+                </p>
             </div>
         </div>
     </div>

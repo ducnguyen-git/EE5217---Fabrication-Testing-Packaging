@@ -20,14 +20,123 @@
             </ul>
         </div>
 
-        <div style="flex: 1; min-width: 0; max-width: 50%; text-align: center;">
+        <div
+            style="flex: 1; min-width: 0; max-width: 50%; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+            <style>
+                @keyframes signal-flow-a {
+
+                    0%,
+                    45% {
+                        stroke: #3b82f6;
+                        stroke-dashoffset: 20;
+                        opacity: 1;
+                    }
+
+                    50%,
+                    100% {
+                        stroke: #94a3b8;
+                        stroke-dashoffset: 0;
+                        opacity: 0.3;
+                    }
+                }
+
+                @keyframes signal-flow-t {
+
+                    0%,
+                    45% {
+                        stroke: #94a3b8;
+                        stroke-dashoffset: 20;
+                        opacity: 0.3;
+                    }
+
+                    50%,
+                    100% {
+                        stroke: #ef4444;
+                        stroke-dashoffset: 0;
+                        opacity: 1;
+                    }
+                }
+
+                @keyframes output-pulse {
+
+                    0%,
+                    45% {
+                        background: #dbeafe;
+                        color: #1e40af;
+                        border-color: #bfdbfe;
+                    }
+
+                    50%,
+                    100% {
+                        background: #fee2e2;
+                        color: #991b1b;
+                        border-color: #fca5a5;
+                    }
+                }
+
+                @keyframes gate-glow {
+
+                    0%,
+                    45% {
+                        filter: drop-shadow(0 0 5px rgba(59, 130, 246, 0.5));
+                    }
+
+                    50%,
+                    100% {
+                        filter: drop-shadow(0 0 15px rgba(239, 68, 68, 0.8));
+                    }
+                }
+            </style>
+
             <div class="text-block-shadow"
-                style="background: #ffffff; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0; display: inline-block;">
-                <img src="images/AddingControllability.png" alt="Concept of Controllability"
-                    style="max-width: 100%; height: auto; border-radius: 8px;">
-                <p style="margin-top: 15px; font-style: italic; color: #666; font-size: 1.1rem;">Hình 7.4. Thêm khả năng
-                    điều khiển (Controllability) vào một node nội bộ (A) bằng cách sử dụng cổng OR và chân kiểm thử bổ
-                    sung (T).</p>
+                style="background: white; padding: 25px; border-radius: 16px; border: 2px dashed #94a3b8; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; position: relative;">
+
+                <h3 style="color: #334155; margin-bottom: 25px; text-transform: uppercase;">Adding Controllability (OR
+                    Gate)</h3>
+
+                <div style="position: relative; width: 250px; height: 120px; display: flex; align-items: center;">
+
+                    <!-- Inputs -->
+                    <div
+                        style="display: flex; flex-direction: column; justify-content: space-between; height: 80px; z-index: 2;">
+                        <div
+                            style="background: #3b82f6; color: white; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-family: monospace;">
+                            A (Internal)</div>
+                        <div
+                            style="background: #ef4444; color: white; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-family: monospace;">
+                            T (Test PIN)</div>
+                    </div>
+
+                    <!-- Wires -->
+                    <svg width="60" height="120" style="position: absolute; left: 100px; z-index: 1;">
+                        <path d="M 0 20 L 60 40" fill="none" stroke-width="4" stroke-dasharray="8 4"
+                            style="animation: signal-flow-a 4s infinite linear;" />
+                        <path d="M 0 100 L 60 80" fill="none" stroke-width="4" stroke-dasharray="8 4"
+                            style="animation: signal-flow-t 4s infinite linear;" />
+                    </svg>
+
+                    <!-- OR Gate Shape -->
+                    <div
+                        style="position: absolute; left: 150px; width: 60px; height: 80px; background: #e2e8f0; border-radius: 0 40px 40px 0; border-left: 10px solid #94a3b8; display: flex; align-items: center; justify-content: center; z-index: 2; animation: gate-glow 4s infinite;">
+                        <span style="font-weight: bold; font-size: 1.2rem; color: #475569;">≥1</span>
+                    </div>
+
+                    <!-- Output -->
+                    <div
+                        style="position: absolute; right: -20px; width: 40px; height: 40px; border-radius: 50%; border: 3px solid; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: monospace; z-index: 2; animation: output-pulse 4s infinite;">
+                        Out
+                    </div>
+
+                </div>
+
+                <div style="display: flex; gap: 20px; margin-top: 20px; font-family: monospace; font-size: 0.9rem;">
+                    <span style="color: #3b82f6;">Normal: T=0 &rarr; Out=A</span>
+                    <span style="color: #ef4444;">Test Mode: T=1 &rarr; Out=1</span>
+                </div>
+
+                <p
+                    style="margin-top: 20px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
+                    Minh họa: Ép ngõ ra thành Mức 1 thông qua chân Test (T) kết hợp cổng OR.</p>
             </div>
         </div>
     </div>

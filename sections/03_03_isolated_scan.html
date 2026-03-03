@@ -20,13 +20,135 @@
         </div>
 
         <div
-            style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+            style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+            <style>
+                @keyframes serial-shift-in {
+                    0% {
+                        stroke-dashoffset: 40;
+                        opacity: 1;
+                        stroke: #8b5cf6;
+                    }
+
+                    100% {
+                        stroke-dashoffset: 0;
+                        opacity: 1;
+                        stroke: #8b5cf6;
+                    }
+                }
+
+                @keyframes broadcast-points {
+
+                    0%,
+                    45% {
+                        opacity: 0;
+                        transform: translateY(-10px);
+                        color: #cbd5e1;
+                    }
+
+                    50%,
+                    100% {
+                        opacity: 1;
+                        transform: translateY(0);
+                        color: #ef4444;
+                    }
+                }
+
+                @keyframes bit-shift {
+                    0% {
+                        transform: translateX(0);
+                    }
+
+                    100% {
+                        transform: translateX(25px);
+                    }
+                }
+            </style>
+
             <div class="text-block-shadow"
-                style="background: #ffffff; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0;">
-                <img src="images/IsolatedSerialScanVirtualTester.png" alt="Isolated Serial Scan"
-                    style="max-height: 350px; width: auto; border-radius: 8px;">
-                <p style="margin-top: 15px; font-style: italic; color: #666; font-size: 1.05rem;">Hình 7.16. Môi trường
-                    Virtual Tester dùng Shift Register tiêm dữ liệu qua các điểm điều khiển và quan sát nối tiếp.</p>
+                style="background: white; padding: 25px; border-radius: 16px; border: 2px dashed #94a3b8; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; height: 100%;">
+
+                <h3 style="color: #334155; margin-bottom: 25px; text-transform: uppercase;">Isolated Serial Scan
+                    Simulation</h3>
+
+                <div
+                    style="position: relative; width: 350px; height: 180px; display: flex; align-items: center; justify-content: space-between;">
+
+                    <!-- Virtual Tester -->
+                    <div
+                        style="width: 80px; height: 120px; background: #1e293b; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(0,0,0,0.4); z-index: 2;">
+                        <i class="fa-solid fa-laptop-code"
+                            style="color: #60a5fa; font-size: 2rem; margin-bottom: 10px;"></i>
+                        <span
+                            style="font-weight: bold; color: white; font-size: 0.8rem; text-align: center;">Virtual<br>Tester</span>
+                    </div>
+
+                    <!-- Serial Wire -->
+                    <div style="position: absolute; left: 80px; top: 60px; z-index: 1;">
+                        <svg width="40" height="20">
+                            <path d="M 0 10 L 40 10" fill="none" stroke-width="3" stroke-dasharray="8 4"
+                                style="animation: serial-shift-in 1s infinite linear;" />
+                        </svg>
+                        <span
+                            style="position: absolute; left: 10px; top: -15px; font-size: 0.7rem; color: #8b5cf6; font-weight: bold; font-family: monospace;">Serial
+                            In</span>
+                    </div>
+
+                    <!-- Chip Core Area -->
+                    <div
+                        style="width: 200px; height: 160px; background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 12px; position: relative; display: flex; flex-direction: column; align-items: center;">
+                        <span
+                            style="position: absolute; top: -10px; background: white; padding: 0 5px; color: #64748b; font-weight: bold; font-size: 0.8rem;">CHIP
+                            CORE</span>
+
+                        <!-- Added Shift Register (Isolated) -->
+                        <div
+                            style="margin-top: 25px; width: 140px; height: 40px; background: #ede9fe; border: 2px solid #8b5cf6; border-radius: 6px; display: flex; align-items: center; justify-content: space-between; padding: 0 5px; position: relative; overflow: hidden; z-index: 3;">
+                            <span
+                                style="position: absolute; top: 2px; left: 5px; font-size: 0.5rem; color: #5b21b6; font-weight: bold;">Shift
+                                Register</span>
+                            <!-- Shifting bits -->
+                            <div style="display: flex; gap: 5px; margin-top: 10px; align-items: center;">
+                                <div
+                                    style="width: 15px; height: 15px; background: #10b981; border-radius: 2px; animation: bit-shift 1s infinite steps(1);">
+                                </div>
+                                <div
+                                    style="width: 15px; height: 15px; background: #ef4444; border-radius: 2px; animation: bit-shift 1s infinite steps(1);">
+                                </div>
+                                <div
+                                    style="width: 15px; height: 15px; background: #3b82f6; border-radius: 2px; animation: bit-shift 1s infinite steps(1);">
+                                </div>
+                                <div
+                                    style="width: 15px; height: 15px; background: #f59e0b; border-radius: 2px; animation: bit-shift 1s infinite steps(1);">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Parallel broadcast wires -->
+                        <svg width="120" height="40" style="margin-top: 0; z-index: 1;">
+                            <path d="M 20 0 L 20 40 M 60 0 L 60 40 M 100 0 L 100 40" fill="none" stroke="#94a3b8"
+                                stroke-width="2" stroke-dasharray="4 2" />
+                        </svg>
+
+                        <!-- Logic Nodes -->
+                        <div style="display: flex; gap: 20px; z-index: 2;">
+                            <div
+                                style="width: 25px; height: 25px; background: white; border: 2px solid #64748b; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: broadcast-points 4s infinite;">
+                                L1</div>
+                            <div
+                                style="width: 25px; height: 25px; background: white; border: 2px solid #64748b; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: broadcast-points 4s infinite; animation-delay: 0.2s;">
+                                L2</div>
+                            <div
+                                style="width: 25px; height: 25px; background: white; border: 2px solid #64748b; border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: broadcast-points 4s infinite; animation-delay: 0.4s;">
+                                L3</div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <p
+                    style="margin-top: 20px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
+                    Minh họa: Dữ liệu Test được nạp rùa bò (từng bit) qua Shift Register rồi Update rập khuôn xuống các
+                    Logic Node.</p>
             </div>
         </div>
     </div>

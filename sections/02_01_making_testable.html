@@ -20,20 +20,96 @@
         </div>
 
         <div
-            style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+            style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: space-between; gap: 15px;">
+            <style>
+                @keyframes huffman-flow {
+                    0% {
+                        stroke-dashoffset: 40;
+                        opacity: 1;
+                    }
+
+                    100% {
+                        stroke-dashoffset: 0;
+                        opacity: 1;
+                    }
+                }
+
+                @keyframes unfold-flow {
+                    0% {
+                        stroke-dashoffset: 100;
+                        opacity: 0;
+                    }
+
+                    50%,
+                    100% {
+                        stroke-dashoffset: 0;
+                        opacity: 1;
+                    }
+                }
+            </style>
+
+            <!-- Huffman Model Box -->
             <div class="text-block-shadow"
-                style="background: #ffffff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0; margin-bottom: 15px;">
-                <img src="images/HuffmanCircuitModel.png" alt="Huffman Circuit Model"
-                    style="max-width: 90%; height: auto; border-radius: 8px;">
-                <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 1rem;">Hình 7.1. Mô hình mạch
-                    tuần tự của Huffman.</p>
+                style="background: #ffffff; padding: 15px; border-radius: 16px; border: 2px solid #e2e8f0; display: flex; flex-direction: column; align-items: center; position: relative; height: 180px;">
+                <h4 style="color: #475569; margin-bottom: 10px; font-size: 1rem;">Mô hình mạch tuần tự</h4>
+
+                <div style="position: relative; width: 220px; height: 110px;">
+                    <!-- Comb Block -->
+                    <div
+                        style="position: absolute; left: 40px; top: 0; width: 140px; height: 50px; background: #e0f2fe; border: 2px solid #3b82f6; border-radius: 8px; display: flex; align-items: center; justify-content: center; z-index: 2; font-weight: bold; color: #1e40af;">
+                        Combinational Logic</div>
+                    <!-- Memory Elements -->
+                    <div
+                        style="position: absolute; left: 60px; bottom: 0; width: 100px; height: 35px; background: #fce7f3; border: 2px solid #ec4899; border-radius: 6px; display: flex; align-items: center; justify-content: center; z-index: 2; font-weight: bold; color: #9d174d; font-size: 0.85rem;">
+                        Memory (FFs)</div>
+
+                    <!-- Primary IO Wires -->
+                    <svg width="220" height="110" style="position: absolute; left: 0; top: 0; z-index: 1;">
+                        <!-- PI -->
+                        <path d="M 0 25 L 40 25" fill="none" stroke="#64748b" stroke-width="3" stroke-dasharray="6 3"
+                            style="animation: huffman-flow 2s infinite linear;" />
+                        <!-- PO -->
+                        <path d="M 180 25 L 220 25" fill="none" stroke="#64748b" stroke-width="3" stroke-dasharray="6 3"
+                            style="animation: huffman-flow 2s infinite linear;" />
+                        <!-- Feedback loops -->
+                        <path d="M 160 50 L 160 85 L 140 85 M 80 85 L 60 85 L 60 50" fill="none" stroke="#ec4899"
+                            stroke-width="3" stroke-dasharray="5 3"
+                            style="animation: huffman-flow 1.5s infinite linear;" />
+                    </svg>
+                </div>
             </div>
+
+            <!-- Unfolded Model Box -->
             <div class="text-block-shadow"
-                style="background: #ffffff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0;">
-                <img src="images/UnfoldedCircuitModel.png" alt="Unfolded Circuit Model"
-                    style="max-width: 90%; height: auto; border-radius: 8px;">
-                <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 1rem;">Hình 7.2. Tương đương
-                    mạch tổ hợp được "mở rải" theo thời gian.</p>
+                style="background: #ffffff; padding: 15px; border-radius: 16px; border: 2px solid #e2e8f0; display: flex; flex-direction: column; align-items: center; position: relative; height: 180px;">
+                <h4 style="color: #475569; margin-bottom: 10px; font-size: 1rem;">Mở rải thành tổ hợp (Time frames)</h4>
+
+                <div
+                    style="position: relative; width: 300px; height: 110px; display: flex; align-items: center; justify-content: space-between;">
+
+                    <div
+                        style="width: 70px; height: 60px; background: #e0f2fe; border: 2px dashed #3b82f6; border-radius: 6px; display: flex; align-items: center; justify-content: center; z-index: 2; font-size: 0.8rem; font-weight: bold; color: #1e40af;">
+                        Comb t-1</div>
+
+                    <svg width="45" height="10" style="z-index: 1; flex-shrink: 0;">
+                        <path d="M 0 5 L 45 5" fill="none" stroke="#ec4899" stroke-width="3" stroke-dasharray="8 4"
+                            style="animation: unfold-flow 2s infinite linear;" />
+                    </svg>
+
+                    <div
+                        style="width: 70px; height: 60px; background: #e0f2fe; border: 2px dashed #22c55e; border-radius: 6px; display: flex; align-items: center; justify-content: center; z-index: 2; font-size: 0.8rem; font-weight: bold; color: #166534;">
+                        Comb t</div>
+
+                    <svg width="45" height="10" style="z-index: 1; flex-shrink: 0;">
+                        <path d="M 0 5 L 45 5" fill="none" stroke="#ec4899" stroke-width="3" stroke-dasharray="8 4"
+                            style="animation: unfold-flow 2s infinite linear; animation-delay: 1s;" />
+                    </svg>
+
+                    <div
+                        style="width: 70px; height: 60px; background: #e0f2fe; border: 2px dashed #f59e0b; border-radius: 6px; display: flex; align-items: center; justify-content: center; z-index: 2; font-size: 0.8rem; font-weight: bold; color: #92400e;">
+                        Comb t+1</div>
+
+                </div>
             </div>
         </div>
     </div>

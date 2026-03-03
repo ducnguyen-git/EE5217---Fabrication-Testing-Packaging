@@ -20,14 +20,119 @@
         </div>
 
         <div
-            style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center;">
+            style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+            <style>
+                @keyframes mux-obs-select {
+
+                    0%,
+                    45% {
+                        transform: translateY(-10px);
+                        color: #3b82f6;
+                    }
+
+                    /* Logic 1 */
+                    50%,
+                    95% {
+                        transform: translateY(10px);
+                        color: #8b5cf6;
+                    }
+
+                    /* Logic 2 */
+                    100% {
+                        transform: translateY(-10px);
+                        color: #3b82f6;
+                    }
+                }
+
+                @keyframes signal-out-obs {
+
+                    0%,
+                    45% {
+                        border-color: #3b82f6;
+                        background: #eff6ff;
+                        color: #1e3a8a;
+                    }
+
+                    /* Logic 1 Out */
+                    50%,
+                    95% {
+                        border-color: #8b5cf6;
+                        background: #faf5ff;
+                        color: #4c1d95;
+                    }
+
+                    /* Logic 2 Out */
+                    100% {
+                        border-color: #3b82f6;
+                        background: #eff6ff;
+                        color: #1e3a8a;
+                    }
+                }
+            </style>
+
             <div class="text-block-shadow"
-                style="background: #ffffff; padding: 20px; border-radius: 16px; border: 1px solid #e2e8f0;">
-                <img src="images/MultiplexingObservation.png" alt="Multiplexing Observation"
-                    style="max-width: 90%; height: auto; border-radius: 8px;">
-                <p style="margin-top: 15px; font-style: italic; color: #666; font-size: 1.1rem;">Hình 7.6. Quan sát Dồn
-                    kênh: Chia sẻ chân ra O giữa Logic 1 và Logic 2 bằng MUX thông qua tín hiệu Mode (M). Giảm tải chân
-                    kiểm thử I/O vật lý.</p>
+                style="background: white; padding: 25px; border-radius: 16px; border: 2px dashed #94a3b8; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+
+                <h3 style="color: #334155; margin-bottom: 25px; text-transform: uppercase;">Multiplexing Observation
+                </h3>
+
+                <div style="position: relative; width: 300px; height: 160px; display: flex; align-items: center;">
+
+                    <!-- Logic Blocks -->
+                    <div
+                        style="display: flex; flex-direction: column; justify-content: space-around; height: 120px; z-index: 2;">
+                        <div
+                            style="background: #3b82f6; color: white; padding: 8px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 6px rgba(59,130,246,0.3);">
+                            Logic 1</div>
+                        <div
+                            style="background: #8b5cf6; color: white; padding: 8px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 6px rgba(139,92,246,0.3);">
+                            Logic 2</div>
+                    </div>
+
+                    <!-- MUX Component -->
+                    <div
+                        style="position: absolute; left: 140px; top: 10px; width: 60px; height: 140px; background: #e2e8f0; border: 2px solid #94a3b8; clip-path: polygon(0 0, 100% 20%, 100% 80%, 0 100%); display: flex; align-items: center; justify-content: center; z-index: 2;">
+                        <div
+                            style="color: #475569; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: space-around; height: 100%; width: 100%;">
+                            <span style="font-size: 0.8rem; margin-top: 20px;">0</span>
+                            <span style="font-size: 0.8rem; margin-bottom: 20px;">1</span>
+                        </div>
+                    </div>
+
+                    <!-- Wires into MUX -->
+                    <svg width="60" height="120" style="position: absolute; left: 80px; top: 20px; z-index: 1;">
+                        <path d="M 0 25 L 60 25" fill="none" stroke="#3b82f6" stroke-width="4" stroke-dasharray="6 3" />
+                        <path d="M 0 95 L 60 95" fill="none" stroke="#8b5cf6" stroke-width="4" stroke-dasharray="6 3" />
+                    </svg>
+
+                    <!-- Selector Control -->
+                    <div
+                        style="position: absolute; left: 165px; top: -30px; display: flex; flex-direction: column; align-items: center;">
+                        <span
+                            style="background: #f59e0b; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-family: monospace; font-size: 0.8rem; margin-bottom: 5px;">M
+                            (Mode)</span>
+                        <div style="width: 2px; height: 40px; background: #f59e0b;"></div>
+                    </div>
+                    <i class="fa-solid fa-arrow-left"
+                        style="position: absolute; left: 175px; top: 70px; transform: rotate(180deg); font-size: 1.5rem; z-index: 3; animation: mux-obs-select 4s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);"></i>
+
+                    <!-- Output Line -->
+                    <svg width="50" height="20" style="position: absolute; left: 200px; top: 70px; z-index: 1;">
+                        <path d="M 0 10 L 50 10" fill="none" stroke="#475569" stroke-width="4" stroke-dasharray="6 3" />
+                    </svg>
+
+                    <!-- Shared Pin -->
+                    <div
+                        style="position: absolute; right: -20px; top: 60px; height: 40px; padding: 0 15px; border-radius: 20px; border: 3px solid; display: flex; align-items: center; justify-content: center; font-weight: bold; z-index: 2; animation: signal-out-obs 4s infinite;">
+                        Pin O
+                    </div>
+
+                </div>
+
+                <p
+                    style="margin-top: 30px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
+                    Minh họa: Quan sát Dồn kênh - Chia sẻ một chân ra O giữa Logic 1 và Logic 2 bằng MUX thông qua tín
+                    hiệu Mode (M).</p>
             </div>
         </div>
     </div>

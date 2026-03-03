@@ -16,11 +16,67 @@
         <div
             style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
             <div class="text-block-shadow"
-                style="background: #ffffff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0;">
-                <img src="images/MultiplexedScanElement.png" alt="Mux-DFF"
-                    style="max-height: 480px; width: auto; border-radius: 8px;">
-                <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.23. Cấu trúc
-                    chuyển đổi phần cứng Scan bằng Mux.</p>
+                style="background: white; padding: 25px; border-radius: 16px; border: 2px dashed #94a3b8; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+
+                <h3 style="color: #334155; margin-bottom: 25px; text-transform: uppercase;">Mux-DFF Core Cell</h3>
+
+                <div
+                    style="position: relative; width: 300px; height: 180px; display: flex; align-items: center; justify-content: center;">
+
+                    <!-- MUX -->
+                    <div
+                        style="position: absolute; left: 80px; top: 40px; width: 50px; height: 100px; background: #e0f2fe; border: 2px solid #3b82f6; clip-path: polygon(0 0, 100% 20%, 100% 80%, 0 100%); display: flex; flex-direction: column; align-items: center; justify-content: space-around; font-weight: bold; color: #1e40af; font-size: 0.8rem; z-index: 2;">
+                        <span style="margin-top: 15px;">0</span>
+                        <span style="margin-bottom: 15px;">1</span>
+                    </div>
+
+                    <!-- D-FF -->
+                    <div
+                        style="position: absolute; left: 160px; top: 50px; width: 60px; height: 80px; background: #fef08a; border: 2px solid #ca8a04; border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between; padding: 5px; box-sizing: border-box; font-weight: bold; color: #854d0e; z-index: 2;">
+                        <div style="display: flex; justify-content: space-between; width: 100%;">
+                            <span>D</span>
+                            <span>Q</span>
+                        </div>
+                        <div style="display: flex; justify-content: flex-start; align-items: flex-end;">
+                            <div
+                                style="width: 10px; height: 10px; border-top: 2px solid #854d0e; border-right: 2px solid #854d0e; transform: rotate(45deg); margin-left: 5px; margin-bottom: -2px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inputs -->
+                    <div
+                        style="position: absolute; left: 0; top: 40px; font-weight: bold; color: #475569; font-family: monospace;">
+                        Data (D)</div>
+                    <div
+                        style="position: absolute; left: 0; top: 110px; font-weight: bold; color: #475569; font-family: monospace;">
+                        Scan (SI)</div>
+                    <div
+                        style="position: absolute; left: 90px; top: 150px; font-weight: bold; color: #ef4444; font-family: monospace;">
+                        TE</div>
+                    <div
+                        style="position: absolute; left: 165px; top: 150px; font-weight: bold; color: #8b5cf6; font-family: monospace;">
+                        CLK</div>
+
+                    <!-- Outputs -->
+                    <div
+                        style="position: absolute; right: 20px; top: 55px; font-weight: bold; color: #166534; font-family: monospace;">
+                        Out (Q)</div>
+
+                    <!-- Wires -->
+                    <svg width="300" height="180" style="position: absolute; top: 0; left: 0; z-index: 1;">
+                        <path d="M 65 50 L 80 50" fill="none" stroke="#94a3b8" stroke-width="2" />
+                        <path d="M 65 120 L 80 120" fill="none" stroke="#94a3b8" stroke-width="2" />
+                        <path d="M 105 150 L 105 130" fill="none" stroke="#ef4444" stroke-width="2" />
+                        <path d="M 130 90 L 160 90" fill="none" stroke="#3b82f6" stroke-width="3" />
+                        <path d="M 180 150 L 180 120" fill="none" stroke="#8b5cf6" stroke-width="2" />
+                        <path d="M 220 65 L 250 65" fill="none" stroke="#22c55e" stroke-width="3" />
+                    </svg>
+                </div>
+
+                <p
+                    style="margin-top: 15px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
+                    Minh họa: MUX 2:1 được tiêm trực tiếp vào đầu vào D của Flip-Flop cơ bản.</p>
             </div>
         </div>
     </div>
@@ -278,11 +334,68 @@
         <div
             style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
             <div class="text-block-shadow"
-                style="background: #ffffff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0;">
-                <img src="images/LssdDesign.png" alt="LSSD Design"
-                    style="max-height: 480px; width: auto; border-radius: 8px;">
-                <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.31.
-                    Master/Slave Latch an toàn tuyệt đối chống Clock Skew.</p>
+                style="background: white; padding: 25px; border-radius: 16px; border: 2px dashed #94a3b8; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; height: 100%;">
+
+                <h3 style="color: #334155; margin-bottom: 25px; text-transform: uppercase;">LSSD Master/Slave Latches
+                </h3>
+
+                <div
+                    style="position: relative; width: 320px; height: 180px; display: flex; align-items: center; justify-content: center;">
+
+                    <!-- Latch L1 (Master) -->
+                    <div
+                        style="position: absolute; left: 80px; top: 40px; width: 80px; height: 100px; background: #e0f2fe; border: 2px solid #3b82f6; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: bold; color: #1e40af; z-index: 2; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
+                        L1<br><span style="font-size: 0.7rem;">(Master)</span>
+                    </div>
+
+                    <!-- Latch L2 (Slave) -->
+                    <div
+                        style="position: absolute; left: 200px; top: 40px; width: 60px; height: 100px; background: #dcfce7; border: 2px solid #22c55e; border-radius: 4px; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: bold; color: #166534; z-index: 2; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
+                        L2<br><span style="font-size: 0.7rem;">(Slave)</span>
+                    </div>
+
+                    <!-- Wires & Labels -->
+                    <svg width="320" height="180" style="position: absolute; top: 0; left: 0; z-index: 1;">
+                        <!-- Data IN -> L1 -->
+                        <path d="M 10 55 L 80 55" fill="none" stroke="#475569" stroke-width="2" />
+                        <text x="15" y="45" font-family="monospace" font-size="12" fill="#475569"
+                            font-weight="bold">Data (D)</text>
+                        <!-- Scan IN -> L1 -->
+                        <path d="M 10 90 L 80 90" fill="none" stroke="#8b5cf6" stroke-width="2" />
+                        <text x="15" y="80" font-family="monospace" font-size="12" fill="#8b5cf6"
+                            font-weight="bold">Scan IN</text>
+
+                        <!-- L1 -> L2 -->
+                        <path d="M 160 70 L 200 70" fill="none" stroke="#2563eb" stroke-width="3" />
+                        <text x="165" y="60" font-family="monospace" font-size="10" fill="#2563eb" font-weight="bold">L1
+                            Out</text>
+
+                        <!-- L2 -> Out -->
+                        <path d="M 260 70 L 310 70" fill="none" stroke="#166534" stroke-width="3" />
+                        <text x="265" y="60" font-family="monospace" font-size="12" fill="#166534" font-weight="bold">Q
+                            (Out)</text>
+
+                        <!-- Clocks -->
+                        <!-- Clock C (System Clock -> L1) -->
+                        <path d="M 100 170 L 100 140" fill="none" stroke="#64748b" stroke-width="2" />
+                        <text x="65" y="165" font-family="monospace" font-size="12" fill="#64748b"
+                            font-weight="bold">Sys CLK C</text>
+                        <!-- Clock A (Shift Clock A -> L1) -->
+                        <path d="M 140 170 L 140 140" fill="none" stroke="#3b82f6" stroke-width="2"
+                            stroke-dasharray="4 2" />
+                        <text x="145" y="165" font-family="monospace" font-size="12" fill="#3b82f6"
+                            font-weight="bold">CLK A</text>
+                        <!-- Clock B (Shift Clock B -> L2) -->
+                        <path d="M 230 170 L 230 140" fill="none" stroke="#22c55e" stroke-width="2"
+                            stroke-dasharray="4 2" />
+                        <text x="235" y="165" font-family="monospace" font-size="12" fill="#22c55e"
+                            font-weight="bold">CLK B</text>
+                    </svg>
+                </div>
+
+                <p
+                    style="margin-top: 15px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
+                    Minh họa: Cấu trúc chốt nhạy mức (Level-sensitive Latch) cô lập hoàn toàn đường truyền Clock.</p>
             </div>
         </div>
     </div>

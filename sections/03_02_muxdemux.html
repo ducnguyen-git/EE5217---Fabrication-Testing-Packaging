@@ -21,12 +21,147 @@
 
         <div
             style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+            <style>
+                @keyframes demux-route {
+
+                    0%,
+                    20% {
+                        top: 25px;
+                        color: #ef4444;
+                    }
+
+                    25%,
+                    45% {
+                        top: 65px;
+                        color: #f59e0b;
+                    }
+
+                    50%,
+                    70% {
+                        top: 105px;
+                        color: #10b981;
+                    }
+
+                    75%,
+                    95% {
+                        top: 145px;
+                        color: #3b82f6;
+                    }
+
+                    100% {
+                        top: 25px;
+                        color: #ef4444;
+                    }
+                }
+
+                @keyframes branch-glow {
+
+                    0%,
+                    20% {
+                        box-shadow: 0 0 10px #ef4444;
+                        border-color: #ef4444;
+                    }
+
+                    25%,
+                    45% {
+                        box-shadow: 0 0 10px #f59e0b;
+                        border-color: #f59e0b;
+                    }
+
+                    50%,
+                    70% {
+                        box-shadow: 0 0 10px #10b981;
+                        border-color: #10b981;
+                    }
+
+                    75%,
+                    95% {
+                        box-shadow: 0 0 10px #3b82f6;
+                        border-color: #3b82f6;
+                    }
+
+                    100% {
+                        box-shadow: 0 0 10px #ef4444;
+                        border-color: #ef4444;
+                    }
+                }
+            </style>
+
             <div class="text-block-shadow"
-                style="background: #ffffff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0;">
-                <img src="images/DemultiplexerControl.png" alt="Demultiplexer Control"
-                    style="max-height: 480px; width: auto; border-radius: 8px;">
-                <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.7. Dùng DeMUX
-                    để điều khiển N điểm (cần N bit địa chỉ).</p>
+                style="background: white; padding: 25px; border-radius: 16px; border: 2px dashed #94a3b8; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; height: 100%;">
+
+                <h3 style="color: #334155; margin-bottom: 25px; text-transform: uppercase;">1-to-N Demultiplexer Control
+                </h3>
+
+                <div style="position: relative; width: 300px; height: 200px; display: flex; align-items: center;">
+
+                    <!-- Input -->
+                    <div
+                        style="position: absolute; left: 0; top: 85px; background: #64748b; color: white; padding: 5px 10px; border-radius: 4px; font-weight: bold;">
+                        Control In</div>
+
+                    <!-- Wire IN -->
+                    <svg width="40" height="20" style="position: absolute; left: 80px; top: 90px; z-index: 1;">
+                        <path d="M 0 10 L 40 10" fill="none" stroke="#475569" stroke-width="4" stroke-dasharray="6 3" />
+                    </svg>
+
+                    <!-- DeMUX Component (Reversed MUX) -->
+                    <div
+                        style="position: absolute; left: 120px; top: 10px; width: 60px; height: 180px; background: #e2e8f0; border: 2px solid #94a3b8; clip-path: polygon(0 40%, 100% 0, 100% 100%, 0 60%); display: flex; align-items: center; justify-content: center; z-index: 2;">
+                        <span style="font-weight: bold; color: #475569; transform: rotate(-90deg);">DeMUX</span>
+                    </div>
+
+                    <!-- Address Pins -->
+                    <div
+                        style="position: absolute; left: 140px; bottom: 0; display: flex; gap: 5px; flex-direction: column; align-items: center;">
+                        <div style="width: 20px; height: 2px; background: #3b82f6; transform: rotate(90deg);"></div>
+                        <span
+                            style="background: #bfdbfe; color: #1e40af; padding: 2px 4px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; font-family: monospace;">ADDR
+                            (N bits)</span>
+                    </div>
+
+                    <!-- Output Points -->
+                    <div
+                        style="position: absolute; right: 20px; top: 10px; display: flex; flex-direction: column; gap: 10px; height: 180px; justify-content: space-around; z-index: 2;">
+                        <div
+                            style="background: #f8fafc; border: 2px solid #cbd5e1; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; height: 30px; display: flex; align-items: center;">
+                            Point 0</div>
+                        <div
+                            style="background: #f8fafc; border: 2px solid #cbd5e1; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; height: 30px; display: flex; align-items: center;">
+                            Point 1</div>
+                        <div
+                            style="background: #f8fafc; border: 2px solid #cbd5e1; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; height: 30px; display: flex; align-items: center;">
+                            Point 2</div>
+                        <div
+                            style="background: #f8fafc; border: 2px solid #cbd5e1; padding: 5px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; height: 30px; display: flex; align-items: center;">
+                            Point 3</div>
+                    </div>
+
+                    <!-- Wires OUT -->
+                    <svg width="50" height="180" style="position: absolute; left: 180px; top: 10px; z-index: 1;">
+                        <path d="M 0 30 L 50 30" fill="none" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="4 2" />
+                        <path d="M 0 70 L 50 70" fill="none" stroke="#cbd5e1" stroke-width="3" stroke-dasharray="4 2" />
+                        <path d="M 0 110 L 50 110" fill="none" stroke="#cbd5e1" stroke-width="3"
+                            stroke-dasharray="4 2" />
+                        <path d="M 0 150 L 50 150" fill="none" stroke="#cbd5e1" stroke-width="3"
+                            stroke-dasharray="4 2" />
+                    </svg>
+
+                    <!-- Routing Laser -->
+                    <i class="fa-solid fa-arrow-right"
+                        style="position: absolute; left: 185px; font-size: 1.5rem; z-index: 3; animation: demux-route 8s infinite steps(1);"></i>
+
+                    <!-- Active Point Highlight Cover -->
+                    <div
+                        style="position: absolute; right: 20px; top: 10px; width: 68px; height: 30px; border-radius: 4px; border: 3px solid transparent; z-index: 4; animation: demux-route 8s infinite steps(1), branch-glow 8s infinite steps(1);">
+                    </div>
+
+                </div>
+
+                <p
+                    style="margin-top: 20px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
+                    Minh họa: Tín hiệu gốc phân rẽ tới hàng loạt node con nhờ tín hiệu điều phối mạng Address (ADDR).
+                </p>
             </div>
         </div>
     </div>
@@ -55,12 +190,148 @@
 
         <div
             style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+
+            <style>
+                @keyframes test-mode-switch {
+
+                    0%,
+                    45% {
+                        color: #3b82f6;
+                        transform: translateY(-15px);
+                    }
+
+                    /* NORMAL */
+                    50%,
+                    95% {
+                        color: #8b5cf6;
+                        transform: translateY(15px);
+                    }
+
+                    /* TEST */
+                    100% {
+                        color: #3b82f6;
+                        transform: translateY(-15px);
+                    }
+                }
+
+                @keyframes data-flow-norm {
+
+                    0%,
+                    45% {
+                        opacity: 1;
+                        stroke-dashoffset: 0;
+                    }
+
+                    50%,
+                    100% {
+                        opacity: 0;
+                        stroke-dashoffset: 20;
+                    }
+                }
+
+                @keyframes data-flow-test {
+
+                    0%,
+                    45% {
+                        opacity: 0;
+                        stroke-dashoffset: 20;
+                    }
+
+                    50%,
+                    100% {
+                        opacity: 1;
+                        stroke-dashoffset: 0;
+                    }
+                }
+            </style>
+
             <div class="text-block-shadow"
-                style="background: #ffffff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0;">
-                <img src="images/DemultiplexerControlAlternative.png" alt="Alternative Demultiplexer Control"
-                    style="max-height: 480px; width: auto; border-radius: 8px;">
-                <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.8. Cấu trúc
-                    liên kết DeMUX kết hợp Data và Test Mode.</p>
+                style="background: white; padding: 25px; border-radius: 16px; border: 2px dashed #00d2ff; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; height: 100%;">
+
+                <h3 style="color: #0284c7; margin-bottom: 25px; text-transform: uppercase;">MUX/DeMUX Hybrid with Test
+                    Mode</h3>
+
+                <div style="position: relative; width: 350px; height: 200px; display: flex; align-items: center;">
+
+                    <!-- Mode T Input -->
+                    <div
+                        style="position: absolute; left: 10px; top: 90px; display: flex; flex-direction: column; align-items: center;">
+                        <span
+                            style="background: #fca5a5; color: #991b1b; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-family: monospace; z-index: 2;">T
+                            (Mode)</span>
+                        <div style="width: 20px; height: 2px; background: #ef4444;"></div>
+                    </div>
+
+                    <!-- MUX (Left) -->
+                    <div
+                        style="position: absolute; left: 70px; top: 40px; width: 40px; height: 120px; background: #e0f2fe; border: 2px solid #38bdf8; clip-path: polygon(0 0, 100% 20%, 100% 80%, 0 100%); display: flex; align-items: center; justify-content: center; z-index: 2;">
+                    </div>
+
+                    <!-- MUX Inputs -->
+                    <div
+                        style="position: absolute; left: -10px; top: 50px; background: #bfdbfe; color: #1e40af; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">
+                        Func In</div>
+                    <div
+                        style="position: absolute; left: -10px; top: 130px; background: #ddd6fe; color: #5b21b6; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">
+                        Test Data</div>
+                    <svg width="40" height="120" style="position: absolute; left: 35px; top: 40px; z-index: 1;">
+                        <path d="M 0 20 L 40 40" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="4 2" />
+                        <path d="M 0 100 L 40 80" fill="none" stroke="#8b5cf6" stroke-width="3"
+                            stroke-dasharray="4 2" />
+                    </svg>
+
+                    <!-- MUX Selector Needle -->
+                    <div style="position: absolute; left: 100px; top: 100px; z-index: 3;">
+                        <i class="fa-solid fa-arrow-left"
+                            style="font-size: 1.2rem; transform: rotate(180deg) translateX(-10px); animation: test-mode-switch 4s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);"></i>
+                    </div>
+
+                    <!-- Pipe MUX to DeMUX -->
+                    <svg width="60" height="20" style="position: absolute; left: 110px; top: 90px; z-index: 1;">
+                        <path d="M 0 10 L 60 10" fill="none" stroke="#0ea5e9" stroke-width="4" stroke-dasharray="6 3" />
+                    </svg>
+
+                    <div
+                        style="position: absolute; left: 125px; top: 70px; font-weight: bold; color: #0284c7; font-size: 0.7rem; font-family: monospace;">
+                        Shared line</div>
+
+                    <!-- DeMUX (Right) -->
+                    <div
+                        style="position: absolute; left: 170px; top: 20px; width: 40px; height: 160px; background: #e0f2fe; border: 2px solid #38bdf8; clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 70%); display: flex; align-items: center; justify-content: center; z-index: 2;">
+                    </div>
+
+                    <!-- Address Pin -->
+                    <div
+                        style="position: absolute; left: 180px; bottom: -5px; display: flex; flex-direction: column; align-items: center;">
+                        <div style="width: 2px; height: 15px; background: #f59e0b;"></div>
+                        <span
+                            style="background: #fef3c7; color: #b45309; padding: 2px 4px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; font-family: monospace;">ADDR</span>
+                    </div>
+
+                    <!-- Outputs -->
+                    <div
+                        style="position: absolute; right: 20px; top: 20px; display: flex; flex-direction: column; gap: 20px; height: 160px; justify-content: space-around;">
+                        <div
+                            style="background: #eff6ff; color: #1e3a8a; border: 2px solid #93c5fd; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem;">
+                            Func Out</div>
+                        <div
+                            style="background: #faf5ff; color: #4c1d95; border: 2px solid #c4b5fd; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 0.8rem;">
+                            Test Target</div>
+                    </div>
+
+                    <svg width="60" height="160" style="position: absolute; left: 210px; top: 20px; z-index: 1;">
+                        <path d="M 0 30 L 60 30" fill="none" stroke="#3b82f6" stroke-width="4" stroke-dasharray="4 2"
+                            style="animation: data-flow-norm 4s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);" />
+                        <path d="M 0 130 L 60 130" fill="none" stroke="#8b5cf6" stroke-width="4" stroke-dasharray="4 2"
+                            style="animation: data-flow-test 4s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);" />
+                    </svg>
+
+                </div>
+
+                <p
+                    style="margin-top: 15px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
+                    Minh họa: Tín hiệu T chia luồng, chia sẻ 1 đường dẫn vật lý cho cả Functional data (hoạt động
+                    thường) và Test data (ép lỗi).</p>
             </div>
         </div>
     </div>

@@ -16,18 +16,123 @@
                     hàng rồng rắn 1 file duy nhất, ta mạnh tay cắt cái Xích $100,000$ mắt kia thành $100$ Dây xích ngắn
                     (Chains) song song dài chỉ $1000$ mắt.</li>
                 <li style="margin-bottom: 12px;">Thời gian chèn dịch (Shift-In/Out Test Time) sẽ ngay lập tức được
-                    <b>chia tốc giảm đi $100$ lần</b> vì cả 100 làn đường có thể nạp đẩy ống song song đồng thời!</li>
+                    <b>chia tốc giảm đi $100$ lần</b> vì cả 100 làn đường có thể nạp đẩy ống song song đồng thời!
+                </li>
             </ul>
         </div>
 
         <div
             style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+            <style>
+                @keyframes parallel-flow {
+                    0% {
+                        transform: translateX(0);
+                        opacity: 0;
+                    }
+
+                    10% {
+                        opacity: 1;
+                    }
+
+                    90% {
+                        opacity: 1;
+                    }
+
+                    100% {
+                        transform: translateX(180px);
+                        opacity: 0;
+                    }
+                }
+            </style>
+
             <div class="text-block-shadow"
-                style="background: #ffffff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0;">
-                <img src="images/MultipleParallelScanChains.png" alt="Multiple Parallel Scan Chains"
-                    style="max-height: 480px; width: auto; border-radius: 8px;">
-                <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.51. Vi mạch với
-                    cấu trúc nhiều tuyến đường Quét song hành cắt dọc Lõi Core.</p>
+                style="background: white; padding: 25px; border-radius: 16px; border: 2px dashed #0ea5e9; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+
+                <h3 style="color: #0369a1; margin-bottom: 25px; text-transform: uppercase;">Parallel Scan Architecture
+                </h3>
+
+                <div
+                    style="position: relative; width: 300px; height: 220px; background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 12px; display: flex; flex-direction: column; justify-content: space-evenly; align-items: center;">
+                    <span
+                        style="position: absolute; top: -10px; background: white; padding: 0 10px; color: #64748b; font-weight: bold; font-family: monospace;">CHIP
+                        DIE</span>
+
+                    <!-- Chain 1 -->
+                    <div
+                        style="width: 260px; height: 35px; border: 2px solid #f87171; border-radius: 4px; display: flex; align-items: center; padding: 0 5px; position: relative; background: #fef2f2;">
+                        <span
+                            style="font-size: 0.6rem; color: #dc2626; font-weight: bold; position: absolute; left: -35px;">T_in1</span>
+                        <div
+                            style="width: 15px; height: 15px; background: #dc2626; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear;">
+                        </div>
+                        <div
+                            style="width: 15px; height: 15px; background: #ef4444; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear; animation-delay: 0.3s;">
+                        </div>
+                        <div
+                            style="width: 15px; height: 15px; background: #f87171; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear; animation-delay: 0.6s;">
+                        </div>
+                        <span
+                            style="font-size: 0.6rem; color: #dc2626; font-weight: bold; position: absolute; right: -40px;">T_out1</span>
+                    </div>
+
+                    <!-- Chain 2 -->
+                    <div
+                        style="width: 260px; height: 35px; border: 2px solid #3b82f6; border-radius: 4px; display: flex; align-items: center; padding: 0 5px; position: relative; background: #eff6ff;">
+                        <span
+                            style="font-size: 0.6rem; color: #2563eb; font-weight: bold; position: absolute; left: -35px;">T_in2</span>
+                        <div
+                            style="width: 15px; height: 15px; background: #2563eb; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear;">
+                        </div>
+                        <div
+                            style="width: 15px; height: 15px; background: #3b82f6; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear; animation-delay: 0.3s;">
+                        </div>
+                        <div
+                            style="width: 15px; height: 15px; background: #60a5fa; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear; animation-delay: 0.6s;">
+                        </div>
+                        <span
+                            style="font-size: 0.6rem; color: #2563eb; font-weight: bold; position: absolute; right: -40px;">T_out2</span>
+                    </div>
+
+                    <!-- Chain 3 -->
+                    <div
+                        style="width: 260px; height: 35px; border: 2px solid #22c55e; border-radius: 4px; display: flex; align-items: center; padding: 0 5px; position: relative; background: #f0fdf4;">
+                        <span
+                            style="font-size: 0.6rem; color: #16a34a; font-weight: bold; position: absolute; left: -35px;">T_in3</span>
+                        <div
+                            style="width: 15px; height: 15px; background: #16a34a; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear;">
+                        </div>
+                        <div
+                            style="width: 15px; height: 15px; background: #22c55e; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear; animation-delay: 0.3s;">
+                        </div>
+                        <div
+                            style="width: 15px; height: 15px; background: #4ade80; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear; animation-delay: 0.6s;">
+                        </div>
+                        <span
+                            style="font-size: 0.6rem; color: #16a34a; font-weight: bold; position: absolute; right: -40px;">T_out3</span>
+                    </div>
+
+                    <!-- Chain 4 -->
+                    <div
+                        style="width: 260px; height: 35px; border: 2px solid #a855f7; border-radius: 4px; display: flex; align-items: center; padding: 0 5px; position: relative; background: #fdf4ff;">
+                        <span
+                            style="font-size: 0.6rem; color: #9333ea; font-weight: bold; position: absolute; left: -35px;">T_in4</span>
+                        <div
+                            style="width: 15px; height: 15px; background: #9333ea; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear;">
+                        </div>
+                        <div
+                            style="width: 15px; height: 15px; background: #a855f7; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear; animation-delay: 0.3s;">
+                        </div>
+                        <div
+                            style="width: 15px; height: 15px; background: #c084fc; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear; animation-delay: 0.6s;">
+                        </div>
+                        <span
+                            style="font-size: 0.6rem; color: #9333ea; font-weight: bold; position: absolute; right: -40px;">T_out4</span>
+                    </div>
+                </div>
+
+                <p
+                    style="margin-top: 15px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
+                    Minh họa: Thay vì xếp hàng 1, dữ liệu chạy song song qua 4 cao tốc, giảm 4 lần thời gian test.</p>
             </div>
         </div>
     </div>
@@ -57,12 +162,128 @@
 
         <div
             style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+            <style>
+                @keyframes fragment-split {
+
+                    0%,
+                    15% {
+                        transform: translateY(0) scale(1);
+                        opacity: 1;
+                    }
+
+                    30%,
+                    50% {
+                        transform: translateY(50px) scale(0.8);
+                        opacity: 0;
+                    }
+
+                    51% {
+                        transform: translateY(-30px) scale(0.8) rotateX(90deg);
+                        opacity: 0;
+                    }
+
+                    70%,
+                    100% {
+                        transform: translateY(0) scale(1) rotateX(0deg);
+                        opacity: 1;
+                    }
+                }
+
+                @keyframes parallel-feed {
+
+                    0%,
+                    40% {
+                        transform: translateX(0);
+                        opacity: 0;
+                    }
+
+                    50%,
+                    80% {
+                        transform: translateX(100px);
+                        opacity: 1;
+                    }
+
+                    90%,
+                    100% {
+                        transform: translateX(150px);
+                        opacity: 0;
+                    }
+                }
+            </style>
+
             <div class="text-block-shadow"
-                style="background: #ffffff; padding: 15px; border-radius: 16px; border: 1px solid #e2e8f0;">
-                <img src="images/TestVectorArrangement.png" alt="Test Vector Arrangement for Multiple Chains"
-                    style="max-height: 480px; width: auto; border-radius: 8px;">
-                <p style="margin-top: 10px; font-style: italic; color: #666; font-size: 0.95rem;">Hình 7.50. Cơ học Băm
-                    nhỏ Data Vector nạp rải thảm vào Chuỗi.</p>
+                style="background: white; padding: 25px; border-radius: 16px; border: 2px dashed #0ea5e9; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+
+                <h3 style="color: #0369a1; margin-bottom: 25px; text-transform: uppercase;">Vector Fragmentation</h3>
+
+                <div
+                    style="position: relative; width: 320px; height: 200px; display: flex; flex-direction: column; align-items: center;">
+
+                    <!-- Original Long Vector -->
+                    <div
+                        style="display: flex; gap: 2px; position: absolute; top: 10px; animation: fragment-split 6s infinite;">
+                        <div
+                            style="padding: 5px 8px; background: #ef4444; color: white; font-family: monospace; font-weight: bold; border-radius: 2px;">
+                            101</div>
+                        <div
+                            style="padding: 5px 8px; background: #3b82f6; color: white; font-family: monospace; font-weight: bold; border-radius: 2px;">
+                            010</div>
+                        <div
+                            style="padding: 5px 8px; background: #22c55e; color: white; font-family: monospace; font-weight: bold; border-radius: 2px;">
+                            110</div>
+                        <span
+                            style="position: absolute; right: -100px; top: 8px; font-size: 0.7rem; color: #64748b;">(Original
+                            Pattern)</span>
+                    </div>
+
+                    <!-- Chopper / Router -->
+                    <i class="fa-solid fa-arrows-split-up-and-left"
+                        style="font-size: 2rem; color: #94a3b8; position: absolute; top: 60px; transform: rotate(90deg);"></i>
+
+                    <!-- Parallel Chains Feeding -->
+                    <div
+                        style="position: absolute; top: 110px; left: 20px; display: flex; flex-direction: column; gap: 15px;">
+
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div
+                                style="padding: 4px 10px; background: #ef4444; color: white; font-family: monospace; font-weight: bold; border-radius: 4px; animation: parallel-feed 6s infinite;">
+                                101</div>
+                            <svg width="40" height="10" style="margin-left: 50px;">
+                                <path d="M 0 5 L 40 5" fill="none" stroke="#ef4444" stroke-width="3"
+                                    stroke-dasharray="4" />
+                            </svg>
+                            <span style="color: #dc2626; font-weight: bold; font-family: monospace;">Chain 1</span>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div
+                                style="padding: 4px 10px; background: #3b82f6; color: white; font-family: monospace; font-weight: bold; border-radius: 4px; animation: parallel-feed 6s infinite; animation-delay: 0.1s;">
+                                010</div>
+                            <svg width="40" height="10" style="margin-left: 50px;">
+                                <path d="M 0 5 L 40 5" fill="none" stroke="#3b82f6" stroke-width="3"
+                                    stroke-dasharray="4" />
+                            </svg>
+                            <span style="color: #2563eb; font-weight: bold; font-family: monospace;">Chain 2</span>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <div
+                                style="padding: 4px 10px; background: #22c55e; color: white; font-family: monospace; font-weight: bold; border-radius: 4px; animation: parallel-feed 6s infinite; animation-delay: 0.2s;">
+                                110</div>
+                            <svg width="40" height="10" style="margin-left: 50px;">
+                                <path d="M 0 5 L 40 5" fill="none" stroke="#22c55e" stroke-width="3"
+                                    stroke-dasharray="4" />
+                            </svg>
+                            <span style="color: #16a34a; font-weight: bold; font-family: monospace;">Chain 3</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <p
+                    style="margin-top: 15px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
+                    Minh họa: Một mẫu data khổng lồ bị chặt ngang rải thảm nạp đồng thời vào các chân Pin riêng biệt.
+                </p>
             </div>
         </div>
     </div>
