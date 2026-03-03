@@ -25,57 +25,135 @@
         </div>
 
         <div
-            style="flex: 1; min-width: 0; max-width: 50%; display: flex; flex-direction: column; gap: 15px; justify-content: center;">
+            style="flex: 1; min-width: 0; max-width: 50%; display: flex; flex-direction: column; gap: 20px; justify-content: center;">
             <style>
-                @keyframes scale-pulse {
+                @keyframes chip-expand {
 
                     0%,
-                    100% {
-                        transform: scale(1);
+                    20% {
+                        width: 100px;
+                        height: 100px;
+                        background: #e2e8f0;
+                        border-color: #94a3b8;
                     }
 
-                    50% {
-                        transform: scale(1.05);
+                    40%,
+                    80% {
+                        width: 140px;
+                        height: 140px;
+                        background: #fee2e2;
+                        border-color: #ef4444;
+                        box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+                    }
+
+                    100% {
+                        width: 100px;
+                        height: 100px;
+                        background: #e2e8f0;
+                        border-color: #94a3b8;
                     }
                 }
 
-                .anim-pulse-box {
-                    animation: scale-pulse 3s infinite ease-in-out;
+                @keyframes pin-extend {
+
+                    0%,
+                    30% {
+                        transform: translateY(0);
+                        opacity: 0;
+                    }
+
+                    45%,
+                    75% {
+                        transform: translateY(-15px);
+                        opacity: 1;
+                        color: #f97316;
+                    }
+
+                    90%,
+                    100% {
+                        transform: translateY(0);
+                        opacity: 0;
+                    }
+                }
+
+                @keyframes delay-bump {
+
+                    0%,
+                    20% {
+                        stroke-dashoffset: 100;
+                        -webkit-mask-position: 0px;
+                    }
+
+                    50%,
+                    80% {
+                        stroke-dashoffset: 0;
+                        -webkit-mask-position: 100px;
+                    }
+
+                    100% {
+                        stroke-dashoffset: -100;
+                        -webkit-mask-position: 200px;
+                    }
                 }
             </style>
-            <!-- Hardware / Pin Diagram -->
-            <div class="text-block-shadow anim-pulse-box"
-                style="background: white; padding: 20px; border-radius: 12px; border: 2px dashed #fca5a5; display: flex; align-items: center; justify-content: space-around;">
-                <div style="text-align: center;">
-                    <i class="fa-solid fa-microchip" style="font-size: 3rem; color: #ef4444; margin-bottom: 10px;"></i>
-                    <p style="font-weight: bold; color: #b91c1c;">+15% Area</p>
-                </div>
-                <div style="width: 2px; height: 60px; background: #fee2e2;"></div>
-                <div style="text-align: center;">
-                    <div style="display: flex; gap: 5px; justify-content: center; margin-bottom: 10px;">
-                        <i class="fa-solid fa-plug" style="font-size: 1.5rem; color: #f97316;"></i>
-                        <i class="fa-solid fa-plug" style="font-size: 1.5rem; color: #f97316;"></i>
-                        <i class="fa-solid fa-plug" style="font-size: 1.5rem; color: #f97316;"></i>
-                    </div>
-                    <p style="font-weight: bold; color: #c2410c;">+4 I/O Pins</p>
-                </div>
-            </div>
-            <!-- Delay / Time Diagram -->
+
             <div class="text-block-shadow"
-                style="background: white; padding: 20px; border-radius: 12px; border: 2px solid #e2e8f0; display: flex; align-items: center; justify-content: space-around;">
-                <div style="text-align: center;">
-                    <i class="fa-solid fa-stopwatch" style="font-size: 3rem; color: #db2777; margin-bottom: 10px;"></i>
-                    <p style="font-weight: bold; color: #be185d;">MUX Delay</p>
-                </div>
-                <div style="width: 2px; height: 60px; background: #fce7f3;"></div>
-                <div style="text-align: center;">
-                    <i class="fa-solid fa-hourglass-half"
-                        style="font-size: 3rem; color: #64748b; margin-bottom: 10px;"></i>
-                    <p style="font-weight: bold; color: #475569;">Shift Time</p>
+                style="background: white; padding: 25px; border-radius: 16px; border: 2px dashed #fca5a5; position: relative; height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+
+                <h3 style="color: #b91c1c; margin-bottom: 20px; font-size: 1.2rem; text-transform: uppercase;">Physical
+                    Overhead</h3>
+
+                <div style="display: flex; justify-content: space-around; align-items: center; width: 100%; flex: 1;">
+                    <!-- Area & Pin Expansion -->
+                    <div
+                        style="display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; width: 150px; height: 150px;">
+                        <!-- Animated new Pins -->
+                        <div style="position: absolute; top: -10px; display: flex; gap: 10px;">
+                            <i class="fa-solid fa-plug" style="animation: pin-extend 4s infinite;"></i>
+                            <i class="fa-solid fa-plug"
+                                style="animation: pin-extend 4s infinite; animation-delay: 0.2s;"></i>
+                            <i class="fa-solid fa-plug"
+                                style="animation: pin-extend 4s infinite; animation-delay: 0.4s;"></i>
+                            <i class="fa-solid fa-plug"
+                                style="animation: pin-extend 4s infinite; animation-delay: 0.6s;"></i>
+                        </div>
+
+                        <!-- Growing Chip -->
+                        <div
+                            style="border: 4px solid; display: flex; align-items: center; justify-content: center; position: absolute; animation: chip-expand 4s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1); border-radius: 8px;">
+                            <span
+                                style="font-weight: bold; font-family: monospace; color: #475569; position: absolute; background: white; padding: 2px 5px; border-radius: 4px; z-index: 2;">+15%
+                                AREA</span>
+                        </div>
+                    </div>
+
+                    <!-- Delay Waveform -->
+                    <div
+                        style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px;">
+                        <span
+                            style="font-weight: bold; color: #be185d; background: #fce7f3; padding: 5px 10px; border-radius: 8px;">+
+                            MUX Delay</span>
+                        <div style="width: 150px; height: 60px; position: relative;">
+                            <!-- Original wave -->
+                            <svg width="100%" height="100%" style="position: absolute; top:0; left:0;">
+                                <path d="M 0 50 L 50 50 L 50 10 L 100 10 L 100 50 L 150 50" fill="none" stroke="#cbd5e1"
+                                    stroke-width="4" stroke-dasharray="5 5" />
+                            </svg>
+                            <!-- Delayed wave -->
+                            <svg width="100%" height="100%" style="position: absolute; top:0; left:0;">
+                                <path d="M 0 50 L 70 50 L 70 10 L 120 10 L 120 50 L 150 50" fill="none" stroke="#db2777"
+                                    stroke-width="4"
+                                    style="stroke-dasharray: 200; animation: delay-bump 2s infinite linear;" />
+                            </svg>
+                        </div>
+                        <span
+                            style="font-weight: bold; color: #475569; background: #e2e8f0; padding: 5px 10px; border-radius: 8px;">+
+                            Shift Time</span>
+                    </div>
                 </div>
             </div>
-            <p style="text-align: center; color: #64748b; font-style: italic; font-size: 0.95rem;">Minh họa: Đánh đổi
-                vật lý và thời gian khi thêm mạch DFT.</p>
+            <p style="text-align: center; color: #64748b; font-style: italic; font-size: 0.95rem;">Minh họa: Tế bào
+                Silicon phình to vật lý và tín hiệu bị bóp nghẹt độ trễ.</p>
         </div>
     </div>
 </div>
@@ -107,60 +185,103 @@
         <div
             style="flex: 1; min-width: 0; max-width: 50%; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
             <style>
-                @keyframes float-up {
-
-                    0%,
-                    100% {
-                        transform: translateY(0);
+                @keyframes scan-radar-2 {
+                    0% {
+                        width: 0;
+                        height: 0;
+                        opacity: 1;
                     }
 
-                    50% {
-                        transform: translateY(-10px);
+                    100% {
+                        width: 250px;
+                        height: 250px;
+                        opacity: 0;
                     }
                 }
 
-                @keyframes spin-gear {
+                @keyframes target-lock {
+                    0% {
+                        transform: scale(1);
+                        border-color: transparent;
+                    }
+
+                    50% {
+                        transform: scale(1.2);
+                        border-color: #22c55e;
+                        box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+                    }
+
+                    100% {
+                        transform: scale(1);
+                        border-color: transparent;
+                    }
+                }
+
+                @keyframes gear-grind {
+                    0% {
+                        transform: rotate(0deg);
+                    }
+
                     100% {
                         transform: rotate(360deg);
                     }
                 }
-
-                .anim-float {
-                    animation: float-up 3s infinite ease-in-out;
-                }
-
-                .anim-gear {
-                    animation: spin-gear 4s infinite linear;
-                }
             </style>
 
             <div class="text-block-shadow"
-                style="background: white; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-                <div class="anim-float"
-                    style="position: absolute; top: -20px; right: -10px; background: #22c55e; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 1.2rem; box-shadow: 0 4px 6px rgba(34,197,94,0.3);">
-                    > 99% Coverage
-                </div>
+                style="background: white; padding: 25px; border-radius: 16px; border: 2px solid #bbf7d0; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; height: 100%; overflow: hidden;">
 
-                <i class="fa-solid fa-shield-virus"
-                    style="font-size: 5rem; color: #10b981; margin-bottom: 15px; filter: drop-shadow(0 0 10px rgba(16,185,129,0.3));"></i>
+                <!-- Radar Scanner Background -->
+                <div style="position: absolute; top: 10px; right: 20px; z-index: 2;">
+                    <span
+                        style="background: #22c55e; color: white; padding: 8px 15px; border-radius: 20px; font-weight: bold; font-family: monospace; font-size: 1.2rem; box-shadow: 0 4px 6px rgba(34,197,94,0.3); border: 2px solid #16a34a;">>
+                        99% COVERED</span>
+                </div>
 
                 <div
-                    style="display: flex; align-items: center; justify-content: center; gap: 30px; margin-top: 15px; width: 100%;">
-                    <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                        <i class="fa-solid fa-gear anim-gear"
-                            style="font-size: 2.5rem; color: #3b82f6; margin-bottom: 8px;"></i>
-                        <span style="font-weight: bold; color: #1d4ed8; font-size: 0.95rem;">Fast ATPG</span>
+                    style="position: relative; width: 100%; height: 200px; display: flex; align-items: center; justify-content: center; border-radius: 12px; background: #f8fafc; border: 1px inset #e2e8f0;">
+
+                    <!-- Radar Ping -->
+                    <div
+                        style="position: absolute; border: 2px solid #4ade80; border-radius: 50%; animation: scan-radar-2 2s infinite linear; z-index: 1;">
                     </div>
-                    <div style="width: 2px; height: 40px; background: #e2e8f0;"></div>
-                    <div style="text-align: center; display: flex; flex-direction: column; align-items: center;">
-                        <i class="fa-solid fa-magnifying-glass-chart"
-                            style="font-size: 2.5rem; color: #8b5cf6; margin-bottom: 8px;"></i>
-                        <span style="font-weight: bold; color: #6d28d9;">Diagnostics</span>
+                    <div
+                        style="position: absolute; border: 2px solid #4ade80; border-radius: 50%; animation: scan-radar-2 2s infinite linear; animation-delay: 1s; z-index: 1;">
                     </div>
+
+                    <!-- Central Chip Lock -->
+                    <div
+                        style="width: 80px; height: 80px; background: white; border-radius: 12px; display: flex; align-items: center; justify-content: center; z-index: 3; position: relative; animation: target-lock 2s infinite; border: 3px dashed transparent;">
+                        <i class="fa-solid fa-microchip" style="font-size: 3.5rem; color: #15803d;"></i>
+                    </div>
+
+                    <!-- Fast ATPG Generator -->
+                    <div
+                        style="position: absolute; bottom: 20px; left: 20px; display: flex; align-items: center; gap: 10px; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 4;">
+                        <i class="fa-solid fa-gear"
+                            style="font-size: 2rem; color: #3b82f6; animation: gear-grind 2s infinite linear;"></i>
+                        <div style="display: flex; flex-direction: column;">
+                            <span style="font-weight: bold; color: #1d4ed8; font-size: 0.9rem;">ATPG</span>
+                            <span style="font-family: monospace; color: #2563eb; font-size: 0.8rem;">10,000
+                                ptns/s</span>
+                        </div>
+                    </div>
+
+                    <!-- Precision Diagnostics -->
+                    <div style="position: absolute; top: 20px; left: 30px; z-index: 4;">
+                        <div style="position: relative;">
+                            <i class="fa-solid fa-magnifying-glass" style="font-size: 2.5rem; color: #8b5cf6;"></i>
+                            <i class="fa-solid fa-crosshairs"
+                                style="position: absolute; top: 12px; left: 12px; font-size: 1rem; color: #e11d48; animation: scale-pulse 2s infinite;"></i>
+                        </div>
+                        <span
+                            style="font-weight: bold; color: #6d28d9; font-size: 0.9rem; display: block; margin-top: 5px;">Diagnose</span>
+                    </div>
+
                 </div>
             </div>
-            <p style="text-align: center; color: #64748b; font-style: italic; font-size: 0.95rem;">Minh họa: 3 lợi ích
-                cốt lõi đánh bại mọi rào cản chi phí.</p>
+            <p style="text-align: center; color: #64748b; font-style: italic; font-size: 0.95rem;">Minh họa: Tốc độ sinh
+                Test và tầm bao phủ rà soát lỗi tuyệt đối.</p>
         </div>
     </div>
 </div>
