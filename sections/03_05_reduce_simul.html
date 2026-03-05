@@ -1,0 +1,206 @@
+<div class="slide slide-container">
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">3.
+        Chèn Tính Kiểm Thử (Tiếp)</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <!-- Cột Trái: Reducing Select Inputs -->
+        <div class="text-block-shadow"
+            style="flex: 1; min-width: 0; text-align: left; background: #ffffff; padding: 25px; border-radius: 16px; border-top: 5px solid #00d2ff;">
+            <h2 class="gradient-text" style="font-size: 1.8rem; margin-bottom: 10px;"><i
+                    class="fa-solid fa-compress"></i> 3.5 Reducing Select Inputs</h2>
+            <p style="font-size: 1.15rem; margin-bottom: 10px; color: var(--text-color);">Để giảm tải số chân điều khiển
+                (Select Pins) cho các bộ Multiplexer khổng lồ, ta có 2 chiến thuật:</p>
+            <ul
+                style="font-size: 1.15rem; color: var(--text-color); margin-left: 20px; line-height: 1.5; margin-bottom: 15px;">
+                <li style="margin-bottom: 8px;"><b>Bộ giải mã (Decoded Select Lines):</b> Nhúng mạch logic nhận $N$ bit
+                    điều khiển từ bên ngoài để giải mã cấu hình cho $2^N$ bộ nội bộ.</li>
+                <li><b>Truyền Cờ (Token Passing):</b> Kết nối các FF thành thanh ghi dịch. Trạng thái "Token" dịch dần
+                    qua từng chu kỳ xung nhịp để kích hoạt lần lượt.</li>
+            </ul>
+
+            <!-- Animation Box 1 -->
+            <style>
+                @keyframes token-pass {
+                    0% {
+                        transform: translateX(0);
+                        opacity: 0;
+                    }
+
+                    10% {
+                        opacity: 1;
+                    }
+
+                    25% {
+                        transform: translateX(60px);
+                    }
+
+                    50% {
+                        transform: translateX(120px);
+                    }
+
+                    75% {
+                        transform: translateX(180px);
+                    }
+
+                    90% {
+                        opacity: 1;
+                    }
+
+                    100% {
+                        transform: translateX(240px);
+                        opacity: 0;
+                    }
+                }
+
+                @keyframes active-block {
+
+                    0%,
+                    100% {
+                        background: #e2e8f0;
+                        color: #64748b;
+                        border-color: #cbd5e1;
+                    }
+
+                    25% {
+                        background: #3b82f6;
+                        color: white;
+                        border-color: #2563eb;
+                        box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+                    }
+                }
+            </style>
+            <div
+                style="background: #f8fafc; padding: 15px; border-radius: 12px; border: 2px dashed #94a3b8; display: flex; flex-direction: column; align-items: center; position: relative; overflow: hidden;">
+                <span style="font-size: 0.9rem; font-weight: bold; color: #64748b; margin-bottom: 10px;">Token Passing
+                    Simulation</span>
+                <div style="display: flex; gap: 10px; position: relative;">
+                    <!-- Token Dot -->
+                    <div
+                        style="position: absolute; width: 16px; height: 16px; background: #ef4444; border-radius: 50%; top: -8px; left: 17px; z-index: 5; animation: token-pass 4s infinite steps(1);">
+                    </div>
+                    <!-- Blocks -->
+                    <div
+                        style="width: 50px; height: 40px; border-radius: 6px; border: 2px solid; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: monospace; animation: active-block 4s infinite; animation-delay: 0s;">
+                        MUX1</div>
+                    <div
+                        style="width: 50px; height: 40px; border-radius: 6px; border: 2px solid; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: monospace; animation: active-block 4s infinite; animation-delay: 1s;">
+                        MUX2</div>
+                    <div
+                        style="width: 50px; height: 40px; border-radius: 6px; border: 2px solid; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: monospace; animation: active-block 4s infinite; animation-delay: 2s;">
+                        MUX3</div>
+                    <div
+                        style="width: 50px; height: 40px; border-radius: 6px; border: 2px solid; display: flex; align-items: center; justify-content: center; font-weight: bold; font-family: monospace; animation: active-block 4s infinite; animation-delay: 3s;">
+                        MUX4</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cột Phải: Simultaneous Control & Observation -->
+        <div class="text-block-shadow"
+            style="flex: 1; min-width: 0; text-align: left; background: #FAFCFF; padding: 25px; border-radius: 16px; border-top: 5px solid #10b981;">
+            <h2 class="gradient-text" style="font-size: 1.8rem; margin-bottom: 10px; color: #059669;"><i
+                    class="fa-solid fa-arrows-to-eye"></i> 3.6 Simultaneous Control & Observation</h2>
+
+            <p style="font-size: 1.15rem; margin-bottom: 10px; color: var(--text-color);">Thanh ghi dịch (Shift
+                Register) là trái tim để xử lý song song hai tác vụ Điều khiển & Quan sát:</p>
+
+            <ul
+                style="font-size: 1.15rem; color: var(--text-color); margin-left: 20px; line-height: 1.5; margin-bottom: 15px;">
+                <li style="margin-bottom: 8px;"><b>Quét nối tiếp cô lập (Isolated Serial Scan):</b> Nhận
+                    dữ liệu test qua (Serial In), load song song (Parallel Load) lên Bus
+                    Datapath, và lấy mẫu (Capture) dịch dần ra (Serial Out).</li>
+                <li>Tiền đề dẫn đến sự phát triển của công nghệ <b>Scan Chain</b>.</li>
+            </ul>
+
+            <!-- Animation Box 2 -->
+            <style>
+                @keyframes data-in {
+                    0% {
+                        stroke-dashoffset: 40;
+                        stroke: #3b82f6;
+                    }
+
+                    100% {
+                        stroke-dashoffset: 0;
+                        stroke: #3b82f6;
+                    }
+                }
+
+                @keyframes data-out {
+                    0% {
+                        stroke-dashoffset: 40;
+                        stroke: #10b981;
+                    }
+
+                    100% {
+                        stroke-dashoffset: 0;
+                        stroke: #10b981;
+                    }
+                }
+
+                @keyframes parallel-load {
+
+                    0%,
+                    45% {
+                        transform: translateY(-10px);
+                        opacity: 0;
+                    }
+
+                    50%,
+                    95% {
+                        transform: translateY(0);
+                        opacity: 1;
+                        color: #f59e0b;
+                    }
+
+                    100% {
+                        transform: translateY(10px);
+                        opacity: 0;
+                    }
+                }
+            </style>
+            <div
+                style="background: #1e293b; padding: 15px; border-radius: 12px; border: 2px solid #334155; display: flex; flex-direction: column; align-items: center; position: relative;">
+                <span style="font-size: 0.9rem; font-weight: bold; color: #94a3b8; margin-bottom: 15px;">Isolated Scan
+                    Operation</span>
+
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <!-- Serial In -->
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <span
+                            style="color: #60a5fa; font-size: 0.7rem; font-family: monospace; font-weight: bold;">Serial
+                            IN</span>
+                        <svg width="30" height="10">
+                            <path d="M 0 5 L 30 5" fill="none" stroke-width="3" stroke-dasharray="10 5"
+                                style="animation: data-in 1s infinite linear;" />
+                        </svg>
+                    </div>
+
+                    <!-- Shift Register Core -->
+                    <div
+                        style="position: relative; width: 120px; height: 50px; background: #334155; border: 2px dashed #64748b; border-radius: 6px; display: flex; justify-content: center; align-items: center;">
+                        <!-- Parallel Drops -->
+                        <div style="position: absolute; top: -20px; display: flex; gap: 15px; z-index: 2;">
+                            <i class="fa-solid fa-arrow-down" style="animation: parallel-load 3s infinite;"></i>
+                            <i class="fa-solid fa-arrow-up"
+                                style="animation: parallel-load 3s infinite; animation-delay: 1.5s; color: #10b981;"></i>
+                            <i class="fa-solid fa-arrow-down" style="animation: parallel-load 3s infinite;"></i>
+                        </div>
+                        <span style="color: white; font-weight: bold; font-family: monospace;">SHIFT REG</span>
+                    </div>
+
+                    <!-- Serial Out -->
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <span
+                            style="color: #34d399; font-size: 0.7rem; font-family: monospace; font-weight: bold;">Serial
+                            OUT</span>
+                        <svg width="30" height="10">
+                            <path d="M 0 5 L 30 5" fill="none" stroke-width="3" stroke-dasharray="10 5"
+                                style="animation: data-out 1.2s infinite linear;" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

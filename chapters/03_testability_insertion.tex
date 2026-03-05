@@ -61,6 +61,13 @@ Việc thêm quá nhiều chân đầu ra hoặc đầu vào sơ cấp là khôn
     \caption{\textit{Chia sẻ phần cứng nạp dữ liệu kiểm thử (Sharing test data insertion hardware)}}
 \end{figure}
 
+\subsubsection{Giảm số lượng chân chọn (Reducing Select Inputs)}
+Trong một số kiến trúc đặc thù, việc cung cấp đủ số chân Select cho các bộ MUX lớn vẫn là gánh nặng. Kỹ thuật "Reducing Select Inputs" giúp giải quyết bài toán này bằng hai phương án:
+\begin{itemize}
+    \item \textbf{Decoded Select Lines:} Sử dụng mạch giải mã (Decoder) bên trong chip để mở rộng số chân điều khiển từ một lượng logarit các chân tín hiệu Select bên ngoài. Ví dụ, với 3 chân Select rời, thông qua Decoder $3$-to-$8$, ta điều khiển độc lập được $8$ cấu trúc MUX nội tại.
+    \item \textbf{Token Passing:} Chuyền cờ tín hiệu tuần tự qua một thanh ghi dịch (Shift Register). Ở mỗi chu kỳ xung nhịp, chỉ có một cổng logic duy nhất nhận được "Token" kích hoạt trạng thái Test, các cổng còn lại giữ cấu hình mặc định, tiết kiệm đáng kể chi phí định tuyến nối Select song song dọc toàn bộ bề mặt thiết kế.
+\end{itemize}
+
 \subsubsection{Điều khiển và Quan sát Đồng thời (Simultaneous Control and Observation)}
 
 \begin{figure}[H]

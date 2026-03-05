@@ -1,0 +1,181 @@
+<div class="slide slide-container">
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">5.
+        Các Kiến Trúc Scan (Tiếp)</h1>
+
+    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <div class="text-block-shadow"
+            style="flex: 1; min-width: 0; text-align: left; background: #FAFCFF; padding: 30px; border-radius: 16px; border-top: 5px solid #f59e0b;">
+            <h2 class="gradient-text" style="font-size: 2.2rem; margin-bottom: 25px; color:#d97706;"><i
+                    class="fa-solid fa-scissors"></i> 5.3
+                Partial Scan Methods</h2>
+
+            <p style="font-size: 1.4rem; color: var(--text-color); line-height: 1.6;">
+                Khác biệt lớn nhất với <b>Full Scan</b> (chèn toàn bộ 100% Flip-flops trong mạch), phương pháp <b>Quét
+                    Phân Đoạn (Partial Scan)</b> là nghệ thuật "chọn lọc" thông minh. Kỹ sư chỉ nhắm vào việc chèn Scan
+                cho các tử huyệt gây ách tắc luồng ATPG thay vì làm đại trà.
+            </p>
+
+            <h3 style="color: #64748b; margin-top: 25px; margin-bottom: 15px; font-size: 1.4rem;"><i
+                    class="fa-solid fa-crosshairs"></i> Tiêu chuẩn chọn Flip-Flop (FF)</h3>
+            <ul style="font-size: 1.25rem; color: var(--text-color); margin-left: 10px; line-height: 1.6;">
+                <li style="margin-bottom: 10px;"><b>Bẻ gãy (Feedback Loops):</b> Rất nhiều FSM phức tạp mắc kẹt do loop.
+                    Cắt đứt chúng bằng cách chèn 1-2 FF trung gian làm Scan Cell, bộ ATE sẽ thoát kẹt.</li>
+                <li style="margin-bottom: 10px;"><b>Hard-to-observe/control:</b> Xác định qua SCOAP, chèn Scan vào cứu
+                    các rễ sâu bị cô lập trong kiến trúc.</li>
+                <li style="margin-bottom: 10px;"><b>Tradeoff Hoàn Hảo:</b> Chỉ tốn ~5% diện tích Area Overhead (thay vì
+                    20%) mà vẫn đạt độ phủ faults ấn tượng, bám sát Full Scan.</li>
+            </ul>
+        </div>
+
+        <div class="text-block-shadow"
+            style="flex: 1; min-width: 0; text-align: left; background: #ffffff; padding: 25px; border-radius: 16px; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; overflow: hidden;">
+            <style>
+                @keyframes scan-laser {
+                    0% {
+                        top: 0;
+                        opacity: 0;
+                    }
+
+                    10% {
+                        opacity: 1;
+                    }
+
+                    90% {
+                        opacity: 1;
+                    }
+
+                    100% {
+                        top: 100%;
+                        opacity: 0;
+                    }
+                }
+
+                @keyframes full-scan-blocks {
+
+                    0%,
+                    100% {
+                        background: #cbd5e1;
+                        border-color: #64748b;
+                    }
+
+                    50% {
+                        background: #fef08a;
+                        border-color: #eab308;
+                        box-shadow: 0 0 10px rgba(234, 179, 8, 0.5);
+                    }
+                }
+
+                @keyframes partial-scan-blocks {
+
+                    0%,
+                    100% {
+                        background: #cbd5e1;
+                        border-color: #64748b;
+                    }
+
+                    50% {
+                        background: #fee2e2;
+                        border-color: #ef4444;
+                        box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+                    }
+                }
+            </style>
+
+            <h3
+                style="color: #334155; margin-bottom: 15px; font-size: 1.3rem; text-align: center; text-transform: uppercase;">
+                Full Scan vs Partial Scan</h3>
+
+            <div style="display: flex; gap: 40px; justify-content: center; width: 100%;">
+
+                <!-- Full Scan Representation -->
+                <div
+                    style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 2px dashed #94a3b8; display: flex; flex-direction: column; align-items: center; position: relative;">
+                    <span style="font-weight: bold; color: #f59e0b; margin-bottom: 15px; font-family: monospace;">FULL
+                        SCAN (100%)</span>
+                    <!-- Laser Scanner -->
+                    <div
+                        style="position: absolute; width: 100%; height: 2px; background: rgba(234,179,8,0.8); box-shadow: 0 0 8px #eab308; animation: scan-laser 3s infinite linear; z-index: 5;">
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                        <!-- ALL BLOCKS ARE SCANNED -->
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid; animation: full-scan-blocks 3s infinite; animation-delay: 0s;">
+                        </div>
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid; animation: full-scan-blocks 3s infinite; animation-delay: 0.2s;">
+                        </div>
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid; animation: full-scan-blocks 3s infinite; animation-delay: 0.4s;">
+                        </div>
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid; animation: full-scan-blocks 3s infinite; animation-delay: 0.6s;">
+                        </div>
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid; animation: full-scan-blocks 3s infinite; animation-delay: 0.8s;">
+                        </div>
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid; animation: full-scan-blocks 3s infinite; animation-delay: 1.0s;">
+                        </div>
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid; animation: full-scan-blocks 3s infinite; animation-delay: 1.2s;">
+                        </div>
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid; animation: full-scan-blocks 3s infinite; animation-delay: 1.4s;">
+                        </div>
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid; animation: full-scan-blocks 3s infinite; animation-delay: 1.6s;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Partial Scan Representation -->
+                <div
+                    style="background: #f8fafc; padding: 20px; border-radius: 12px; border: 2px dashed #94a3b8; display: flex; flex-direction: column; align-items: center; position: relative;">
+                    <span
+                        style="font-weight: bold; color: #ef4444; margin-bottom: 15px; font-family: monospace;">PARTIAL
+                        SCAN (33%)</span>
+
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; position: relative;">
+                        <!-- Custom Scan Laser only hitting selected ones -->
+                        <div
+                            style="position: absolute; width: 100%; height: 2px; background: rgba(239,68,68,0.8); box-shadow: 0 0 8px #ef4444; top: 50%; opacity: 0; animation: scan-laser 3s infinite linear; animation-delay: 1.5s; z-index: 5; display: none;">
+                        </div>
+
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid #64748b; background: #e2e8f0;">
+                        </div>
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid; animation: partial-scan-blocks 3s infinite; animation-delay: 0.2s;">
+                        </div>
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid #64748b; background: #e2e8f0;">
+                        </div>
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid #64748b; background: #e2e8f0;">
+                        </div>
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid #64748b; background: #e2e8f0;">
+                        </div>
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid; animation: partial-scan-blocks 3s infinite; animation-delay: 1.0s;">
+                        </div>
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid; animation: partial-scan-blocks 3s infinite; animation-delay: 1.2s;">
+                        </div>
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid #64748b; background: #e2e8f0;">
+                        </div>
+                        <div
+                            style="width: 30px; height: 30px; border-radius: 4px; border: 2px solid #64748b; background: #e2e8f0;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="margin-top: 25px; font-style: italic; color: #666; font-size: 1.1rem; text-align: center;">Minh
+                họa: Chỉ những Flip-Flop bị "ngộp" mới được nhắm mục tiêu làm Scan Design để đạt KPI thời gian kiểm thử.
+            </p>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,6 @@
 const slidesList = [
     'sections/00_cover.html',
+    'sections/00_toc.html',
     'sections/01_01_khai_niem.html',
     'sections/01_02_background.html',
     'sections/01_03_objectives.html',
@@ -13,6 +14,7 @@ const slidesList = [
     'sections/03_02_muxdemux.html',
     'sections/03_03_isolated_scan.html',
     'sections/03_04_basic_scan_concept.html',
+    'sections/03_05_reduce_simul.html',
     'sections/04_01_fullscan_intro.html',
     'sections/04_02_ff_structures.html',
     'sections/04_03_residue5.html',
@@ -20,6 +22,7 @@ const slidesList = [
     'sections/05_01_multiple_scan_intro.html',
     'sections/05_02_adding_machine.html',
     'sections/05_02_shadow_register.html',
+    'sections/05_03_partial_scan.html',
     'sections/05_03_other_scan.html',
     'sections/06_01_rtl_scan.html',
     'sections/06_02_iddq_test.html',
