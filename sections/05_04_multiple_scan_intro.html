@@ -1,6 +1,6 @@
 <div class="slide slide-container">
-    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">9.
-        Nút thắt Thời gian & Kỹ thuật Multiple Scan (Phần 1)</h1>
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">
+        5.4. Nút thắt Thời gian & Kỹ thuật Quét Đa chuỗi (1/2)</h1>
 
     <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
         <div class="text-block-shadow"
@@ -12,7 +12,7 @@
                     triệu cổng. Giả sử Chip chứa $100,000$ Flip-flops. Một vòng quét Full Scan Single Chain tốn
                     $100,000$ chu kì nhịp Clock để đẩy đầy $1$ Test Vector vào trong ống. Nếu cần $1,000$ Patterns, máy
                     ATE chịu thua vì tốn hàng chục giây cho mỗi con IC Test đắt đỏ.</li>
-                <li style="margin-bottom: 12px;"><b>Phương án "Chia nhỏ Đại đội": Multiple Scan Chains.</b> Thay vì xếp
+                <li style="margin-bottom: 12px;"><b>Phương án "Quét Đa chuỗi": Multiple Scan Chains.</b> Thay vì xếp
                     hàng rồng rắn 1 file duy nhất, ta mạnh tay cắt cái Xích $100,000$ mắt kia thành $100$ Dây xích ngắn
                     (Chains) song song dài chỉ $1000$ mắt.</li>
                 <li style="margin-bottom: 12px;">Thời gian chèn dịch (Shift-In/Out Test Time) sẽ ngay lập tức được
@@ -139,8 +139,8 @@
 </div>
 
 <div class="slide slide-container">
-    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">9.
-        Nút thắt Thời gian & Kỹ thuật Multiple Scan (Phần 2)</h1>
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">
+        5.4. Nút thắt Thời gian & Kỹ thuật Quét Đa chuỗi (2/2)</h1>
 
     <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
         <div class="text-block-shadow"
@@ -152,7 +152,7 @@
                     Pattern dài ngoằng). Bây giờ Mẫu dữ liệu đơn phương bị lưỡi dao chẻ thành các dải $Part_1, Part_2,
                     Part_N$. Các máy bơm ATE sẽ tọng chúng nhúm nhó vào miệng các nhánh nhỏ tương ứng.</li>
                 <li style="margin-bottom: 12px;"><b>Bất lợi Về Thiết Bị Khổng Lồ Mới Nảy Sinh (Trade-off Nặng Nề):</b>
-                    Không có kẹo Ngọt 100%. Việc cắt dây xích giảm thời gian bao nhiêu lần thì Thiết kế Vật Lý (Physical
+                    Việc cắt dây xích giảm thời gian bao nhiêu lần thì Thiết kế Vật Lý (Physical
                     Layout) ở rìa viền Chip sẽ phải cõng thêm Bấy Nhiêu chân Pin tiếp xúc phần cứng $T_{in\_1},
                     T_{out\_1} \dots T_{in\_M}, T_{out\_M}$ thật sự. </li>
                 <li style="margin-bottom: 12px;">Điều này lại dội ngược Bài toán Giới hạn Package Pins và Máy Móc ATE

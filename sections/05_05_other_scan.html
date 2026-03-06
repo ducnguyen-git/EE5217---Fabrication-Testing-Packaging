@@ -1,6 +1,6 @@
 <div class="slide slide-container">
     <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">5.
-        Các Kiến Trúc Scan (Tiếp)</h1>
+        Các Kiến Trúc Quét (Tiếp)</h1>
 
     <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
         <div class="text-block-shadow"
@@ -91,10 +91,75 @@
                 }
             </style>
 
+            <!-- LSSD Diagram Box -->
+            <div class="text-block-shadow"
+                style="background: #1e293b; padding: 20px; border-radius: 16px; border: 2px solid #334155; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
+                <h3
+                    style="color: #38bdf8; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; font-size: 1rem;">
+                    LSSD Shift Register Latch (SRL)</h3>
+
+                <div style="display: flex; align-items: center; justify-content: center; gap: 15px; width: 100%;">
+
+                    <!-- Latch Inputs -->
+                    <div
+                        style="display: flex; flex-direction: column; gap: 10px; font-weight: bold; font-size: 0.8rem; text-align: right; margin-right: 5px;">
+                        <span
+                            style="color: #60a5fa; display: flex; align-items: center; justify-content: flex-end; gap: 5px;">Data
+                            (D) <div style="width: 15px; height: 2px; background: #60a5fa;"></div></span>
+                        <span
+                            style="color: #f472b6; display: flex; align-items: center; justify-content: flex-end; gap: 5px;">Clock
+                            (C) <div style="width: 15px; height: 2px; background: #f472b6;"></div></span>
+                        <span
+                            style="color: #a78bfa; display: flex; align-items: center; justify-content: flex-end; gap: 5px;">Scan
+                            In (I) <div style="width: 15px; height: 2px; background: #a78bfa;"></div></span>
+                        <span
+                            style="color: #fbbf24; display: flex; align-items: center; justify-content: flex-end; gap: 5px;">Clock
+                            (A) <div style="width: 15px; height: 2px; background: #fbbf24;"></div></span>
+                    </div>
+
+                    <!-- L1 Latch Box -->
+                    <div
+                        style="width: 70px; height: 100px; background: #0f172a; border: 2px solid #38bdf8; border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; box-shadow: inset 0 0 10px rgba(56, 189, 248, 0.2);">
+                        <span style="color: #e0f2fe; font-weight: bold; font-size: 1rem;">L1</span>
+                        <span style="color: #7dd3fc; font-size: 0.7rem;">(Master)</span>
+                    </div>
+
+                    <!-- Internal Connection -->
+                    <div style="width: 25px; height: 2px; background: #64748b;"></div>
+
+                    <!-- L2 Latch Box -->
+                    <div
+                        style="width: 70px; height: 100px; background: #0f172a; border: 2px solid #4ade80; border-radius: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; box-shadow: inset 0 0 10px rgba(74, 222, 128, 0.2);">
+                        <span style="color: #f0fdf4; font-weight: bold; font-size: 1rem;">L2</span>
+                        <span style="color: #86efac; font-size: 0.7rem;">(Slave)</span>
+
+                        <!-- clock B input to L2 -->
+                        <div
+                            style="position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center;">
+                            <div style="width: 2px; height: 20px; background: #fb923c;"></div>
+                            <span
+                                style="color: #fb923c; font-weight: bold; font-size: 0.8rem; text-align: center; margin-top: 2px;">Clock
+                                (B)</span>
+                        </div>
+                    </div>
+
+                    <!-- Output -->
+                    <div
+                        style="display: flex; flex-direction: column; font-weight: bold; font-size: 0.8rem; text-align: left; margin-left: 5px;">
+                        <span style="color: #cbd5e1; display: flex; align-items: center; gap: 5px;">
+                            <div style="width: 15px; height: 2px; background: #cbd5e1;"></div> Data Out /<br>Scan Out
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Random Access Scan Box -->
             <div class="text-block-shadow"
                 style="background: #1e293b; padding: 25px; border-radius: 16px; border: 2px solid #334155; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-                <h3 style="color: #c084fc; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px;">Random
-                    Access Scan Array</h3>
+                <h3
+                    style="color: #c084fc; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; font-size: 1rem;">
+                    Random Access Scan Array</h3>
 
                 <div style="display: flex; gap: 20px; align-items: flex-end;">
                     <!-- Y Decoder -->

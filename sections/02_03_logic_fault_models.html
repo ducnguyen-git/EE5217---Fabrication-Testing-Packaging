@@ -1,8 +1,9 @@
 <div class="slide slide-container">
     <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">2.
-        Đưa Kiểm Thử Vào Thiết Kế (Tiếp)</h1>
-    <h2 class="gradient-text" style="font-size: 2.2rem; margin-bottom: 25px;"><i class="fa-solid fa-bug"></i> Logic
-        Fault Models (Mô hình lỗi) (1/2)</h2>
+        Thiết Kế Mạch Khả Kiểm (Tiếp)</h1>
+    <h2 class="gradient-text" style="font-size: 2.2rem; margin-bottom: 25px;"><i class="fa-solid fa-bug"></i>2.6. Mô
+        hình Lỗi Logic - Logic Fault Models
+    </h2>
 
     <p style="font-size: 1.35rem; margin-bottom: 25px;">Để làm rõ tại sao cần SCAN khi kiểm thử logic, ta cần định nghĩa
         các mô hình lỗi cơ bản có thể xảy ra trong quá trình sản xuất vi mạch:</p>
@@ -150,19 +151,22 @@
 
 <div class="slide slide-container">
     <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">2.
-        Đưa Kiểm Thử Vào Thiết Kế (Tiếp)</h1>
-    <h2 class="gradient-text" style="font-size: 2.2rem; margin-bottom: 25px;"><i class="fa-solid fa-microchip"></i> Tại
-        sao cần SCAN Design? (2/2)</h2>
+        Thiết Kế Mạch Khả Kiểm (Tiếp)</h1>
+    <h2 class="gradient-text" style="font-size: 2.2rem; margin-bottom: 25px;"><i class="fa-solid fa-microchip"></i>2.7.
+        Tại
+        sao cần SCAN Design?</h2>
 
     <div style="display: flex; gap: 40px; align-items: stretch; width: 100%;">
         <div
             style="flex: 1; min-width: 0; max-width: 50%; text-align: left; background: #f0fdf4; padding: 30px; border-radius: 16px; border-top: 5px solid #00cc66; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);">
             <ul style="font-size: 1.25rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
-                <li style="margin-bottom: 15px;">Trong mạch dãy (Sequential Circuit), trạng thái nằm ẩn bên trong các
-                    Flip-Flops. Việc phát hiện các <b>lỗi logic này</b> bằng cách điều khiển đầu vào từ ngoài và quan
+                <li style="margin-bottom: 15px;">Trong <b>>Mạch Tuần Tự (Sequential Circuit)</b>, trạng thái nằm ẩn bên
+                    trong các
+                    Flip-Flops. Việc phát hiện các lỗi logic này bằng cách điều khiển đầu vào từ ngoài và quan
                     sát đầu ra là siêu khó khăn.</li>
-                <li style="margin-bottom: 15px;"><b>Giải pháp SCAN:</b> Biến các Flip-Flops thành dây chuyền dịch (Shift
-                    Register). Cho phép <b>"Shift"</b> trực tiếp dữ liệu (1/0) vào bất cứ vị trí FF nào
+                <li style="margin-bottom: 15px;"><b>Giải pháp SCAN:</b> Biến các <b>Flip-Flops</b> thành <b>Dây chuyền
+                        dịch (Shift
+                        Register)</b>. Cho phép <b>"Shift"</b> trực tiếp dữ liệu (1/0) vào bất cứ vị trí FF nào
                     (Controllability).</li>
                 <li style="margin-bottom: 15px;">Việc test mạch tuần tự bài toán giờ đây quy về giống bài toán test mạch
                     tổ hợp có thể quan sát đầu ra dễ dàng (Observability).</li>
