@@ -115,14 +115,14 @@ body.presentation-mode .slide {
     radial-gradient(#cbd5e1 1.5px, transparent 1.5px);
   background-size: 100% 100%, 32px 32px;
   background-position: top center, 0 0;
-  display: none;
+  display: none !important;
   z-index: 0;
   transform: translate(-50%, -50%) scale(var(--scale, 1));
   transform-origin: center center;
 }
 
 body.presentation-mode .slide.active {
-  display: flex;
+  display: flex !important;
   z-index: 10;
 }
 

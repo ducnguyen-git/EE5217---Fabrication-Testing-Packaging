@@ -226,6 +226,10 @@ function togglePresentation() {
             btnIcon.classList.remove('fa-compress');
             btnIcon.classList.add('fa-play');
         }
+        // Cleanup presentation tools
+        if (window.presentationTools) {
+            window.presentationTools.cleanup();
+        }
         // Sync scroll to current slide
         setTimeout(() => slides[currentSlide].scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
     }
@@ -240,28 +244,41 @@ document.addEventListener('fullscreenchange', () => {
 
 // Keyboard nav
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight' || e.key === ' ') nextSlide();
-    if (e.key === 'ArrowLeft') prevSlide();
-    if (e.key === 'f' || e.key === 'F' || e.key === 'p' || e.key === 'P') togglePresentation();
-    if (e.key === 'Escape' && isPresenting && !wasFullscreenAchieved) togglePresentation();
+    // Skip if tools dialogs are handled by presentation-tools.js
+    if (document.querySelector('#slide-jump-overlay.visible') || document.querySelector('#chapter-nav-overlay.visible')) return;
+    if (document.querySelector('#blackout-overlay.visible')) return;
+
+    if (e.key === 'ArrowRight' || e.key === ' ') {
+        if (!document.body.classList.contains('drawing-mode')) nextSlide();
+    }
+    if (e.key === 'ArrowLeft') {
+        if (!document.body.classList.contains('drawing-mode')) prevSlide();
+    }
+    if (e.key === 'f' || e.key === 'F' || e.key === 'p' || e.key === 'P') {
+        if (e.key === 'f' || e.key === 'F') togglePresentation();
+        // 'p' and 'P' only toggle if not in presentation mode (avoid conflict)
+        if ((e.key === 'p' || e.key === 'P') && !isPresenting) togglePresentation();
+    }
+    if (e.key === 'Escape' && isPresenting && !wasFullscreenAchieved) {
+        if (!document.body.classList.contains('drawing-mode')) togglePresentation();
+    }
     // ESC during fullscreen is handled by fullscreenchange
 });
 
 // Mouse nav
 document.addEventListener('click', (e) => {
-    // Only trigger in presentation mode and not on buttons
-    if (isPresenting && !e.target.closest('#controls')) {
+    // Only trigger in presentation mode and not on buttons/overlays
+    if (isPresenting && !e.target.closest('#controls') && !e.target.closest('#pres-toolbar')
+        && !e.target.closest('#context-menu') && !e.target.closest('#drawing-toolbar')
+        && !document.body.classList.contains('drawing-mode')
+        && !document.body.classList.contains('laser-mode')
+        && !document.querySelector('#slide-jump-overlay.visible')
+        && !document.querySelector('#chapter-nav-overlay.visible')) {
         nextSlide();
     }
 });
 
-document.addEventListener('contextmenu', (e) => {
-    // Right-click = go back in presentation mode
-    if (isPresenting) {
-        e.preventDefault();
-        prevSlide();
-    }
-});
+// Context menu is now handled by presentation-tools.js
 
 // Scroll Observer for Overview Mode
 const observer = new IntersectionObserver((entries) => {
