@@ -40,8 +40,8 @@ const slidesList = [
 ];
 
 const wrapper = document.getElementById('slides_wrapper');
-let currentSlide = 0;
-let isPresenting = false;
+var currentSlide = 0;
+var isPresenting = false;
 let scaleObserver = null; // Biến lưu trữ ResizeObserver
 
 // Khởi tạo ResizeObserver để theo dõi Tự động Kích thước

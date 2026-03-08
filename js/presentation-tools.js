@@ -25,8 +25,11 @@
     let blackoutActive = false;
     let drawColor = '#ff0000';
     let drawSize = 3;
+    let drawTool = 'pen'; // 'pen', 'highlighter', 'eraser'
     let isDrawing = false;
     let drawingData = {}; // per-slide drawings: { slideIndex: ImageData }
+    let undoStack = {}; // per-slide undo stacks
+    let redoStack = {}; // per-slide redo stacks
 
     // ─── DOM Elements (created dynamically) ───
     let laserDot, drawingCanvas, drawCtx;
@@ -57,6 +60,10 @@
         drawingToolbar = document.createElement('div');
         drawingToolbar.id = 'drawing-toolbar';
         drawingToolbar.innerHTML = `
+            <button class="tool-btn active" data-tool="pen" title="Bút vẽ"><i class="fa-solid fa-pen"></i></button>
+            <button class="tool-btn" data-tool="highlighter" title="Bút dạ quang"><i class="fa-solid fa-highlighter"></i></button>
+            <button class="tool-btn" data-tool="eraser" title="Tẩy"><i class="fa-solid fa-eraser"></i></button>
+            <div class="separator"></div>
             <button class="color-btn active" data-color="#ff0000" style="background:#ff0000" title="Đỏ"></button>
             <button class="color-btn" data-color="#005ce6" style="background:#005ce6" title="Xanh dương"></button>
             <button class="color-btn" data-color="#10b981" style="background:#10b981" title="Xanh lá"></button>
@@ -67,7 +74,10 @@
             <button class="size-btn active" data-size="3" title="Vừa"><div class="size-dot" style="width:7px;height:7px"></div></button>
             <button class="size-btn" data-size="6" title="Đậm"><div class="size-dot" style="width:11px;height:11px"></div></button>
             <div class="separator"></div>
-            <button class="tool-btn" id="btn-clear-draw" title="Xóa nét vẽ"><i class="fa-solid fa-eraser"></i></button>
+            <button class="tool-btn" id="btn-undo" title="Hoàn tác (Ctrl+Z)"><i class="fa-solid fa-rotate-left"></i></button>
+            <button class="tool-btn" id="btn-redo" title="Làm lại (Ctrl+Y)"><i class="fa-solid fa-rotate-right"></i></button>
+            <div class="separator"></div>
+            <button class="tool-btn" id="btn-clear-draw" title="Xóa tất cả"><i class="fa-solid fa-trash-can"></i></button>
         `;
         document.body.appendChild(drawingToolbar);
 
@@ -183,10 +193,24 @@
     function startDraw(e) {
         if (!drawingActive) return;
         isDrawing = true;
+        // Save state for undo before drawing
+        pushUndo();
         drawCtx.beginPath();
         drawCtx.moveTo(e.clientX, e.clientY);
-        drawCtx.strokeStyle = drawColor;
-        drawCtx.lineWidth = drawSize;
+
+        if (drawTool === 'eraser') {
+            drawCtx.globalCompositeOperation = 'destination-out';
+            drawCtx.strokeStyle = 'rgba(0,0,0,1)';
+            drawCtx.lineWidth = drawSize * 6;
+        } else if (drawTool === 'highlighter') {
+            drawCtx.globalCompositeOperation = 'source-over';
+            drawCtx.strokeStyle = drawColor + '55'; // semi-transparent
+            drawCtx.lineWidth = drawSize * 5;
+        } else {
+            drawCtx.globalCompositeOperation = 'source-over';
+            drawCtx.strokeStyle = drawColor;
+            drawCtx.lineWidth = drawSize;
+        }
         drawCtx.lineCap = 'round';
         drawCtx.lineJoin = 'round';
     }
@@ -201,6 +225,42 @@
         if (!isDrawing) return;
         isDrawing = false;
         drawCtx.closePath();
+        drawCtx.globalCompositeOperation = 'source-over';
+        saveDrawing();
+    }
+
+    function pushUndo() {
+        const idx = currentSlide;
+        if (!undoStack[idx]) undoStack[idx] = [];
+        if (!redoStack[idx]) redoStack[idx] = [];
+        undoStack[idx].push(drawCtx.getImageData(0, 0, drawingCanvas.width, drawingCanvas.height));
+        // Limit undo history to 20 states
+        if (undoStack[idx].length > 20) undoStack[idx].shift();
+        // Clear redo when new drawing happens
+        redoStack[idx] = [];
+    }
+
+    function undo() {
+        const idx = currentSlide;
+        if (!undoStack[idx] || undoStack[idx].length === 0) return;
+        if (!redoStack[idx]) redoStack[idx] = [];
+        // Save current state to redo
+        redoStack[idx].push(drawCtx.getImageData(0, 0, drawingCanvas.width, drawingCanvas.height));
+        // Restore previous state
+        const prevState = undoStack[idx].pop();
+        drawCtx.putImageData(prevState, 0, 0);
+        saveDrawing();
+    }
+
+    function redo() {
+        const idx = currentSlide;
+        if (!redoStack[idx] || redoStack[idx].length === 0) return;
+        if (!undoStack[idx]) undoStack[idx] = [];
+        // Save current state to undo
+        undoStack[idx].push(drawCtx.getImageData(0, 0, drawingCanvas.width, drawingCanvas.height));
+        // Restore redo state
+        const nextState = redoStack[idx].pop();
+        drawCtx.putImageData(nextState, 0, 0);
         saveDrawing();
     }
 
@@ -450,6 +510,13 @@
 
         // Drawing toolbar click
         drawingToolbar.addEventListener('click', (e) => {
+            const toolBtn = e.target.closest('[data-tool]');
+            if (toolBtn) {
+                drawTool = toolBtn.dataset.tool;
+                drawingToolbar.querySelectorAll('[data-tool]').forEach(b => b.classList.remove('active'));
+                toolBtn.classList.add('active');
+                return;
+            }
             const colorBtn = e.target.closest('.color-btn');
             if (colorBtn) {
                 drawColor = colorBtn.dataset.color;
@@ -464,7 +531,10 @@
                 sizeBtn.classList.add('active');
                 return;
             }
+            if (e.target.closest('#btn-undo')) { undo(); return; }
+            if (e.target.closest('#btn-redo')) { redo(); return; }
             if (e.target.closest('#btn-clear-draw')) {
+                pushUndo();
                 clearCurrentDrawing();
             }
         });
@@ -578,10 +648,15 @@
                 return;
             }
 
-            // Drawing mode: ESC exits drawing, other keys pass through
-            if (drawingActive && e.key === 'Escape') {
-                toggleDrawing();
-                return;
+            // Drawing mode: ESC exits, arrow keys navigate, Ctrl+Z/Y for undo/redo
+            if (drawingActive) {
+                if (e.key === 'Escape') { toggleDrawing(); return; }
+                if (e.ctrlKey && e.key.toLowerCase() === 'z') { e.preventDefault(); undo(); return; }
+                if (e.ctrlKey && e.key.toLowerCase() === 'y') { e.preventDefault(); redo(); return; }
+                // Allow arrow key navigation while drawing
+                if (e.key === 'ArrowRight') { saveDrawing(); nextSlide(); restoreDrawing(); return; }
+                if (e.key === 'ArrowLeft') { saveDrawing(); prevSlide(); restoreDrawing(); return; }
+                return; // Block all other keys in drawing mode
             }
 
             switch (e.key.toLowerCase()) {
