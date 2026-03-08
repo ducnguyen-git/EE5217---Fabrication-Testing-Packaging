@@ -209,3 +209,54 @@ body.presentation-mode .slide.active {
   font-weight: bold;
   opacity: 0.5;
 }
+
+/* ─── Mobile: Giữ tỉ lệ landscape chuẩn ─── */
+@media (max-width: 1024px) {
+
+  /* Overview mode: scale slide to fit viewport width while keeping landscape ratio */
+  .slide {
+    width: 1200px !important;
+    min-height: 750px;
+    aspect-ratio: 16 / 10;
+    zoom: 0.75;
+  }
+
+  #slides_wrapper {
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 768px) {
+  .slide {
+    zoom: 0.5;
+  }
+
+  #slides_wrapper {
+    gap: 40px;
+    padding: 30px 0;
+  }
+
+  /* Controls smaller on mobile */
+  .btn {
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 1rem;
+  }
+
+  #counter {
+    font-size: 0.9rem;
+    bottom: 15px;
+    left: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide {
+    zoom: 0.32;
+  }
+
+  #slides_wrapper {
+    gap: 20px;
+    padding: 15px 0;
+  }
+}
