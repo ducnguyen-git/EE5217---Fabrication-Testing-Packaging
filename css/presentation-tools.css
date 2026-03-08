@@ -333,6 +333,11 @@ body.drawing-mode #drawing-toolbar {
     width: 1440px;
     min-height: 900px;
     zoom: unset !important;
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .slide-thumb .thumb-number {
