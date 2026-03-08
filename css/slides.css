@@ -165,7 +165,7 @@ body.presentation-mode .slide.active {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  z-index: 100;
+  z-index: 300;
   display: flex;
   gap: 10px;
 }

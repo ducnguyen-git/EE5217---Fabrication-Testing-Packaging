@@ -89,22 +89,22 @@
         `;
         document.body.appendChild(contextMenu);
 
-        // Slide jump overlay
+        // Slide jump overlay (thumbnail grid)
         slideJumpOverlay = document.createElement('div');
         slideJumpOverlay.id = 'slide-jump-overlay';
         slideJumpOverlay.innerHTML = `
-            <div id="slide-jump-dialog">
-                <h3>🎯 Đến slide số...</h3>
+            <div id="slide-jump-header">
+                <h3>🎯 Chọn slide</h3>
                 <input type="number" id="slide-jump-input" min="1" placeholder="Nhập số slide">
-                <p class="hint">Nhấn Enter để chuyển, Esc để hủy</p>
             </div>
+            <div id="slide-grid"></div>
         `;
         document.body.appendChild(slideJumpOverlay);
 
-        // Chapter navigation overlay
+        // Chapter navigation overlay (card grid)
         chapterNavOverlay = document.createElement('div');
         chapterNavOverlay.id = 'chapter-nav-overlay';
-        chapterNavOverlay.innerHTML = `<div id="chapter-nav-panel"><h3>📚 Danh sách Chương</h3></div>`;
+        chapterNavOverlay.innerHTML = `<div id="chapter-nav-panel"><h3>📚 Danh sách Chương</h3><div id="chapter-grid"></div></div>`;
         document.body.appendChild(chapterNavOverlay);
 
         // Blackout overlay
@@ -259,15 +259,59 @@
         contextMenu.classList.remove('visible');
     }
 
-    // ─── Slide Jump ───
+    // ─── Slide Jump (thumbnail grid) ───
     function showSlideJump() {
         hideContextMenu();
-        slideJumpOverlay.classList.add('visible');
+        const slides = document.querySelectorAll('.slide-container');
+        const grid = document.getElementById('slide-grid');
         const input = document.getElementById('slide-jump-input');
-        const total = document.querySelectorAll('.slide-container').length;
-        input.max = total;
-        input.placeholder = `1 — ${total}`;
+
+        grid.innerHTML = '';
+        input.max = slides.length;
+        input.placeholder = `1 — ${slides.length}`;
         input.value = '';
+
+        slides.forEach((slide, i) => {
+            const thumb = document.createElement('div');
+            thumb.className = 'slide-thumb' + (i === window.currentSlide ? ' current' : '');
+
+            // Create a mini preview by cloning the slide
+            const preview = document.createElement('div');
+            preview.className = 'thumb-preview';
+            const clone = slide.cloneNode(true);
+            clone.classList.remove('active');
+            clone.style.position = 'absolute';
+            clone.style.top = '0';
+            clone.style.left = '0';
+            clone.style.width = '1440px';
+            clone.style.minHeight = '900px';
+            clone.style.zoom = 'unset';
+            // Scale the clone to fit the thumbnail
+            const thumbWidth = 220;
+            const scale = thumbWidth / 1440;
+            clone.style.transform = `scale(${scale})`;
+            clone.style.transformOrigin = 'top left';
+            preview.appendChild(clone);
+
+            const num = document.createElement('div');
+            num.className = 'thumb-number';
+            num.textContent = i + 1;
+
+            thumb.appendChild(preview);
+            thumb.appendChild(num);
+
+            thumb.onclick = () => {
+                if (drawingActive) saveDrawing();
+                window.currentSlide = i;
+                if (typeof updateView === 'function') updateView();
+                if (drawingActive) restoreDrawing();
+                hideSlideJump();
+            };
+
+            grid.appendChild(thumb);
+        });
+
+        slideJumpOverlay.classList.add('visible');
         setTimeout(() => input.focus(), 100);
     }
 
@@ -288,24 +332,19 @@
         }
     }
 
-    // ─── Chapter Navigation ───
+    // ─── Chapter Navigation (card grid) ───
     function showChapterNav() {
         hideContextMenu();
-        const panel = document.getElementById('chapter-nav-panel');
-        // Keep the h3 title, remove old items
-        const h3 = panel.querySelector('h3');
-        panel.innerHTML = '';
-        panel.appendChild(h3);
+        const grid = document.getElementById('chapter-grid');
+        grid.innerHTML = '';
 
-        // Find slide indices for each chapter file
-        const slides = document.querySelectorAll('.slide-container');
         const slideFiles = window.slidesList || [];
 
         chapters.forEach(ch => {
-            const btn = document.createElement('button');
-            btn.className = 'chapter-item';
+            const card = document.createElement('div');
+            card.className = 'chapter-card';
 
-            // Find which slide index this chapter starts at
+            // Find slide index
             let slideIdx = -1;
             let globalIdx = 0;
             for (let i = 0; i < slideFiles.length; i++) {
@@ -314,14 +353,11 @@
                     slideIdx = globalIdx;
                     break;
                 }
-                // Count how many sub-slides this file contributed
-                // For simplicity, each file = 1 slide (since most are single)
                 globalIdx++;
             }
 
-            // Determine if current
+            // Mark current chapter
             if (slideIdx >= 0 && typeof currentSlide !== 'undefined') {
-                // Find next chapter start
                 let nextChIdx = slideFiles.length;
                 for (let i = slideFiles.indexOf('sections/' + ch.slideFile) + 1; i < slideFiles.length; i++) {
                     if (slideFiles[i].includes('_00_chapter') || slideFiles[i].includes('00_cover') || slideFiles[i].includes('00_toc')) {
@@ -330,23 +366,24 @@
                     }
                 }
                 if (currentSlide >= slideIdx && currentSlide < nextChIdx) {
-                    btn.classList.add('current');
+                    card.classList.add('current');
                 }
             }
 
-            const numDiv = document.createElement('div');
-            numDiv.className = 'chapter-num';
-            numDiv.style.background = ch.color + '22';
-            numDiv.style.color = ch.color;
-            numDiv.textContent = ch.num > 0 ? ch.num : (ch.title === 'Trang bìa' ? '🏠' : '📋');
+            const header = document.createElement('div');
+            header.className = 'card-header';
+            header.style.background = ch.color;
+            header.style.color = 'white';
+            header.textContent = ch.num > 0 ? `Chương ${ch.num}` : (ch.title === 'Trang bìa' ? '🏠 Bìa' : '📋 Mục lục');
 
-            const textDiv = document.createElement('span');
-            textDiv.textContent = ch.num > 0 ? `Chương ${ch.num}: ${ch.title}` : ch.title;
+            const title = document.createElement('div');
+            title.className = 'card-title';
+            title.textContent = ch.title;
 
-            btn.appendChild(numDiv);
-            btn.appendChild(textDiv);
+            card.appendChild(header);
+            card.appendChild(title);
 
-            btn.onclick = () => {
+            card.onclick = () => {
                 if (slideIdx >= 0) {
                     if (drawingActive) saveDrawing();
                     window.currentSlide = slideIdx;
@@ -356,7 +393,7 @@
                 hideChapterNav();
             };
 
-            panel.appendChild(btn);
+            grid.appendChild(card);
         });
 
         chapterNavOverlay.classList.add('visible');
