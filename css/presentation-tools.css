@@ -151,6 +151,48 @@ body.drawing-mode #drawing-toolbar {
     background: #e2e8f0;
 }
 
+/* Close draw button (red) */
+#drawing-toolbar .close-draw-btn {
+    background: rgba(239, 68, 68, 0.25);
+    color: #fca5a5;
+}
+
+#drawing-toolbar .close-draw-btn:hover {
+    background: rgba(239, 68, 68, 0.5);
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* --- Highlight Text Mode --- */
+body.drawing-mode.highlight-text-mode #drawing-canvas {
+    pointer-events: none !important;
+    cursor: default !important;
+    display: block;
+}
+
+body.drawing-mode.highlight-text-mode .slide-container {
+    cursor: text !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+}
+
+body.drawing-mode.highlight-text-mode .slide-container * {
+    cursor: text !important;
+    user-select: text !important;
+    -webkit-user-select: text !important;
+}
+
+/* Text highlight marks */
+mark.text-highlight {
+    background: var(--hl-color, #f59e0b);
+    background-color: color-mix(in srgb, var(--hl-color, #f59e0b) 35%, transparent);
+    color: inherit;
+    padding: 1px 2px;
+    border-radius: 3px;
+    text-decoration: none;
+    mix-blend-mode: normal;
+}
+
 /* --- Context Menu --- */
 #context-menu {
     position: fixed;

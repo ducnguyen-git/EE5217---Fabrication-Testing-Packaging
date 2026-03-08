@@ -61,7 +61,7 @@
         drawingToolbar.id = 'drawing-toolbar';
         drawingToolbar.innerHTML = `
             <button class="tool-btn active" data-tool="pen" title="Bút vẽ"><i class="fa-solid fa-pen"></i></button>
-            <button class="tool-btn" data-tool="highlighter" title="Bút dạ quang"><i class="fa-solid fa-highlighter"></i></button>
+            <button class="tool-btn" data-tool="highlighter" title="Highlight chữ"><i class="fa-solid fa-highlighter"></i></button>
             <button class="tool-btn" data-tool="eraser" title="Tẩy"><i class="fa-solid fa-eraser"></i></button>
             <div class="separator"></div>
             <button class="color-btn active" data-color="#ff0000" style="background:#ff0000" title="Đỏ"></button>
@@ -77,7 +77,10 @@
             <button class="tool-btn" id="btn-undo" title="Hoàn tác (Ctrl+Z)"><i class="fa-solid fa-rotate-left"></i></button>
             <button class="tool-btn" id="btn-redo" title="Làm lại (Ctrl+Y)"><i class="fa-solid fa-rotate-right"></i></button>
             <div class="separator"></div>
-            <button class="tool-btn" id="btn-clear-draw" title="Xóa tất cả"><i class="fa-solid fa-trash-can"></i></button>
+            <button class="tool-btn" id="btn-clear-draw" title="Xóa nét vẽ"><i class="fa-solid fa-trash-can"></i></button>
+            <button class="tool-btn" id="btn-clear-highlight" title="Xóa highlight"><i class="fa-solid fa-broom"></i></button>
+            <div class="separator"></div>
+            <button class="tool-btn close-draw-btn" id="btn-close-draw" title="Đóng bút vẽ (ESC)"><i class="fa-solid fa-xmark"></i></button>
         `;
         document.body.appendChild(drawingToolbar);
 
@@ -181,6 +184,8 @@
         } else {
             showIndicator('Bút vẽ OFF', 'draw-ind');
             saveDrawing();
+            // Exit highlight mode if active
+            document.body.classList.remove('highlight-text-mode');
         }
         updateToolbarState();
     }
@@ -192,6 +197,7 @@
 
     function startDraw(e) {
         if (!drawingActive) return;
+        if (drawTool === 'highlighter') return; // highlight uses text selection, not canvas
         isDrawing = true;
         // Save state for undo before drawing
         pushUndo();
@@ -202,10 +208,6 @@
             drawCtx.globalCompositeOperation = 'destination-out';
             drawCtx.strokeStyle = 'rgba(0,0,0,1)';
             drawCtx.lineWidth = drawSize * 6;
-        } else if (drawTool === 'highlighter') {
-            drawCtx.globalCompositeOperation = 'source-over';
-            drawCtx.strokeStyle = drawColor + '55'; // semi-transparent
-            drawCtx.lineWidth = drawSize * 5;
         } else {
             drawCtx.globalCompositeOperation = 'source-over';
             drawCtx.strokeStyle = drawColor;
@@ -282,6 +284,46 @@
         if (typeof currentSlide !== 'undefined') {
             delete drawingData[currentSlide];
         }
+    }
+
+    // ─── Text Highlight ───
+    function applyTextHighlight() {
+        const sel = window.getSelection();
+        if (!sel || sel.isCollapsed || sel.rangeCount === 0) return;
+
+        const range = sel.getRangeAt(0);
+        // Ensure selection is within a slide
+        const slideEl = range.commonAncestorContainer.nodeType === 1
+            ? range.commonAncestorContainer.closest('.slide-container')
+            : range.commonAncestorContainer.parentElement?.closest('.slide-container');
+        if (!slideEl) return;
+
+        const mark = document.createElement('mark');
+        mark.className = 'text-highlight';
+        mark.style.setProperty('--hl-color', drawColor);
+        try {
+            range.surroundContents(mark);
+        } catch (e) {
+            // If range spans multiple elements, wrap contents differently
+            const fragment = range.extractContents();
+            mark.appendChild(fragment);
+            range.insertNode(mark);
+        }
+        sel.removeAllRanges();
+    }
+
+    function clearCurrentHighlights() {
+        const slides = document.querySelectorAll('.slide-container');
+        const slide = slides[window.currentSlide];
+        if (!slide) return;
+        slide.querySelectorAll('mark.text-highlight').forEach(mark => {
+            const parent = mark.parentNode;
+            while (mark.firstChild) {
+                parent.insertBefore(mark.firstChild, mark);
+            }
+            parent.removeChild(mark);
+            parent.normalize(); // merge adjacent text nodes
+        });
     }
 
     // ─── Blackout ───
@@ -515,6 +557,8 @@
                 drawTool = toolBtn.dataset.tool;
                 drawingToolbar.querySelectorAll('[data-tool]').forEach(b => b.classList.remove('active'));
                 toolBtn.classList.add('active');
+                // Toggle highlight text mode: makes canvas transparent to pointer events
+                document.body.classList.toggle('highlight-text-mode', drawTool === 'highlighter');
                 return;
             }
             const colorBtn = e.target.closest('.color-btn');
@@ -536,7 +580,23 @@
             if (e.target.closest('#btn-clear-draw')) {
                 pushUndo();
                 clearCurrentDrawing();
+                return;
             }
+            if (e.target.closest('#btn-clear-highlight')) {
+                clearCurrentHighlights();
+                return;
+            }
+            if (e.target.closest('#btn-close-draw')) {
+                toggleDrawing();
+                return;
+            }
+        });
+
+        // Text highlight: listen for mouseup to apply highlight after text selection
+        document.addEventListener('mouseup', (e) => {
+            if (!drawingActive || drawTool !== 'highlighter') return;
+            // Small delay to let the selection finalize
+            setTimeout(() => applyTextHighlight(), 10);
         });
 
         // Context menu events
