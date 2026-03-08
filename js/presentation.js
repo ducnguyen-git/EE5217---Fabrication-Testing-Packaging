@@ -88,10 +88,22 @@ function observeActiveSlide() {
     }
 }
 
+// Auto-scale slides in overview mode to fit viewport width
+function updateOverviewZoom() {
+    if (isPresenting) return;
+    const vw = window.innerWidth;
+    const slideWidth = 1440;
+    const zoom = Math.min(1, (vw * 0.9) / slideWidth);
+    document.documentElement.style.setProperty('--slide-zoom', zoom);
+}
+updateOverviewZoom();
+
 window.addEventListener('resize', () => {
     if (isPresenting) {
         const activeSlide = document.querySelector('.slide-container.active');
         recalculateScale(activeSlide);
+    } else {
+        updateOverviewZoom();
     }
 });
 
