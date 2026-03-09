@@ -119,6 +119,42 @@
 
                     <!-- External Wiring -->
                     <svg width="100%" height="100%" style="position: absolute; top: 0; left: 0; z-index: 1;">
+                        <!-- Define Arrowheads -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#64748b" />
+                            </marker>
+                            <marker id="control-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                                <polygon points="0 0, 8 3, 0 6" fill="#7c3aed" />
+                            </marker>
+                            <marker id="status-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                                <polygon points="0 0, 8 3, 0 6" fill="#16a34a" />
+                            </marker>
+                        </defs>
+
+                        <!-- Functional Interaction: Control -->
+                        <path d="M 175 80 L 225 80" fill="none" stroke="#7c3aed" stroke-width="2"
+                            marker-end="url(#control-arrow)" />
+                        <text x="178" y="75" font-family="monospace" font-size="9" font-weight="bold"
+                            fill="#7c3aed">CONTROL</text>
+
+                        <!-- Functional Interaction: Status -->
+                        <path d="M 225 120 L 175 120" fill="none" stroke="#10b981" stroke-width="2"
+                            marker-end="url(#status-arrow)" />
+                        <text x="182" y="135" font-family="monospace" font-size="9" font-weight="bold"
+                            fill="#10b981">STATUS</text>
+
+                        <!-- External Functional I/O -->
+                        <path d="M 0 100 L 35 100" fill="none" stroke="#64748b" stroke-width="2"
+                            marker-end="url(#arrowhead)" />
+                        <text x="5" y="95" font-family="monospace" font-size="10" font-weight="bold"
+                            fill="#64748b">INSTR</text>
+
+                        <path d="M 375 100 L 450 100" fill="none" stroke="#64748b" stroke-width="2"
+                            marker-end="url(#arrowhead)" />
+                        <text x="380" y="95" font-family="monospace" font-size="10" font-weight="bold"
+                            fill="#64748b">DATA OUT</text>
+
                         <!-- Chain 1 I/O -->
                         <path d="M 0 50 L 45 50" fill="none" stroke="#c026d3" stroke-width="3" stroke-dasharray="8 4"
                             style="animation: multi-scan-1 1s infinite linear;" />
@@ -133,7 +169,7 @@
 
                         <text x="10" y="45" font-family="monospace" font-size="10" font-weight="bold" fill="#c026d3">SI
                             1</text>
-                        <text x="195" y="45" font-family="monospace" font-size="10" font-weight="bold" fill="#c026d3">SO
+                        <text x="250" y="45" font-family="monospace" font-size="10" font-weight="bold" fill="#c026d3">SO
                             1</text>
 
                         <text x="10" y="145" font-family="monospace" font-size="10" font-weight="bold" fill="#15803d">SI

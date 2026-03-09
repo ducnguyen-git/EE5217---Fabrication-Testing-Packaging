@@ -36,10 +36,10 @@
                 <h3 style="color: #1e40af; margin-bottom: 25px; text-transform: uppercase;">Sequential Circuit Model
                 </h3>
 
-                <div style="position: relative; width: 280px; height: 160px;">
+                <div style="position: relative; width: 400px; height: 160px;">
                     <!-- Combinational Logic Block -->
                     <div
-                        style="position: absolute; left: 60px; top: 0; width: 160px; height: 70px; background: rgba(59, 130, 246, 0.2); backdrop-filter: blur(4px); border: 2px solid #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), inset 0 0 15px rgba(59, 130, 246, 0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; z-index: 2;">
+                        style="position: absolute; left: 120px; top: 0; width: 160px; height: 70px; background: rgba(59, 130, 246, 0.2); backdrop-filter: blur(4px); border: 2px solid #3b82f6; box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), inset 0 0 15px rgba(59, 130, 246, 0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; z-index: 2;">
                         <span
                             style="font-weight: bold; color: #60a5fa; font-size: 1.1rem; text-shadow: 0 0 8px rgba(96, 165, 250, 0.8);">Mạch
                             Tổ hợp</span>
@@ -47,7 +47,7 @@
 
                     <!-- State Registers Block -->
                     <div
-                        style="position: absolute; left: 100px; top: 110px; width: 65px; height: 50px; background: rgba(236, 72, 153, 0.2); backdrop-filter: blur(4px); border: 2px solid #f472b6; box-shadow: 0 0 20px rgba(244, 114, 182, 0.4), inset 0 0 15px rgba(244, 114, 182, 0.2); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2;">
+                        style="position: absolute; left: 167.5px; top: 110px; width: 65px; height: 50px; background: rgba(236, 72, 153, 0.2); backdrop-filter: blur(4px); border: 2px solid #f472b6; box-shadow: 0 0 20px rgba(244, 114, 182, 0.4), inset 0 0 15px rgba(244, 114, 182, 0.2); border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 2;">
                         <span
                             style="font-weight: bold; color: #f9a8d4; font-size: 0.9rem; text-shadow: 0 0 8px rgba(249, 168, 212, 0.8);">Flip</span>
                         <span
@@ -55,27 +55,27 @@
                     </div>
 
                     <!-- Primary IO Wires -->
-                    <svg width="280" height="160"
+                    <svg width="400" height="160"
                         style="position: absolute; left: 0; top: 0; z-index: 3; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.2));">
                         <!-- PI -->
-                        <path d="M 0 35 L 60 35" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6 3"
+                        <path d="M 0 35 L 120 35" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6 3"
                             style="animation: huffman-flow 2s infinite linear;" />
-                        <text x="5" y="32" font-family="monospace" font-size="11" font-weight="bold"
+                        <text x="10" y="32" font-family="monospace" font-size="11" font-weight="bold"
                             fill="#94a3b8">Inputs(PI)</text>
 
                         <!-- PO -->
-                        <path d="M 220 35 L 280 35" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6 3"
+                        <path d="M 280 35 L 400 35" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="6 3"
                             style="animation: huffman-flow 2s infinite linear;" />
-                        <text x="212" y="32" font-family="monospace" font-size="11" font-weight="bold"
+                        <text x="290" y="32" font-family="monospace" font-size="11" font-weight="bold"
                             fill="#94a3b8">Outputs(PO)</text>
 
                         <!-- Feedback loops -->
-                        <path d="M 190 70 L 190 135 L 165 135 M 100 135 L 70 135 L 70 70" fill="none" stroke="#f472b6"
-                            stroke-width="3" stroke-dasharray="8 4"
+                        <path d="M 250 70 L 250 135 L 232.5 135 M 167.5 135 L 130 135 L 130 70" fill="none"
+                            stroke="#f472b6" stroke-width="3" stroke-dasharray="8 4"
                             style="animation: huffman-flow 1.5s infinite linear; filter: drop-shadow(0 0 5px rgba(244, 114, 182, 0.6));" />
-                        <text x="195" y="105" font-family="monospace" font-size="10" font-weight="bold"
+                        <text x="255" y="105" font-family="monospace" font-size="10" font-weight="bold"
                             fill="#f472b6">Next State</text>
-                        <text x="5" y="105" font-family="monospace" font-size="10" font-weight="bold"
+                        <text x="50" y="105" font-family="monospace" font-size="10" font-weight="bold"
                             fill="#f472b6">Current State</text>
                     </svg>
                 </div>
