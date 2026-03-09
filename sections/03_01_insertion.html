@@ -1,139 +1,47 @@
 <div class="slide slide-container">
-    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">3.
-        Chèn Điểm
-        Kiểm Thử (Testability Insertion)</h1>
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 10px; display: inline-block; margin-bottom: 10px;"
+        class="gradient-text">
+        3.1. Chèn Điểm Quan sát (Observability Insertion)</h1>
 
-    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+    <div style="display: flex; gap: 30px; margin-top: 15px; align-items: stretch; width: 100%; max-height: 680px;">
+
+        <!-- Cột 1: Cải thiện Điểm Quan sát -->
         <div class="text-block-shadow"
-            style="flex: 1; min-width: 0; max-width: 50%; text-align: left; background: #ffffff; padding: 30px; border-radius: 16px; border-top: 5px solid #005ce6;">
-            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-vial"></i> 3.1. Vai trò Điểm
-                Kiểm Thử
+            style="flex: 1; display: flex; flex-direction: column; background: #ffffff; padding: 20px 25px; border-radius: 16px; border-top: 5px solid #10b981;">
+            <h2 style="color: #047857; margin-bottom: 12px; font-size: 1.6rem; text-align: left;">
+                <i class="fa-solid fa-eye" style="margin-right: 8px;"></i>1. Cải thiện Khả năng Quan sát
             </h2>
-            <ul style="font-size: 1.35rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
-                <li style="margin-bottom: 15px;">Dùng phần cứng bổ sung (Test Points) để <b>Cải thiện Khả năng Quan sát
-                        (Observability)</b> hoặc <b>Điều khiển (Controllability)</b>.</li>
-                <li style="margin-bottom: 15px;"><b>Mục đích</b>: Gỡ rối (debug) mạch khó nhằn mà ATPG không giải quyết
-                    được, chia khối rác khổng lồ thành nhiều phần nhỏ để test độc lập.</li>
-                <li style="margin-bottom: 15px;"><b>Hạn chế</b>: Tốn thêm chân I/O trên vi mạch. Phải có chiến thuật kết
-                    hợp thông minh: <b>Dồn kênh (Multiplexing)</b>.</li>
+            <ul
+                style="font-size: 1.2rem; color: var(--text-color); margin-left: 20px; text-align: left; line-height: 1.5;">
+                <li style="margin-bottom: 8px;"><b>Mục đích:</b> Chèn thêm phần cứng (Test Points) để đo lường và theo
+                    dõi trạng thái các node logic ẩn sâu bên trong thiết kế mạch.</li>
+                <li>Như trên hình, tại node <b>w</b>, một kết nối được trích xuất qua bộ đệm hoặc thanh ghi để truyền
+                    tín hiệu nội bộ ra một chân bên ngoài (chân <b>Pin O</b>).</li>
             </ul>
-        </div>
-
-        <div
-            style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
-            <style>
-                @keyframes mux-obs-select {
-
-                    0%,
-                    45% {
-                        transform: translateY(-15px) rotate(180deg);
-                        color: #3b82f6;
-                    }
-
-                    /* Logic 1 */
-                    50%,
-                    95% {
-                        transform: translateY(55px) rotate(180deg);
-                        color: #8b5cf6;
-                    }
-
-                    /* Logic 2 */
-                    100% {
-                        transform: translateY(-15px) rotate(180deg);
-                        color: #3b82f6;
-                    }
-                }
-
-                @keyframes signal-out-obs {
-
-                    0%,
-                    45% {
-                        border-color: #3b82f6;
-                        background: #eff6ff;
-                        color: #1e3a8a;
-                    }
-
-                    /* Logic 1 Out */
-                    50%,
-                    95% {
-                        border-color: #8b5cf6;
-                        background: #faf5ff;
-                        color: #4c1d95;
-                    }
-
-                    /* Logic 2 Out */
-                    100% {
-                        border-color: #3b82f6;
-                        background: #eff6ff;
-                        color: #1e3a8a;
-                    }
-                }
-            </style>
-
-            <div class="text-block-shadow"
-                style="background: white; padding: 25px; border-radius: 16px; border: 2px dashed #94a3b8; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-
-                <h3 style="color: #334155; margin-bottom: 25px; text-transform: uppercase;">Multiplexing Observation
-                </h3>
-
-                <div style="position: relative; width: 300px; height: 160px; display: flex; align-items: center;">
-
-                    <!-- Logic Blocks -->
-                    <div
-                        style="display: flex; flex-direction: column; justify-content: space-around; height: 120px; z-index: 2;">
-                        <div
-                            style="background: #3b82f6; color: white; padding: 8px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 6px rgba(59,130,246,0.3);">
-                            Logic 1</div>
-                        <div
-                            style="background: #8b5cf6; color: white; padding: 8px 15px; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 6px rgba(139,92,246,0.3);">
-                            Logic 2</div>
-                    </div>
-
-                    <!-- MUX Component -->
-                    <div
-                        style="position: absolute; left: 140px; top: 10px; width: 60px; height: 140px; background: #e2e8f0; border: 2px solid #94a3b8; clip-path: polygon(0 0, 100% 20%, 100% 80%, 0 100%); display: flex; align-items: center; justify-content: center; z-index: 2;">
-                        <div
-                            style="color: #475569; font-weight: bold; display: flex; flex-direction: column; align-items: center; justify-content: space-around; height: 100%; width: 100%;">
-                            <span style="font-size: 0.8rem; margin-top: 25px; margin-right: 15px;">0</span>
-                            <span style="font-size: 0.8rem; margin-bottom: 25px; margin-right: 15px;">1</span>
-                        </div>
-                    </div>
-
-                    <!-- Wires into MUX -->
-                    <svg width="60" height="120" style="position: absolute; left: 80px; top: 20px; z-index: 1;">
-                        <path d="M 0 25 L 60 25" fill="none" stroke="#3b82f6" stroke-width="4" stroke-dasharray="6 3" />
-                        <path d="M 0 95 L 60 95" fill="none" stroke="#8b5cf6" stroke-width="4" stroke-dasharray="6 3" />
-                    </svg>
-
-                    <!-- Selector Control -->
-                    <div
-                        style="position: absolute; left: 140px; top: 155px; width: 60px; display: flex; flex-direction: column-reverse; align-items: center; z-index: 3;">
-                        <span
-                            style="background: #f59e0b; color: white; padding: 2px 6px; border-radius: 4px; font-weight: bold; font-family: monospace; font-size: 0.8rem; margin-top: 5px;">M
-                            (Mode)</span>
-                        <div style="width: 2px; height: 35px; background: #f59e0b;"></div>
-                    </div>
-                    <i class="fa-solid fa-arrow-left"
-                        style="position: absolute; left: 175px; top: 60px; transform: rotate(180deg); font-size: 1.2rem; z-index: 3; animation: mux-obs-select 4s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);"></i>
-
-                    <!-- Output Line -->
-                    <svg width="50" height="20" style="position: absolute; left: 200px; top: 70px; z-index: 1;">
-                        <path d="M 0 10 L 50 10" fill="none" stroke="#475569" stroke-width="4" stroke-dasharray="6 3" />
-                    </svg>
-
-                    <!-- Shared Pin -->
-                    <div
-                        style="position: absolute; right: 10px; top: 60px; height: 40px; padding: 0 15px; border-radius: 20px; border: 3px solid; display: flex; align-items: center; justify-content: center; font-weight: bold; z-index: 2; animation: signal-out-obs 4s infinite;">
-                        Pin O
-                    </div>
-
-                </div>
-
-                <p
-                    style="margin-top: 70px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
-                    Minh họa: Quan sát Dồn kênh - Chia sẻ một chân ra O giữa Logic 1 và Logic 2 bằng MUX thông qua tín
-                    hiệu Mode (M).</p>
+            <div style="flex: 1; display: flex; justify-content: center; align-items: center; margin-top: 15px;">
+                <img src="images/observability_insertion.png" alt="Improve Observability"
+                    style="max-height: 380px !important; max-width: 100%; width: auto; object-fit: contain; border-radius: 8px; border: 2px solid #e2e8f0; padding: 5px; background: #f8fafc;">
             </div>
         </div>
+
+        <!-- Cột 2: Chia sẻ Điểm Quan sát (MUX) -->
+        <div class="text-block-shadow"
+            style="flex: 1; display: flex; flex-direction: column; background: #ffffff; padding: 20px 25px; border-radius: 16px; border-top: 5px solid #3b82f6;">
+            <h2 style="color: #1d4ed8; margin-bottom: 12px; font-size: 1.6rem; text-align: left;">
+                <i class="fa-solid fa-share-nodes" style="margin-right: 8px;"></i>2. Chia sẻ Khả năng Quan sát
+            </h2>
+            <ul
+                style="font-size: 1.2rem; color: var(--text-color); margin-left: 20px; text-align: left; line-height: 1.5;">
+                <li style="margin-bottom: 8px;"><b>Vấn đề:</b> Việc thêm độc lập từng điểm quan sát sẽ tiêu tốn quá mức
+                    (overhead) chân I/O trên vi mạch.</li>
+                <li><b>Giải pháp:</b> Sử dụng bộ Dồn kênh (<b>Multiplexer - MUX</b>) để gom chung tín hiệu từ nhiều node
+                    về một chân đầu ra, lựa chọn nhờ các tín hiệu địa chỉ (<b>Address</b>).</li>
+            </ul>
+            <div style="flex: 1; display: flex; justify-content: center; align-items: center; margin-top: 15px;">
+                <img src="images/sharing_observability.png" alt="Sharing Observability"
+                    style="max-height: 380px !important; max-width: 100%; width: auto; object-fit: contain; border-radius: 8px; border: 2px solid #e2e8f0; padding: 5px; background: #f8fafc;">
+            </div>
+        </div>
+
     </div>
 </div>

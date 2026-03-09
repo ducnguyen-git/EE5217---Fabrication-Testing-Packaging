@@ -1,339 +1,47 @@
 <div class="slide slide-container">
-    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">
-        3.2. Tối ưu Test Point bằng Mux/DeMux (1/2)</h1>
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 10px; display: inline-block; margin-bottom: 10px;"
+        class="gradient-text">
+        3.2. Chèn Điểm Điều khiển (Controllability Insertion)</h1>
 
-    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+    <div style="display: flex; gap: 30px; margin-top: 15px; align-items: stretch; width: 100%; max-height: 680px;">
+
+        <!-- Cột 1: Cải thiện Điểm Điều khiển -->
         <div class="text-block-shadow"
-            style="flex: 1; min-width: 0; max-width: 50%; text-align: left; background: #ffffff; padding: 30px; border-radius: 16px; border-top: 5px solid #00d2ff;">
-            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-code-branch"></i> Kỹ thuật
-                DeMultiplexed Control</h2>
-            <ul style="font-size: 1.3rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
-                <li style="margin-bottom: 12px;"><b>Vấn đề Cổng I/O khan hiếm:</b> Trên các IC SoC mật độ cao, việc cung
-                    cấp 1 chân vật lý (Package Pin) cho mỗi Điểm điều khiển (Control Point) là bất khả thi. Chi phí đóng
-                    gói (Packaging cost) sẽ cực lớn.</li>
-                <li style="margin-bottom: 12px;"><b>Giải pháp chia sẻ chọn lọc:</b> Dùng bộ giả kênh (<b>DeMUX</b> -
-                    Demultiplexer) để tái sử dụng một số lượng nhỏ các chân kiểm thử I/O cho việc điều khiển phân rẽ
-                    diện rộng hàng trăm điểm kiểm thử trong nhân chip (Core Logic).</li>
-                <li style="margin-bottom: 12px;">Hiệu quả: Để can thiệp vào $2^N$ điểm logic độc lập, kỹ sư chỉ cần cung
-                    cấp $N$ bit địa chỉ (Address bits) lấy từ thiết bị Test.</li>
+            style="flex: 1; display: flex; flex-direction: column; background: #ffffff; padding: 20px 25px; border-radius: 16px; border-top: 5px solid #ef4444;">
+            <h2 style="color: #b91c1c; margin-bottom: 12px; font-size: 1.6rem; text-align: left;">
+                <i class="fa-solid fa-hand-pointer" style="margin-right: 8px;"></i>1. Cải thiện Khả năng Điều khiển
+            </h2>
+            <ul
+                style="font-size: 1.15rem; color: var(--text-color); margin-left: 20px; text-align: left; line-height: 1.45;">
+                <li style="margin-bottom: 8px;"><b>Mục đích:</b> Chèn thêm cổng logic để ép (force) một node về mức giá
+                    trị chỉ định (0 hoặc 1) trong khi kiểm thử mạch.</li>
+                <li>Sử dụng cổng <b>AND/NAND</b> cho <b>0-Insertion</b> (kéo node về mức 0) và cổng <b>OR/NOR</b> cho
+                    <b>1-Insertion</b> (kéo node về mức 1).</li>
             </ul>
-        </div>
-
-        <div
-            style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
-            <style>
-                @keyframes demux-route {
-
-                    0%,
-                    20% {
-                        top: 30px;
-                        color: #ef4444;
-                    }
-
-                    25%,
-                    45% {
-                        top: 70px;
-                        color: #f59e0b;
-                    }
-
-                    50%,
-                    70% {
-                        top: 110px;
-                        color: #10b981;
-                    }
-
-                    75%,
-                    95% {
-                        top: 150px;
-                        color: #3b82f6;
-                    }
-
-                    100% {
-                        top: 30px;
-                        color: #ef4444;
-                    }
-                }
-
-                @keyframes branch-glow {
-
-                    0%,
-                    20% {
-                        box-shadow: 0 0 10px #ef4444;
-                        border-color: #ef4444;
-                    }
-
-                    25%,
-                    45% {
-                        box-shadow: 0 0 10px #f59e0b;
-                        border-color: #f59e0b;
-                    }
-
-                    50%,
-                    70% {
-                        box-shadow: 0 0 10px #10b981;
-                        border-color: #10b981;
-                    }
-
-                    75%,
-                    95% {
-                        box-shadow: 0 0 10px #3b82f6;
-                        border-color: #3b82f6;
-                    }
-
-                    100% {
-                        box-shadow: 0 0 10px #ef4444;
-                        border-color: #ef4444;
-                    }
-                }
-            </style>
-
-            <div class="text-block-shadow"
-                style="background: white; padding: 25px; border-radius: 16px; border: 2px dashed #94a3b8; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; height: 100%;">
-
-                <h3 style="color: #334155; margin-bottom: 25px; text-transform: uppercase;">1-to-N Demultiplexer Control
-                </h3>
-
-                <div style="position: relative; width: 400px; height: 210px; display: flex; align-items: center;">
-
-                    <!-- Input -->
-                    <div
-                        style="position: absolute; left: 5px; top: 90px; background: #64748b; color: white; padding: 5px 10px; border-radius: 4px; font-weight: bold; white-space: nowrap; z-index: 2; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-                        Control In</div>
-
-                    <!-- Wire IN -->
-                    <svg width="60" height="20" style="position: absolute; left: 95px; top: 95px; z-index: 1;">
-                        <path d="M 0 10 L 60 10" fill="none" stroke="#475569" stroke-width="4" stroke-dasharray="6 3" />
-                    </svg>
-
-                    <!-- DeMUX Component (Reversed MUX) -->
-                    <div
-                        style="position: absolute; left: 155px; top: 15px; width: 60px; height: 180px; background: #e2e8f0; border: 2px solid #94a3b8; clip-path: polygon(0 40%, 100% 0, 100% 100%, 0 60%); display: flex; align-items: center; justify-content: center; z-index: 2;">
-                        <span
-                            style="font-weight: bold; color: #475569; transform: rotate(-90deg); font-size: 0.9rem;">DeMUX</span>
-                    </div>
-
-                    <!-- Address Pins -->
-                    <div
-                        style="position: absolute; left: 155px; bottom: 0px; width: 60px; display: flex; gap: 5px; flex-direction: column; align-items: center; z-index: 4;">
-                        <div style="width: 2px; height: 15px; background: #3b82f6;"></div>
-                        <span
-                            style="background: #bfdbfe; color: #1e40af; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; font-family: monospace; white-space: nowrap; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">ADDR
-                            (N bits)</span>
-                    </div>
-
-                    <!-- Output Points -->
-                    <div
-                        style="position: absolute; left: 300px; top: 30px; background: #f8fafc; border: 2px solid #cbd5e1; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; height: 30px; display: flex; align-items: center; white-space: nowrap; z-index: 2;">
-                        Point 0</div>
-                    <div
-                        style="position: absolute; left: 300px; top: 70px; background: #f8fafc; border: 2px solid #cbd5e1; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; height: 30px; display: flex; align-items: center; white-space: nowrap; z-index: 2;">
-                        Point 1</div>
-                    <div
-                        style="position: absolute; left: 300px; top: 110px; background: #f8fafc; border: 2px solid #cbd5e1; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; height: 30px; display: flex; align-items: center; white-space: nowrap; z-index: 2;">
-                        Point 2</div>
-                    <div
-                        style="position: absolute; left: 300px; top: 150px; background: #f8fafc; border: 2px solid #cbd5e1; padding: 5px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; height: 30px; display: flex; align-items: center; white-space: nowrap; z-index: 2;">
-                        Point 3</div>
-
-                    <!-- Wires OUT -->
-                    <svg width="100" height="180" style="position: absolute; left: 215px; top: 15px; z-index: 1;">
-                        <path d="M 0 30 L 100 30" fill="none" stroke="#cbd5e1" stroke-width="3"
-                            stroke-dasharray="4 2" />
-                        <path d="M 0 70 L 100 70" fill="none" stroke="#cbd5e1" stroke-width="3"
-                            stroke-dasharray="4 2" />
-                        <path d="M 0 110 L 100 110" fill="none" stroke="#cbd5e1" stroke-width="3"
-                            stroke-dasharray="4 2" />
-                        <path d="M 0 150 L 100 150" fill="none" stroke="#cbd5e1" stroke-width="3"
-                            stroke-dasharray="4 2" />
-                    </svg>
-
-                    <!-- Routing Laser -->
-                    <i class="fa-solid fa-arrow-right"
-                        style="position: absolute; left: 235px; font-size: 1.5rem; z-index: 3; animation: demux-route 8s infinite cubic-bezier(0.1, 0.7, 0.1, 1.0);"></i>
-
-                    <!-- Active Point Highlight Cover -->
-                    <div
-                        style="position: absolute; left: 300px; width: 72px; height: 30px; border-radius: 4px; border: 3px solid transparent; z-index: 4; animation: demux-route 8s infinite cubic-bezier(0.1, 0.7, 0.1, 1.0), branch-glow 8s infinite cubic-bezier(0.1, 0.7, 0.1, 1.0);">
-                    </div>
-
-                </div>
-
-                <p
-                    style="margin-top: 20px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
-                    Minh họa: Tín hiệu gốc phân rẽ tới hàng loạt node con nhờ tín hiệu điều phối mạng Address (ADDR).
-                </p>
+            <div style="flex: 1; display: flex; justify-content: center; align-items: center; margin-top: 15px;">
+                <img src="images/controllability_insertion.png" alt="Improve Controllability"
+                    style="max-height: 380px !important; width: auto; max-width: 100%; object-fit: contain; border-radius: 8px; border: 2px solid #e2e8f0; padding: 5px; background: #f8fafc;">
             </div>
         </div>
-    </div>
-</div>
 
-<div class="slide slide-container">
-    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">
-        3.2. Tối ưu Test Point bằng Mux/DeMux (2/2)</h1>
-
-    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: stretch; width: 100%;">
+        <!-- Cột 2: Chia sẻ Điểm Điều khiển (DeMUX) -->
         <div class="text-block-shadow"
-            style="flex: 1; min-width: 0; max-width: 50%; text-align: left; background: #ffffff; padding: 30px; border-radius: 16px; border-top: 5px solid #00d2ff;">
-            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-code-branch"></i> Phiên bản tối
-                ưu Data Line</h2>
-            <ul style="font-size: 1.3rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
-                <li style="margin-bottom: 12px;"><b>Nâng cấp Linh hoạt:</b> Phiên bản DeMUX ở phần 1 vẫn còn sự cứng
-                    nhắc trong việc bơm giá trị. Mạch DeMUX nâng cao bổ sung thêm chân <b>Data</b> kết hợp Mode chọn
-                    luồng <b>T (Test/Normal)</b>.</li>
-                <li style="margin-bottom: 12px;"><b>Phương thức vận hành:</b> Khi $T=1$, chip chuyển sang chế độ Test.
-                    Bộ phân kênh sử dụng tín hiệu chọn $Control$ nhằm dẫn hướng Data line duy nhất tiêm thẳng một giá
-                    trị mong muốn (0 hoặc 1) đến tận điểm lỗi sâu bên trong netlist logic.</li>
-                <li style="margin-bottom: 12px;">Nhờ thiết kế thông minh này, các chân chức năng thông thường
-                    (Functional Pins) có thể được tận dụng để dẫn tín hiệu Address/Data trong kỳ Test.</li>
+            style="flex: 1; display: flex; flex-direction: column; background: #ffffff; padding: 20px 25px; border-radius: 16px; border-top: 5px solid #f59e0b;">
+            <h2 style="color: #b45309; margin-bottom: 12px; font-size: 1.6rem; text-align: left;">
+                <i class="fa-solid fa-network-wired" style="margin-right: 8px;"></i>2. Chia sẻ Khả năng Điều khiển
+            </h2>
+            <ul
+                style="font-size: 1.15rem; color: var(--text-color); margin-left: 20px; text-align: left; line-height: 1.45;">
+                <li style="margin-bottom: 8px;"><b>Vấn đề:</b> Cung cấp một chân I/O điều khiển riêng cho mỗi điểm Test
+                    Point là hoàn toàn bất khả thi.</li>
+                <li><b>Giải pháp:</b> Dùng bộ Phân kênh (<b>DeMUX</b>) phân phối tín hiệu gốc (<b>NbarT</b>) đến hàng
+                    loạt điểm cần điều khiển nhờ các chân chọn địa chỉ (S1, S0).</li>
             </ul>
-        </div>
-
-        <div
-            style="flex: 1; min-width: 0; max-width: 50%; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
-
-            <style>
-                @keyframes test-mode-switch {
-
-                    0%,
-                    45% {
-                        color: #3b82f6;
-                        transform: translateY(-15px);
-                    }
-
-                    /* NORMAL */
-                    50%,
-                    95% {
-                        color: #8b5cf6;
-                        transform: translateY(15px);
-                    }
-
-                    /* TEST */
-                    100% {
-                        color: #3b82f6;
-                        transform: translateY(-15px);
-                    }
-                }
-
-                @keyframes data-flow-norm {
-
-                    0%,
-                    45% {
-                        opacity: 1;
-                        stroke-dashoffset: 0;
-                    }
-
-                    50%,
-                    100% {
-                        opacity: 0;
-                        stroke-dashoffset: 20;
-                    }
-                }
-
-                @keyframes data-flow-test {
-
-                    0%,
-                    45% {
-                        opacity: 0;
-                        stroke-dashoffset: 20;
-                    }
-
-                    50%,
-                    100% {
-                        opacity: 1;
-                        stroke-dashoffset: 0;
-                    }
-                }
-            </style>
-
-            <div class="text-block-shadow"
-                style="background: white; padding: 25px; border-radius: 16px; border: 2px dashed #00d2ff; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; height: 100%;">
-
-                <h3 style="color: #0284c7; margin-bottom: 25px; text-transform: uppercase;">MUX/DeMUX Hybrid with Test
-                    Mode</h3>
-
-                <div style="position: relative; width: 460px; height: 210px; display: flex; align-items: center;">
-
-                    <!-- Mode T Input -->
-                    <div
-                        style="position: absolute; left: 10px; top: 90px; display: flex; flex-direction: column; align-items: center; z-index: 3;">
-                        <span
-                            style="background: #fca5a5; color: #991b1b; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-family: monospace; box-shadow: 0 4px 6px rgba(0,0,0,0.1); white-space: nowrap;">T
-                            (Mode)</span>
-                        <div style="width: 20px; height: 2px; background: #ef4444;"></div>
-                    </div>
-
-                    <!-- MUX (Left) -->
-                    <div
-                        style="position: absolute; left: 110px; top: 45px; width: 40px; height: 120px; background: #e0f2fe; border: 2px solid #38bdf8; clip-path: polygon(0 0, 100% 20%, 100% 80%, 0 100%); display: flex; align-items: center; justify-content: center; z-index: 2;">
-                    </div>
-
-                    <!-- MUX Inputs -->
-                    <div
-                        style="position: absolute; left: 10px; top: 45px; background: #bfdbfe; color: #1e40af; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,0.1); white-space: nowrap;">
-                        Func In</div>
-                    <div
-                        style="position: absolute; left: 10px; top: 145px; background: #ddd6fe; color: #5b21b6; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; z-index: 2; box-shadow: 0 2px 4px rgba(0,0,0,0.1); white-space: nowrap;">
-                        Test Data</div>
-                    <svg width="40" height="120" style="position: absolute; left: 80px; top: 45px; z-index: 1;">
-                        <path d="M 0 10 L 40 30" fill="none" stroke="#3b82f6" stroke-width="3" stroke-dasharray="4 2" />
-                        <path d="M 0 110 L 40 90" fill="none" stroke="#8b5cf6" stroke-width="3"
-                            stroke-dasharray="4 2" />
-                    </svg>
-
-                    <!-- MUX Selector Needle -->
-                    <div style="position: absolute; left: 140px; top: 105px; z-index: 3;">
-                        <i class="fa-solid fa-arrow-left"
-                            style="font-size: 1.2rem; transform: rotate(180deg) translateX(-10px); animation: test-mode-switch 4s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);"></i>
-                    </div>
-
-                    <!-- Pipe MUX to DeMUX -->
-                    <svg width="130" height="20" style="position: absolute; left: 150px; top: 95px; z-index: 1;">
-                        <path d="M 0 10 L 130 10" fill="none" stroke="#0ea5e9" stroke-width="4"
-                            stroke-dasharray="6 3" />
-                    </svg>
-
-                    <div
-                        style="position: absolute; left: 165px; top: 75px; width: 100px; text-align: center; font-weight: bold; color: #0284c7; font-size: 0.8rem; font-family: monospace;">
-                        Shared line</div>
-
-                    <!-- DeMUX (Right) -->
-                    <div
-                        style="position: absolute; left: 280px; top: 25px; width: 40px; height: 160px; background: #e0f2fe; border: 2px solid #38bdf8; clip-path: polygon(0 30%, 100% 0, 100% 100%, 0 70%); display: flex; align-items: center; justify-content: center; z-index: 2;">
-                    </div>
-
-                    <!-- Address Pin -->
-                    <div
-                        style="position: absolute; left: 290px; bottom: -5px; display: flex; flex-direction: column; align-items: center; z-index: 3;">
-                        <div style="width: 2px; height: 15px; background: #f59e0b;"></div>
-                        <span
-                            style="background: #fef3c7; color: #b45309; padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; font-family: monospace; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">ADDR</span>
-                    </div>
-
-                    <!-- Outputs -->
-                    <div
-                        style="position: absolute; right: 10px; top: 25px; display: flex; flex-direction: column; gap: 20px; height: 160px; justify-content: space-around; z-index: 2;">
-                        <div
-                            style="background: #eff6ff; color: #1e3a8a; border: 2px solid #93c5fd; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); white-space: nowrap;">
-                            Func Out</div>
-                        <div
-                            style="background: #faf5ff; color: #4c1d95; border: 2px solid #c4b5fd; padding: 6px 12px; border-radius: 4px; font-weight: bold; font-size: 0.8rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); white-space: nowrap;">
-                            Test Target</div>
-                    </div>
-
-                    <svg width="100" height="160" style="position: absolute; left: 320px; top: 25px; z-index: 1;">
-                        <path d="M 0 30 L 100 30" fill="none" stroke="#3b82f6" stroke-width="4" stroke-dasharray="4 2"
-                            style="animation: data-flow-norm 4s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);" />
-                        <path d="M 0 130 L 100 130" fill="none" stroke="#8b5cf6" stroke-width="4" stroke-dasharray="4 2"
-                            style="animation: data-flow-test 4s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);" />
-                    </svg>
-
-                </div>
-
-                <p
-                    style="margin-top: 15px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
-                    Minh họa: Tín hiệu T chia luồng, chia sẻ 1 đường dẫn vật lý cho cả Functional data (hoạt động
-                    thường) và Test data (ép lỗi).</p>
+            <div style="flex: 1; display: flex; justify-content: center; align-items: center; margin-top: 15px;">
+                <img src="images/sharing_controllability.png" alt="Sharing Controllability"
+                    style="max-height: 380px !important; width: auto; max-width: 100%; object-fit: contain; border-radius: 8px; border: 2px solid #e2e8f0; padding: 5px; background: #f8fafc;">
             </div>
         </div>
+
     </div>
 </div>
