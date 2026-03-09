@@ -1,38 +1,38 @@
 <div class="slide slide-container">
-    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">
+    <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 10px; display: inline-block; margin-bottom: 10px;"
+        class="gradient-text">
         1.1. Khái niệm Design for Testability (DFT)</h1>
 
-    <div style="display: flex; gap: 40px; margin-top: 30px; align-items: center;">
+    <div style="display: flex; gap: 30px; margin-top: 15px; align-items: stretch; height: 100%; max-height: 680px;">
         <div class="text-block-shadow"
-            style="flex: 1; min-width: 0; max-width: 50%; text-align: left; background: #ffffff; padding: 30px; border-radius: 16px; border-top: 5px solid #005ce6;">
-            <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-lightbulb"></i> DFT là gì?
+            style="flex: 1; min-width: 0; max-width: 55%; text-align: left; background: #ffffff; padding: 22px 26px; border-radius: 16px; border-top: 5px solid #005ce6;">
+            <h2 class="gradient-text" style="margin-bottom: 14px; font-size: 2rem;"><i
+                    class="fa-solid fa-lightbulb"></i> DFT là gì?
             </h2>
-            <ul style="font-size: 1.4rem; color: var(--text-color); margin-left: 20px;">
-                <li style="margin-bottom: 15px;"><b>Design for Testability (DFT)</b> hay Thiết kế hướng Kiểm thử là các
+            <ul style="font-size: 1.25rem; color: var(--text-color); margin-left: 18px; line-height: 1.5;">
+                <li style="margin-bottom: 10px;"><b>Design for Testability (DFT)</b> hay Thiết kế hướng Kiểm thử là các
                     kỹ thuật thiết kế vi mạch nhằm mục đích làm cho việc kiểm thử chip trở nên dễ dàng và hiệu quả hơn.
                 </li>
-                <li style="margin-bottom: 15px;">Bằng cách thêm các <b>cấu trúc phần cứng bổ sung</b> vào thiết kế gốc,
+                <li style="margin-bottom: 10px;">Bằng cách thêm các <b>cấu trúc phần cứng bổ sung</b> vào thiết kế gốc,
                     DFT giúp tiếp cận được các node ẩn sâu bên trong vi mạch.</li>
-                <li style="margin-bottom: 15px;"><b>Vai trò cốt lõi của DFT (đặc biệt là SCAN):</b> Nhằm phát hiện các
+                <li style="margin-bottom: 10px;"><b>Vai trò cốt lõi của DFT (đặc biệt là SCAN):</b> Nhằm phát hiện các
                     <b>lỗi vật lý sau quá trình sản xuất (postmanufacturing errors)</b> như đứt mạch, chập mạch, hay lỗi
-                    suy hao linh kiện, đảm bảo chip hoạt động đúng chức năng trước khi xuất xưởng.</li>
-                <li style="margin-bottom: 15px;">Mục tiêu chính của DFT là tăng cường:
-                    <ul>
-                        <li><b>Khả năng điều khiển (Controllability):</b> Dễ dàng thiết lập trạng thái mong muốn cho một
-                            node.</li>
-                        <li><b>Khả năng quan sát (Observability):</b> Dễ dàng đọc được trạng thái hiện tại của một node.
-                        </li>
+                    suy hao linh kiện.
+                </li>
+                <li style="margin-bottom: 8px;">Mục tiêu chính của DFT là tăng cường:
+                    <ul style="margin-top: 5px;">
+                        <li><b>Controllability:</b> Dễ dàng thiết lập trạng thái mong muốn cho một node.</li>
+                        <li><b>Observability:</b> Dễ dàng đọc được trạng thái hiện tại của một node.</li>
                     </ul>
                 </li>
-                <li style="margin-top: 15px; font-weight: bold; color: #005ce6;"><i class="fa-solid fa-arrow-right"></i>
-                    Để có thể phát hiện ra lỗi của chip
-                    sau khi sản xuất
+                <li style="margin-top: 10px; font-weight: bold; color: #005ce6;"><i class="fa-solid fa-arrow-right"></i>
+                    Để có thể phát hiện ra lỗi của chip sau khi sản xuất
                 </li>
             </ul>
         </div>
 
         <div
-            style="flex: 1; min-width: 0; max-width: 50%; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
+            style="flex: 1; min-width: 0; max-width: 45%; display: flex; flex-direction: column; justify-content: center; gap: 15px;">
             <style>
                 @keyframes dft-scan-path {
                     0% {
@@ -66,27 +66,23 @@
             </style>
 
             <div class="text-block-shadow"
-                style="background: #f8fafc; padding: 20px; border-radius: 16px; border: 2px dashed #005ce6; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
+                style="background: #f8fafc; padding: 18px; border-radius: 16px; border: 2px dashed #005ce6; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;">
 
-                <h3 style="color: #1e3a8a; margin-bottom: 20px; text-transform: uppercase;">DFT Hardware Overhead</h3>
+                <h3 style="color: #1e3a8a; margin-bottom: 15px; text-transform: uppercase; font-size: 1.2rem;">DFT
+                    Hardware Overhead</h3>
 
                 <div
                     style="position: relative; width: 200px; height: 160px; background: white; border: 3px solid #3b82f6; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
-                    <!-- Core Logic -->
                     <div
                         style="width: 120px; height: 80px; background: #e2e8f0; border: 2px dashed #94a3b8; border-radius: 8px; display: flex; align-items: center; justify-content: center; z-index: 2;">
                         <span style="font-weight: bold; color: #475569;">Core Logic</span>
                     </div>
-
-                    <!-- Internal Nodes (Observability/Controllability targets) -->
                     <div
                         style="position: absolute; top: 30px; left: 50px; width: 15px; height: 15px; background: #10b981; border-radius: 50%; animation: node-pulse 2s infinite; z-index: 3;">
                     </div>
                     <div
                         style="position: absolute; bottom: 30px; right: 50px; width: 15px; height: 15px; background: #ef4444; border-radius: 50%; animation: node-pulse 2s infinite; animation-delay: 1s; z-index: 3;">
                     </div>
-
-                    <!-- DFT Paths -->
                     <svg width="100%" height="100%" style="position: absolute; top: 0; left: 0; z-index: 1;">
                         <path d="M 0 37 L 50 37" fill="none" stroke="#22c55e" stroke-width="3" stroke-dasharray="10 5"
                             style="animation: dft-scan-path 2s infinite linear;" />
@@ -94,8 +90,6 @@
                             stroke-dasharray="10 5"
                             style="animation: dft-scan-path 2s infinite linear; animation-delay: 1s;" />
                     </svg>
-
-                    <!-- Labels -->
                     <div
                         style="position: absolute; left: -40px; top: 20px; background: #dcfce7; color: #166534; padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold;">
                         Control (SI)</div>
@@ -104,8 +98,7 @@
                         Observe (SO)</div>
                 </div>
 
-                <p
-                    style="margin-top: 25px; font-style: italic; color: #64748b; font-size: 0.95rem; text-align: center;">
+                <p style="margin-top: 15px; font-style: italic; color: #64748b; font-size: 0.9rem; text-align: center;">
                     Minh họa: Thêm đường dẫn phần cứng (Scan In / Scan Out) để truy xuất các node nội bộ.</p>
             </div>
         </div>

@@ -5,6 +5,7 @@ const slidesList = [
     'sections/01_01_khai_niem.html',
     'sections/01_02_background.html',
     'sections/01_03_objectives.html',
+    'sections/01_04_physical_defects.html',
     'sections/02_00_chapter.html',
     'sections/02_01_intro.html',
     'sections/02_01_making_testable.html',
