@@ -113,7 +113,7 @@
                 <h3 style="color: #0284c7; margin-bottom: 25px; text-transform: uppercase;">Full Scan Topology</h3>
 
                 <div
-                    style="position: relative; width: 420px; height: 360px; display: flex; flex-direction: column; justify-content: space-around; align-items: center; border: 2px solid #e2e8f0; border-radius: 12px; background: #f8fafc; margin: 10px 0;">
+                    style="position: relative; width: 420px; height: 400px; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; border: 2px solid #e2e8f0; border-radius: 12px; background: #f8fafc; margin: 10px 0;">
 
                     <span
                         style="position: absolute; top: 10px; left: 15px; font-size: 0.85rem; font-weight: 800; color: #0284c7; animation: mode-normal-anim 6s infinite;">[
@@ -124,11 +124,11 @@
 
                     <!-- Logic Block 1 -->
                     <div
-                        style="width: 320px; height: 45px; background: #e0f2fe; border: 2px solid; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #1e40af; font-weight: bold; z-index: 2; animation: block-disable 6s infinite; font-size: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-top: 35px;">
+                        style="width: 320px; height: 45px; background: #e0f2fe; border: 2px solid; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #1e40af; font-weight: bold; z-index: 2; animation: block-disable 6s infinite; font-size: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-top: 55px;">
                         Combinational Cloud A</div>
 
                     <!-- Row of Flip-Flops -->
-                    <div style="display: flex; gap: 40px; position: relative; z-index: 3; margin-top: 20px;">
+                    <div style="display: flex; gap: 40px; position: relative; z-index: 3; margin-top: 40px;">
                         <div
                             style="width: 50px; height: 60px; border: 2px solid; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; animation: scan-glow 6s infinite; font-size: 1.1rem;">
                             FF1</div>
@@ -144,31 +144,31 @@
                     </div>
 
                     <!-- Scan Chain Wiring (Hidden in Normal mode) -->
-                    <svg width="380" height="70"
-                        style="position: absolute; top: 205px; left: 20px; z-index: 2; pointer-events: none;">
-                        <path d="M 0 35 L 25 35 L 25 10" fill="none" stroke-width="3" stroke-dasharray="6 3"
+                    <svg width="420" height="80"
+                        style="position: absolute; top: 200px; left: 0; z-index: 2; pointer-events: none;">
+                        <path d="M 10 40 L 60 40 L 60 10" fill="none" stroke-width="3" stroke-dasharray="6 3"
                             style="animation: stitch-connect 6s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);" />
-                        <path d="M 75 10 L 75 35 L 115 35 L 115 10" fill="none" stroke-width="3" stroke-dasharray="6 3"
+                        <path d="M 90 10 L 90 40 L 150 40 L 150 10" fill="none" stroke-width="3" stroke-dasharray="6 3"
                             style="animation: stitch-connect 6s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);" />
-                        <path d="M 165 10 L 165 35 L 205 35 L 205 10" fill="none" stroke-width="3"
+                        <path d="M 180 10 L 180 40 L 240 40 L 240 10" fill="none" stroke-width="3"
                             stroke-dasharray="6 3"
                             style="animation: stitch-connect 6s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);" />
-                        <path d="M 255 10 L 255 35 L 295 35 L 295 10 M 345 10 L 345 35 L 380 35" fill="none"
+                        <path d="M 270 10 L 270 40 L 330 40 L 330 10 M 360 10 L 360 40 L 410 40" fill="none"
                             stroke-width="3" stroke-dasharray="6 3"
                             style="animation: stitch-connect 6s infinite cubic-bezier(0.1, 0.7, 1.0, 0.1);" />
                     </svg>
 
                     <!-- Scan IN / OUT labels -->
                     <div
-                        style="position: absolute; left: 5px; top: 265px; font-size: 0.85rem; font-weight: bold; color: #166534; opacity: 0; animation: block-disable 6s infinite; background: #f0fdf4; padding: 2px 8px; border-radius: 4px; border: 1px solid #22c55e;">
+                        style="position: absolute; left: 5px; top: 255px; font-size: 0.85rem; font-weight: bold; color: #166534; opacity: 0; animation: block-disable 6s infinite; background: #f0fdf4; padding: 2px 8px; border-radius: 4px; border: 1px solid #22c55e;">
                         Scan In</div>
                     <div
-                        style="position: absolute; right: 5px; top: 265px; font-size: 0.85rem; font-weight: bold; color: #166534; opacity: 0; animation: block-disable 6s infinite; background: #f0fdf4; padding: 2px 8px; border-radius: 4px; border: 1px solid #22c55e;">
+                        style="position: absolute; right: 5px; top: 255px; font-size: 0.85rem; font-weight: bold; color: #166534; opacity: 0; animation: block-disable 6s infinite; background: #f0fdf4; padding: 2px 8px; border-radius: 4px; border: 1px solid #22c55e;">
                         Scan Out</div>
 
                     <!-- Logic Block 2 -->
                     <div
-                        style="width: 320px; height: 45px; background: #e0f2fe; border: 2px solid; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #1e40af; font-weight: bold; z-index: 2; animation: block-disable 6s infinite; font-size: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                        style="width: 320px; height: 45px; background: #e0f2fe; border: 2px solid; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #1e40af; font-weight: bold; z-index: 2; animation: block-disable 6s infinite; font-size: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-top: 90px;">
                         Combinational Cloud B</div>
 
                 </div>
