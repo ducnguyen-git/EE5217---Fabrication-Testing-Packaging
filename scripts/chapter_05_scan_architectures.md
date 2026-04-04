@@ -4,8 +4,7 @@
 - **Hành động:** 
   Chuyển nhẹ nhàng sang slide mới. Đọc trích dẫn với giọng suy ngẫm.
 - **Lời thoại tham khảo:**
-  "Bước sang Chương 5: Các Kiến Trúc Scan mở rộng.
-  Triết lý của Ralph Johnson nhắc nhở: *'Kiến trúc là về những quyết định quan trọng nhất.'* Việc nối chuỗi Scan không chỉ ghép cho xong, mà là nghệ thuật cân bằng giữa hiệu suất mạch, thời gian Test Time và chi phí Area Overhead."
+  "Chương 5: Các Kiến Trúc Scan mở rộng."
 
 ***
 

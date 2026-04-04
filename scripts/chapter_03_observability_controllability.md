@@ -4,7 +4,7 @@
 - **Hành động:** 
   Dừng lại vài giây để chuyển ý, giọng điệu thay đổi rành mạch.
 - **Lời thoại tham khảo:**
-  "Chào mừng các bạn đến với Chương 3: Chèn Điểm kiểm thử (Testability Insertion). Như Lord Kelvin từng kết luận: *'Đo lường là hiểu biết. Nếu bạn không thể đo lường một thứ, bạn sẽ không bao giờ cải thiện được nó.'* Thật vậy, để có thể kiểm thử mảng logic bên trong, chúng ta bắt buộc phải chèn những 'trạm đo lường' vào bản thiết kế của mình."
+  "Chương 3: Tìm hiểu khái niệm Khả năng điều khiển và Quan sát."
 
 ***
 
@@ -13,8 +13,8 @@
   Chỉ tay vào cột bên trái (Cải thiện), sau đó trỏ sang cột dồn kênh MUX (Chia sẻ).
 - **Lời thoại tham khảo:**
   "Bước đầu tiên là Chèn Điểm Quan sát (hay Observability Insertion). 
-  (1) Về lý thuyết, ta chủ động gắn thêm đường mạch ra ngoài (Test Points) để theo dõi các node logic ẩn.
-  (2) Tuy nhiên, nếu cứ mang từng dây một gắn ra chân vi mạch mãi thì sẽ hết mất chân I/O. Do đó, người ta dùng bộ Dồn kênh (MUX). Bằng cách dùng chân Chọn Địa chỉ (Address), ta chỉ cần tốn 1 chân râu cho hàng vạn tín hiệu được quan sát."
+  Thứ nhất, về lý thuyết, ta chủ động gắn thêm đường mạch ra ngoài làm Test Points để theo dõi các node logic ẩn.
+  Thứ hai, nếu cứ mang từng dây một gắn ra chân vi mạch mãi thì sẽ hết mất chân I O. Do đó, người ta dùng bộ Dồn kênh MUX. Bằng cách dùng chân Chọn Địa chỉ Address, ta chỉ cần tốn 1 chân râu cho hàng vạn tín hiệu được quan sát."
 
 ***
 

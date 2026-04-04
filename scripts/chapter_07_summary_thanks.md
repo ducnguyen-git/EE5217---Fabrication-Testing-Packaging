@@ -4,7 +4,7 @@
 - **Hành động:** 
   Đứng thẳng, hướng mắt về toàn bộ căn phòng để chuẩn bị kết luận.
 - **Lời thoại tham khảo:**
-  "Bước sang phần cuối cùng: Tổng hợp Phân tích và Đánh giá. Kỹ sư hàng không vĩ đại Burt Rutan từng nói: *'Kiểm thử dẫn đến sự thất bại, và đi qua sự thất bại dẫn đến sự thấu hiểu sâu sắc.'* Chúng ta chèn DFT không phải dèm pha thiết kế ban đầu dở, mà để đo lường và loại trừ những góc khuất trong con Vi mạch phức tạp."
+  "Bước sang phần cuối cùng: Tổng hợp Phân tích và Đánh giá."
 
 ***
 

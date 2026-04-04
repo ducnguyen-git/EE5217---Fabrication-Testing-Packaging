@@ -182,7 +182,7 @@ function updateView() {
         });
         // Gắn móc theo dõi thẻ active MỚI nhất (Rootfix)
         observeActiveSlide();
-        
+
         // Gọi âm thanh slide
         if (typeof playCurrentSlideAudio === 'function') {
             playCurrentSlideAudio();
@@ -218,7 +218,7 @@ function togglePresentation() {
         // Show audio hover area
         const audioArea = document.getElementById('audio-hover-area');
         if (audioArea) audioArea.style.display = 'flex';
-        
+
         // Try fullscreen but don't depend on it for presentation mode
         wasFullscreenAchieved = false;
         document.documentElement.requestFullscreen().then(() => {
@@ -240,12 +240,12 @@ function togglePresentation() {
             document.exitFullscreen().catch(e => { });
         }
         document.body.style.setProperty('--scale', 1);
-        
+
         // Hide audio area and pause
         const audioArea = document.getElementById('audio-hover-area');
         if (audioArea) audioArea.style.display = 'none';
         if (typeof pauseSlideAudio === 'function') pauseSlideAudio();
-        
+
         slides.forEach(s => s.classList.remove('active'));
         // Change icon back to Play
         const btnIcon = document.querySelector('#controls button:nth-child(2) i');
@@ -347,7 +347,11 @@ if (audioElement) {
         if (autoAdvanceEnabled && isPresenting) {
             const total = document.querySelectorAll('.slide-container').length;
             if (currentSlide < total - 1) {
-                nextSlide();
+                // Tạo nhịp nghỉ (breather gap) 2 giây trước khi nhảy sang slide mới
+                // giúp tạo cảm giác MC người thật tự nhiên, khan giả kịp nhìn hình
+                setTimeout(() => {
+                    nextSlide();
+                }, 2000);
             }
         }
     });
@@ -357,7 +361,7 @@ function playCurrentSlideAudio() {
     if (!isPresenting || !audioElement) return;
     const slideNumber = currentSlide + 1; // 1-indexed mapping
     audioElement.src = `audio/slide_${slideNumber}.mp3`;
-    
+
     // Attempt autoplay, it might fail if user has not interacted yet
     audioElement.play().catch(e => {
         console.log("Autoplay bị chặn bởi Browser cho slide này. Chờ user tương tác tay...");
@@ -371,7 +375,7 @@ function pauseSlideAudio() {
 // Bắt một sự kiện click bất kì để kích hoạt quyền Autoplay của Browser
 document.body.addEventListener('click', () => {
     if (isPresenting && audioElement && audioElement.paused && audioElement.readyState > 0 && autoAdvanceEnabled) {
-        audioElement.play().catch(e=>console.log(e));
+        audioElement.play().catch(e => console.log(e));
     }
 }, { once: true });
 

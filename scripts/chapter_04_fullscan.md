@@ -4,8 +4,7 @@
 - **Hành động:** 
   Nhấn mạnh chữ "sự đơn giản" và "hiệu quả".
 - **Lời thoại tham khảo:**
-  "Bước vào Chương 4: Kỹ thuật Full Scan - Lõi của DFT.
-  Hàng chục năm nghiên cứu DFT tựu chung lại bằng câu nói của Austin Freeman: *'Sự đơn giản chính là linh hồn của tính hiệu quả.'*"
+  "Bước sang Chương 4: Cốt lõi của kiến trúc Full Scan."
 
 ***
 
@@ -13,7 +12,7 @@
 - **Hành động:** 
   Chỉ vào hoạt ảnh luân chuyển Test Enable và Normal Mode.
 - **Lời thoại tham khảo:**
-  "Ý tưởng đột phá của Full Scan là biến tất cả các Flip-Flops nội bộ đang kết nối ngẫu nhiên trong chip thành một sợi dây chuyền duy nhất. Bằng sự đơn giản đó, mọi thành phần nhớ lưu trữ đã bị ép vào khuôn khổ tuần tự dịch bit (Shift Register)."
+  "Ý tưởng đột phá của Full Scan là biến tất cả các Flip-Flops nội bộ thành một sợi dây chuyền duy nhất. Bằng sự đơn giản đó, mọi thành phần lưu trữ đã bị ép vào khuôn khổ dịch bit."
 
 ***
 
@@ -21,7 +20,7 @@
 - **Hành động:** 
   Chỉ tay vào thành phần cổng Mux ghép trước cổng D.
 - **Lời thoại tham khảo:**
-  "Để uốn nắn một thanh Flip-Flop thông thường thành Scan Flip-Flop. Cấu trúc Muxed-DFF được sử dụng đại trà bằng cách chèn thiết bị ghép kênh MUX 2:1 vào cổng nhận dữ liệu Data In của Flip-Flop."
+  "Chuyển một thanh Flip-Flop thông thường thành Scan Flip-Flop rất dễ. Cấu trúc Muxed-DFF được sử dụng đại trà bằng cách chèn bộ ghép kênh MUX hai một vào cổng nhận dữ liệu của Flip-Flop."
 
 ***
 
@@ -29,7 +28,7 @@
 - **Hành động:** 
   Chỉ vào tín hiệu Test Enable TE.
 - **Lời thoại tham khảo:**
-  "Tín hiệu công tắc TE (Test Enable) sẽ làm trọng tài điều hướng cho Cổng Mux: Nó cho phép Flip-Flop chốt lại kết quả điện toán bình thường nếu TE mức 0, hoặc ép nhận dữ liệu dồn dịch từ con Flip-Flop anh em sát bên nó qua ngõ SI nếu TE ở mức 1."
+  "Tín hiệu công tắc Test Enable sẽ làm trọng tài điều hướng cho Cổng Mux. Nó cho phép Flip-Flop điện toán bình thường nếu bằng 0. Ngược lại, nó ép nhận dữ liệu dồn dịch từ Flip-Flop anh em sát bên cạnh nếu bằng 1."
 
 ***
 
@@ -37,7 +36,7 @@
 - **Hành động:** 
   Nhấn mạnh vào chữ Setup Time Delay mầu đỏ.
 - **Lời thoại tham khảo:**
-  "Gót A-sin của MUX-DFF là Timing Critical Delay. Vì con MUX chèn án ngữ giữa hệ thống, luồng dữ liệu sạch bắt buộc phải tốn thêm thời gian đi xuyên qua Mux, làm suy giảm tốc độ xung nhịp hoạt động tối đa mà mạch vốn có thể đạt được."
+  "Gót A-sin của MUX-DFF là Timing Critical Delay. Vì con MUX án ngữ giữa hệ thống, luồng dữ liệu bị chậm lại. Điều này làm suy giảm tốc độ xung nhịp hoạt động tối đa mà mạch có thể đạt được."
 
 ***
 
@@ -45,7 +44,7 @@
 - **Hành động:** 
   Chỉ sự khác biệt của LSSD.
 - **Lời thoại tham khảo:**
-  "Để vượt qua nỗi sợ kẹt Delay, gã khổng lồ máy trạm IBM đã tạo ra con đường thứ 2 mang tên Level Sensitive Scan Design (LSSD), nổi tiếng với thiết kế không dùng cổng MUX mà sử dụng hệ thống mạch Latch nhạy mức (Dual-Clock Latch)."
+  "Để vượt qua nỗi sợ kẹt Delay, hệ thống đã tạo ra công nghệ thứ 2 mang tên Level Sensitive Scan Design. Công nghệ này nổi tiếng với thiết kế không dùng cổng ghép kênh MUX. Thay vào đó, nó sử dụng hệ thống mạch Latch nhạy mức bằng 2 xung nhịp riêng."
 
 ***
 
@@ -53,7 +52,7 @@
 - **Hành động:** 
   Chỉ vào tín hiệu Clock A và Clock B rời rạc.
 - **Lời thoại tham khảo:**
-  "Thiết kế này vĩnh viễn không gây trễ chậm mạch luồng dữ liệu thật, bởi vì nó bơm Shift Data Test thông qua một cánh cửa dùng Clock A và Clock B lệch pha nhau, chịu mất thêm diện tích cực lớn trên Chip để đổi lấy sự an toàn tuyệt đối chống lỗi Race Condition."
+  "Thiết kế này vĩnh viễn không gây trễ chậm luồng dữ liệu thật. Bởi vì nó truyền dữ liệu thông qua xung Nhịp A và xung Nhịp B lệch pha nhau. Phương pháp này chịu hao tốn diện tích cực lớn trên Chip để đổi lấy sự an toàn tuyệt đối chống lỗi Race Condition."
 
 ***
 
@@ -85,7 +84,7 @@
 - **Hành động:** 
   Vuốt theo đường chỉ đỏ kết nối Scan-In sang chân Q, đưa vào MUX của tầng tiếp theo.
 - **Lời thoại tham khảo:**
-  "Đỉnh cao của nghệ thuật Stitching là nét khâu mũi chỉ dây điện kéo từ Scan-In (Tin) trực tiếp vào chân SI của Flip-flop đầu tiên, đi ra chân Q, chọc vào chân SI của con Flip-flop thứ hai, và mượt mà tuôn thẳng ra tận đích Scan-Out (Tout)."
+  "Đỉnh cao của kỹ thuật này là nét khâu mũi chỉ dây điện trơn tru. Dòng điện đi từ Scan In trực tiếp vào chân SI của phần tử đầu tiên. Sau đó nó đi ra chân Q và chọc vào chân SI của phần tử kế tiếp. Cuối cùng, dòng máu này mượt mà tuôn ra tận đích Scan Out."
 
 ***
 
@@ -109,7 +108,7 @@
 - **Hành động:** 
   Chỉ vào thẻ Kim Probe đang chọc lên bề mặt Silicon.
 - **Lời thoại tham khảo:**
-  "Vì quá nhỏ bé, vi mạch Silicon Die không thể cắm vào cổng USB, mà buộc chiếc máy ATE Tester phải chích dữ liệu Scan In truyền qua hệ thống xúc tu siêu vi (Probe Card) có đính mũi nhọn bằng chất liệu vàng tinh khiết ép vào Pad của IC."
+  "Vi mạch Silicon siêu nhỏ không thể cắm vào cổng giao tiếp bình thường. Máy Tester khổng lồ phải chích dữ liệu truyền qua hệ thống xúc tu siêu vi. Những xúc tu này có đính hàng nghìn mũi kim nhọn bằng chất liệu vàng tinh khiết ép vào chân con IC."
 
 ***
 
@@ -133,4 +132,4 @@
 - **Hành động:** 
   Minh họa hành động lấy hàng mới và đẩy hàng cũ ra trên biểu đồ Timing.
 - **Lời thoại tham khảo:**
-  "Và để tối ưu KPI thời gian test, cơ chế ATE thực hiện quá trình tống những lỗi gặt được (Shift-Out) ra bộ nhớ máy chủ so sánh trùng lúc gối đầu trực tiếp với luồng Vector Data mới (Shift-In) ùa vào theo dạng Pipeline lặp đi lặp lại rất tiết kiệm chu kì Clock."
+  "Để tối ưu KPI thời gian, cơ chế này thực hiện hành trình gối đầu. Máy Tester tống những lỗi gặt được ra bộ nhớ máy chủ để so sánh. Quá trình này chạy song song trực tiếp với luồng dữ liệu mới đang tuôn vào. Sự lặp đi lặp lại theo kiểu đường ống này rất tiết kiệm thời gian tổng."

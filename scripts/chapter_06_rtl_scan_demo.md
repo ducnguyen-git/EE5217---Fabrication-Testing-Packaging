@@ -4,8 +4,7 @@
 - **Hành động:** 
   Dừng lại 1 nhịp sau khi đọc trích dẫn để tạo điểm nhấn.
 - **Lời thoại tham khảo:**
-  "Chương 6: Phát triển DFT thẳng vào Mã Nguồn mức RTL. W. Edwards Deming từng đúc kết: *'Chất lượng không thể đạt được qua việc kiểm thử sản phẩm ở khúc cuối; chất lượng phải được nhúng vào ngay từ nguyên bản...'*
-  Và thay vì chờ máy tính ném thành tỷ cái logic Gate rối rắm rồi tool mới tự ráp Scan, Kỹ sư RTL thiết kế chuỗi Scan mạnh tay ngay từ mức Level Khối."
+  "Chương 6: Thiết kế Scan mức RTL."
 
 ***
 

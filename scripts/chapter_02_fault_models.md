@@ -4,7 +4,7 @@
 - **Hành động:** 
   Nhấn mạnh trọng âm vào chữ "chưa hỏng".
 - **Lời thoại tham khảo:**
-  "Bước sang Chương 2: Mô hình Huffman và Lỗi Logic. Bruce Eckel nói: *'Nếu bạn không thể kiểm thử nó, thì coi như nó đã hỏng.'* Nếu 1 IC làm xong mà mù tịt không test được, thì nó mãi là một đống cát silicon vô dụng."
+  "Tiếp theo là Chương 2: Mô hình Huffman và Thiết kế mạch khả kiểm."
 
 ***
 
