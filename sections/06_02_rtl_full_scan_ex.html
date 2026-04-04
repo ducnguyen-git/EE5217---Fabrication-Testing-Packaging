@@ -10,10 +10,12 @@
             style="background: white; padding: 20px; border-radius: 16px; border: 2px dashed #0ea5e9; text-align: center; width: 90%; max-width: 1000px;">
             <img src="images/full_scan_adding_machine.jpg" alt="RTL Design Full Scan"
                 style="max-width: 100%; max-height: 60vh; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <p style="font-size: 0.75rem; color: #94a3b8; text-align: center; margin-top: 5px; margin-bottom: -10px;"><i>Nguồn: "VLSI Test Principles and Architectures", Laung-Terng Wang.</i></p>
             <p style="margin-top: 20px; font-style: italic; color: #64748b; font-size: 1.1rem; line-height: 1.5;">
-                Minh họa: Chèn Scan Chain vào toàn bộ các phần tử nhớ ở mức RTL trong mạch tính tổng. Mọi Register tạo
-                thành một chuỗi Scan duy nhất, giúp kiểm soát ngõ vào và quan sát ngõ ra dễ dàng nhưng chi phí phần cứng
-                cao do yêu cầu thay thế toàn bộ Flip-Flop bằng Scan Flip-Flop.
+                Minh họa: Với FULL SCAN này, chỉ có 1 chain (chuỗi các SCAN-FF). Chain này sẽ rất dài, data của nó đi từ
+                SI (Scan-In)-> bộ AC -> bộ IR -> bộ PC Reg -> bộ Controller -> SO (Scan-Out).
+                <br> Giả sử với mỗi khối có 100 Scan-FF, vậy chuỗi SCAN sẽ dài khoảng 400 (đồng nghĩa tốn khoảng 400
+                chu kỳ clock)
             </p>
         </div>
     </div>

@@ -25,7 +25,9 @@ const slidesList = [
     'sections/05_03_partial_scan.html',
     'sections/05_04_multiple_scan_intro.html',
     'sections/05_05_other_scan.html',
-    'sections/07_03_summary.html'
+    'sections/07_03_summary.html',
+    'sections/07_04_references.html',
+    'sections/07_99_thanks.html'
 ];
 
 const wrapper = document.getElementById('slides_wrapper');

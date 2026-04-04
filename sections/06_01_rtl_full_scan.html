@@ -1,6 +1,6 @@
 <div class="slide slide-container">
     <h1 style="border-bottom: 3px solid #005ce6; padding-bottom: 15px; display: inline-block;" class="gradient-text">6.
-        Thiết Kế Scan Góc Độ RTL</h1>
+        Thiết Kế Scan Mức RTL</h1>
     <h2 class="gradient-text" style="font-size: 2.2rem; margin-bottom: 25px;"><i class="fa-solid fa-code"></i> 6.1. RTL
         Design Full Scan (1/2)</h2>
 
@@ -8,14 +8,13 @@
         <div class="text-block-shadow"
             style="flex: 1; min-width: 0; max-width: 50%; text-align: left; background: #ffffff; padding: 30px; border-radius: 16px; border-top: 5px solid #00d2ff;">
             <ul style="font-size: 1.4rem; color: var(--text-color); margin-left: 20px; line-height: 1.5;">
-                <li style="margin-bottom: 15px;">Ép đồng loạt mọi đối tượng phần cứng mức cao (như Register Files,
+                <li style="margin-bottom: 15px;">Ép tất cả phần tử lưu trữ trong hệ thống (như Register Files,
                     Counters, Bus) vào một <b>Scan Chain</b> duy nhất.</li>
-                <li style="margin-bottom: 15px;">Cách tiếp cận tương tự ở mức Gate-level nhưng được thực thi ngay từ
-                    mã
+                <li style="margin-bottom: 15px;">Cách tiếp cận tương tự ở mức Gate-level nhưng được thiết kế trực tiếp
+                    ngay từ mã
                     nguồn RTL.</li>
-                <li style="margin-bottom: 15px;">Tuy dễ thực hiện nhưng rất tốn diện tích silicon do việc chèn MUX ồ
-                    ạt.
-                </li>
+                <li style="margin-bottom: 15px;">Tuy dễ thực hiện nhưng rất tốn diện tích silicon do việc chèn MUX ồ ạt,
+                    có thể ảnh hưởng đến hiệu năng nếu thiết kế có quy mô lớn.</li>
             </ul>
         </div>
 
@@ -66,10 +65,10 @@
                     <div class="block-hw" style="position: absolute; top: 20px; left: 80px; width: 80px; height: 50px;">
                         Reg A</div>
                     <div class="block-hw"
-                        style="position: absolute; top: 120px; left: 80px; width: 80px; height: 50px;">ALU File
+                        style="position: absolute; top: 120px; left: 80px; width: 80px; height: 50px;">Bus
                     </div>
                     <div class="block-hw"
-                        style="position: absolute; top: 20px; right: 40px; width: 80px; height: 50px;">MUX</div>
+                        style="position: absolute; top: 20px; right: 40px; width: 80px; height: 50px;">Counter</div>
                     <div class="block-hw"
                         style="position: absolute; top: 120px; right: 40px; width: 80px; height: 50px;">Reg B</div>
 
@@ -110,8 +109,7 @@
 
                 <p
                     style="text-align: center; color: #64748b; font-style: italic; font-size: 0.95rem; margin-top: 15px;">
-                    Minh họa: Mọi thành phần RTL bị nhồi nhét, nối ruột nối đuôi thành 1 chuỗi dài duy nhất (Single
-                    Chain).</p>
+                    Minh họa: Mọi thành phần RTL được nối tiếp nhau tạo thành 1 chuỗi dài duy nhất (Single Chain).</p>
             </div>
         </div>
     </div>

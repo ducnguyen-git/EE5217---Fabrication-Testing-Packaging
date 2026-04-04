@@ -102,36 +102,53 @@
             style="flex: 1; min-width: 0; max-width: 50%; display: flex; flex-direction: column; justify-content: center; gap: 20px;">
             <style>
                 @keyframes signal-flow-normal {
-                    0% {
+
+                    0%,
+                    45% {
                         stroke-dashoffset: 200;
                         stroke: #3b82f6;
+                        opacity: 1;
                     }
 
-                    50% {
+                    50%,
+                    100% {
                         stroke-dashoffset: 0;
                         stroke: #3b82f6;
-                    }
-
-                    100% {
-                        stroke-dashoffset: -200;
-                        stroke: #cbd5e1;
+                        opacity: 0.2;
                     }
                 }
 
                 @keyframes signal-flow-scan {
-                    0% {
+
+                    0%,
+                    45% {
                         stroke-dashoffset: 200;
                         stroke: #cbd5e1;
+                        opacity: 0.2;
                     }
 
-                    50% {
-                        stroke-dashoffset: -200;
-                        stroke: #cbd5e1;
-                    }
-
+                    55%,
                     100% {
                         stroke-dashoffset: 0;
                         stroke: #8b5cf6;
+                        opacity: 1;
+                    }
+                }
+
+                @keyframes ff-state-glow {
+
+                    0%,
+                    45% {
+                        border-color: #3b82f6;
+                        box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+                        background: rgba(30, 58, 138, 0.4);
+                    }
+
+                    55%,
+                    100% {
+                        border-color: #8b5cf6;
+                        box-shadow: 0 0 25px rgba(139, 92, 246, 0.8);
+                        background: rgba(88, 28, 135, 0.4);
                     }
                 }
 
@@ -139,14 +156,27 @@
 
                     0%,
                     45% {
-                        transform: translateY(-10px);
+                        transform: translateY(-12px);
                         color: #3b82f6;
                     }
 
                     55%,
                     100% {
-                        transform: translateY(10px);
+                        transform: translateY(12px);
                         color: #8b5cf6;
+                    }
+                }
+
+                @keyframes wire-dynamic-color {
+
+                    0%,
+                    45% {
+                        stroke: #3b82f6;
+                    }
+
+                    55%,
+                    100% {
+                        stroke: #8b5cf6;
                     }
                 }
             </style>
@@ -169,11 +199,15 @@
                         <path d="M 10 140 L 100 140 L 120 120" fill="none" class="anim-wire" stroke="#8b5cf6"
                             stroke-width="4" stroke-dasharray="10 5"
                             style="animation: signal-flow-scan 4s infinite linear;" />
-                        <!-- Normal Data Line (MUX to FF) -->
+
+                        <!-- MUX to FF Dynamic Wire -->
                         <path d="M 170 100 L 240 100" fill="none" stroke="#3b82f6" stroke-width="4"
-                            stroke-dasharray="10 5" style="animation: signal-flow-normal 4s infinite linear;" />
+                            stroke-dasharray="10 5"
+                            style="animation: wire-dynamic-color 4s infinite linear, signal-flow-normal 4s infinite linear;" />
+
                         <!-- TE Signal line -->
                         <path d="M 145 180 L 145 150" fill="none" stroke="#facc15" stroke-width="3" />
+
                         <!-- Output Line (FF to OUT) -->
                         <path d="M 300 100 L 360 100" fill="none" stroke="#22c55e" stroke-width="4"
                             stroke-dasharray="10 5" style="animation: signal-flow-normal 2s infinite linear;" />
@@ -185,7 +219,7 @@
                         Din</div>
                     <div
                         style="position: absolute; left: 10px; top: 120px; color: #a78bfa; font-family: monospace; font-weight: bold; font-size: 1.2rem;">
-                        SI</div>
+                        TI</div>
                     <div
                         style="position: absolute; left: 130px; top: 180px; color: #facc15; font-family: monospace; font-weight: bold; font-size: 1.2rem; width: 30px; text-align: center;">
                         TE</div>
@@ -213,7 +247,7 @@
 
                     <!-- D-FF Component -->
                     <div
-                        style="position: absolute; left: 240px; top: 50px; width: 60px; height: 100px; background: rgba(15, 23, 42, 0.9); border: 2px solid #22c55e; border-radius: 4px; z-index: 2; box-sizing: border-box; box-shadow: 0 0 15px rgba(34,197,94,0.3);">
+                        style="position: absolute; left: 240px; top: 50px; width: 60px; height: 100px; background: rgba(15, 23, 42, 0.9); border: 2px solid #22c55e; border-radius: 4px; z-index: 2; box-sizing: border-box; animation: ff-state-glow 4s infinite linear;">
                         <div style="position: relative; width: 100%; height: 100%;">
                             <span
                                 style="position: absolute; left: 5px; top: 40px; color: white; font-weight: bold; font-family: monospace;">D</span>

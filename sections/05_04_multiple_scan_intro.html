@@ -8,13 +8,13 @@
             <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-tachometer-alt"></i> Giải quyết
                 Khủng hoảng Băng thông Di chuyển</h2>
             <ul style="font-size: 1.3rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
-                <li style="margin-bottom: 12px;"><b>Bài toán Vút Quãng Đường Dài:</b> VLSI Chip tỷ lệ thuận với Hàng
+                <li style="margin-bottom: 12px;"><b>Bài toán Quãng Đường Dài:</b> VLSI Chip tỷ lệ thuận với Hàng
                     triệu cổng. Giả sử Chip chứa $100,000$ Flip-flops. Một vòng Scan Full Scan Single Chain tốn
                     $100,000$ chu kì nhịp Clock để đẩy đầy $1$ Test Vector vào trong ống. Nếu cần $1,000$ Patterns, máy
                     ATE chịu thua vì tốn hàng chục giây cho mỗi con IC Test đắt đỏ.</li>
                 <li style="margin-bottom: 12px;"><b>Phương án "Scan Đa chuỗi": Multiple Scan Chains.</b> Thay vì xếp
-                    hàng rồng rắn 1 file duy nhất, ta mạnh tay cắt cái Xích $100,000$ mắt kia thành $100$ Dây xích ngắn
-                    (Chains) song song dài chỉ $1000$ mắt.</li>
+                    hàng rồng rắn 1 file duy nhất, ta mạnh tay chia một chuỗi dài $100,000$ kia thành $100$ chuỗi ngắn
+                    (Chains) song song dài chỉ $1000$.</li>
                 <li style="margin-bottom: 12px;">Thời gian chèn dịch (Shift-In/Out Test Time) sẽ ngay lập tức được
                     <b>chia tốc giảm đi $100$ lần</b> vì cả 100 làn đường có thể nạp đẩy ống song song đồng thời!
                 </li>
@@ -48,7 +48,7 @@
             <div class="text-block-shadow"
                 style="background: white; padding: 25px; border-radius: 16px; border: 2px dashed #0ea5e9; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
 
-                <h3 style="color: #0369a1; margin-bottom: 25px; text-transform: uppercase;">Parallel Scan Architecture
+                <h3 style="color: #0369a1; margin-bottom: 25px; text-transform: uppercase;">Multiple Scan Architecture
                 </h3>
 
                 <div
@@ -61,7 +61,7 @@
                     <div
                         style="width: 260px; height: 35px; border: 2px solid #f87171; border-radius: 4px; display: flex; align-items: center; padding: 0 5px; position: relative; background: #fef2f2;">
                         <span
-                            style="font-size: 0.6rem; color: #dc2626; font-weight: bold; position: absolute; left: -35px;">T_in1</span>
+                            style="font-size: 0.6rem; color: #dc2626; font-weight: bold; position: absolute; left: -45px;">T_in1</span>
                         <div
                             style="width: 15px; height: 15px; background: #dc2626; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear;">
                         </div>
@@ -72,14 +72,14 @@
                             style="width: 15px; height: 15px; background: #f87171; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear; animation-delay: 0.6s;">
                         </div>
                         <span
-                            style="font-size: 0.6rem; color: #dc2626; font-weight: bold; position: absolute; right: -40px;">T_out1</span>
+                            style="font-size: 0.6rem; color: #dc2626; font-weight: bold; position: absolute; right: -50px;">T_out1</span>
                     </div>
 
                     <!-- Chain 2 -->
                     <div
                         style="width: 260px; height: 35px; border: 2px solid #3b82f6; border-radius: 4px; display: flex; align-items: center; padding: 0 5px; position: relative; background: #eff6ff;">
                         <span
-                            style="font-size: 0.6rem; color: #2563eb; font-weight: bold; position: absolute; left: -35px;">T_in2</span>
+                            style="font-size: 0.6rem; color: #2563eb; font-weight: bold; position: absolute; left: -45px;">T_in2</span>
                         <div
                             style="width: 15px; height: 15px; background: #2563eb; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear;">
                         </div>
@@ -90,14 +90,14 @@
                             style="width: 15px; height: 15px; background: #60a5fa; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear; animation-delay: 0.6s;">
                         </div>
                         <span
-                            style="font-size: 0.6rem; color: #2563eb; font-weight: bold; position: absolute; right: -40px;">T_out2</span>
+                            style="font-size: 0.6rem; color: #2563eb; font-weight: bold; position: absolute; right: -50px;">T_out2</span>
                     </div>
 
                     <!-- Chain 3 -->
                     <div
                         style="width: 260px; height: 35px; border: 2px solid #22c55e; border-radius: 4px; display: flex; align-items: center; padding: 0 5px; position: relative; background: #f0fdf4;">
                         <span
-                            style="font-size: 0.6rem; color: #16a34a; font-weight: bold; position: absolute; left: -35px;">T_in3</span>
+                            style="font-size: 0.6rem; color: #16a34a; font-weight: bold; position: absolute; left: -45px;">T_in3</span>
                         <div
                             style="width: 15px; height: 15px; background: #16a34a; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear;">
                         </div>
@@ -108,14 +108,14 @@
                             style="width: 15px; height: 15px; background: #4ade80; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear; animation-delay: 0.6s;">
                         </div>
                         <span
-                            style="font-size: 0.6rem; color: #16a34a; font-weight: bold; position: absolute; right: -40px;">T_out3</span>
+                            style="font-size: 0.6rem; color: #16a34a; font-weight: bold; position: absolute; right: -50px;">T_out3</span>
                     </div>
 
                     <!-- Chain 4 -->
                     <div
                         style="width: 260px; height: 35px; border: 2px solid #a855f7; border-radius: 4px; display: flex; align-items: center; padding: 0 5px; position: relative; background: #fdf4ff;">
                         <span
-                            style="font-size: 0.6rem; color: #9333ea; font-weight: bold; position: absolute; left: -35px;">T_in4</span>
+                            style="font-size: 0.6rem; color: #9333ea; font-weight: bold; position: absolute; left: -45px;">T_in4</span>
                         <div
                             style="width: 15px; height: 15px; background: #9333ea; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear;">
                         </div>
@@ -126,7 +126,7 @@
                             style="width: 15px; height: 15px; background: #c084fc; border-radius: 50%; opacity: 0; animation: parallel-flow 2s infinite linear; animation-delay: 0.6s;">
                         </div>
                         <span
-                            style="font-size: 0.6rem; color: #9333ea; font-weight: bold; position: absolute; right: -40px;">T_out4</span>
+                            style="font-size: 0.6rem; color: #9333ea; font-weight: bold; position: absolute; right: -50px;">T_out4</span>
                     </div>
                 </div>
 
@@ -146,17 +146,18 @@
         <div class="text-block-shadow"
             style="flex: 1; min-width: 0; max-width: 50%; text-align: left; background: #ffffff; padding: 30px; border-radius: 16px; border-top: 5px solid #00d2ff;">
             <h2 class="gradient-text" style="margin-bottom: 20px;"><i class="fa-solid fa-expand-arrows-alt"></i> Phân
-                Mảnh Dữ Liệu Vector Băm</h2>
+                Mảnh Dữ Liệu Vector</h2>
             <ul style="font-size: 1.3rem; color: var(--text-color); margin-left: 20px; line-height: 1.6;">
                 <li style="margin-bottom: 12px;"><b>Chia Khối Test Vector:</b> ATE sinh ra 1 File Text khổng lồ (Test
-                    Pattern dài ngoằng). Bây giờ Mẫu dữ liệu đơn phương bị lưỡi dao chẻ thành các dải $Part_1, Part_2,
-                    Part_N$. Các máy bơm ATE sẽ tọng chúng nhúm nhó vào miệng các nhánh nhỏ tương ứng.</li>
+                    Pattern dài ngoằng). Mẫu dữ liệu đơn phương sẽ được cắt thành các dải $Part_1, Part_2, ... Part_N$.
+                    Các máy bơm ATE sẽ đưa chúng đến đầu vào của các nhánh nhỏ tương ứng.</li>
                 <li style="margin-bottom: 12px;"><b>Bất lợi Về Thiết Bị Khổng Lồ Mới Nảy Sinh (Trade-off Nặng Nề):</b>
-                    Việc cắt dây xích giảm thời gian bao nhiêu lần thì Thiết kế Vật Lý (Physical
-                    Layout) ở rìa viền Chip sẽ phải cõng thêm Bấy Nhiêu chân Pin tiếp xúc phần cứng $T_{in\_1},
-                    T_{out\_1} \dots T_{in\_M}, T_{out\_M}$ thật sự. </li>
-                <li style="margin-bottom: 12px;">Điều này lại dội ngược Bài toán Giới hạn Package Pins và Máy Móc ATE
-                    cần hàng trăm Kim Test Channel để ghim cùng lúc.</li>
+                    Việc cắt chain giảm thời gian bao nhiêu lần thì Thiết kế Vật Lý (Physical Layout) ở rìa viền Chip
+                    sẽ phải tăng thêm bấy nhiêu chân Pin tiếp xúc phần cứng $T_{in\_1}, T_{out\_1} \dots T_{in\_M},
+                    T_{out\_M}$. </li>
+                <li style="margin-bottom: 12px;">Điều này lại đối nghịch với Bài toán Giới hạn Package Pins và ATE
+                    cần có thêm nhiều Kênh Test song song (Test Channel), điều này có thể làm tăng chi phí kiểm thử.
+                </li>
             </ul>
         </div>
 
