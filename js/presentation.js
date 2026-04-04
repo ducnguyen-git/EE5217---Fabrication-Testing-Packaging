@@ -36,7 +36,14 @@ const slidesList = [
     'sections/07_02_casestudy.html',
     'sections/07_03_summary.html',
     'sections/07_04_references.html',
-    'sections/07_99_thanks.html'
+    'sections/07_99_thanks.html',
+    'sections/08_00_chapter.html',
+    'sections/08_01_latex.html',
+    'sections/08_02_cicd.html',
+    'sections/08_03_github_pages.html',
+    'sections/08_04_pdf.html',
+    'sections/08_05_benefits.html',
+    'sections/08_99_thanks.html'
 ];
 
 const wrapper = document.getElementById('slides_wrapper');
@@ -138,6 +145,7 @@ async function loadSlides() {
         if (audioModeEnabled) {
             document.getElementById('audio-hover-area').style.display = 'flex';
         }
+        document.getElementById('loading').style.display = 'none';
         updateCounter();
 
         // Gọi MathJax render lại toàn bộ trang sau khi đã nạp xong HTML

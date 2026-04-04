@@ -66,7 +66,7 @@ def generate_fpt_audio(text, output_file):
             print(f"  ⏳ Đang đợi xử lý trên server FPT...")
             
             # Polling the audio url until ready
-            for _ in range(30): # max 60s
+            for _ in range(45): # max 90s
                 time.sleep(2)
                 try:
                     audio_req = urllib.request.Request(audio_url)
