@@ -2,7 +2,13 @@
     <h1 class="gradient-text" style="font-size: 3rem; margin-bottom: 20px; text-transform: uppercase;">
         <i class="fa-solid fa-triangle-exclamation" style="color: #ef4444;"></i> Kết quả mô phỏng có lỗi Stuck at
     </h1>
-    <div style="margin-top: 20px; width: 100%;">
-        <img src="images/stuck_at.jpg" alt="Stuck at fault" style="max-width: 95%; max-height: 65vh; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); border: 2px solid #ef4444;">
+    <div style="margin-top: 10px; width: 100%;">
+        <img src="images/stuck_at.jpg" alt="Stuck at fault" style="max-width: 95%; max-height: 55vh; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.15); border: 2px solid #ef4444;">
+    </div>
+    <div style="margin-top: 20px; width: 90%; background: #fef2f2; padding: 15px; border-radius: 10px; border-left: 5px solid #ef4444; text-align: left; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+        <p style="font-size: 1.2rem; color: #7f1d1d; margin: 0; line-height: 1.5;">
+            Giả sử <b>b stuck at 0</b> (trong Testbench giả lập bằng lệnh <code style="background: #fca5a5; padding: 2px 6px; border-radius: 4px;">force</code>):<br>
+            Thì giá trị TDO ở cycle 5 là 0 thay vì 1 như trước đó.
+        </p>
     </div>
 </div>
