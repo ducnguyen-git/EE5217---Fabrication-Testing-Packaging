@@ -182,6 +182,11 @@ function updateView() {
         });
         // Gắn móc theo dõi thẻ active MỚI nhất (Rootfix)
         observeActiveSlide();
+        
+        // Gọi âm thanh slide
+        if (typeof playCurrentSlideAudio === 'function') {
+            playCurrentSlideAudio();
+        }
     } else {
         slides[currentSlide].scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
@@ -210,6 +215,10 @@ function togglePresentation() {
     document.body.classList.toggle('presentation-mode', isPresenting);
 
     if (isPresenting) {
+        // Show audio hover area
+        const audioArea = document.getElementById('audio-hover-area');
+        if (audioArea) audioArea.style.display = 'flex';
+        
         // Try fullscreen but don't depend on it for presentation mode
         wasFullscreenAchieved = false;
         document.documentElement.requestFullscreen().then(() => {
@@ -231,6 +240,12 @@ function togglePresentation() {
             document.exitFullscreen().catch(e => { });
         }
         document.body.style.setProperty('--scale', 1);
+        
+        // Hide audio area and pause
+        const audioArea = document.getElementById('audio-hover-area');
+        if (audioArea) audioArea.style.display = 'none';
+        if (typeof pauseSlideAudio === 'function') pauseSlideAudio();
+        
         slides.forEach(s => s.classList.remove('active'));
         // Change icon back to Play
         const btnIcon = document.querySelector('#controls button:nth-child(2) i');
@@ -308,6 +323,57 @@ const observer = new IntersectionObserver((entries) => {
 }, {
     threshold: 0.6 // Slide must be 60% visible to be considered "current"
 });
+
+// ====================
+// AUDIO PLAYER LOGIC
+// ====================
+const audioElement = document.getElementById('slide-audio');
+const autoNextToggle = document.getElementById('auto-next-toggle');
+const autoAdvanceCheckbox = document.getElementById('auto-advance-checkbox');
+let autoAdvanceEnabled = true;
+
+if (autoNextToggle) {
+    autoNextToggle.addEventListener('click', (e) => {
+        if (e.target !== autoAdvanceCheckbox) {
+            autoAdvanceCheckbox.checked = !autoAdvanceCheckbox.checked;
+        }
+        autoAdvanceEnabled = autoAdvanceCheckbox.checked;
+    });
+}
+
+if (audioElement) {
+    // Khi audio chạy xong, nhảy slide tiếp theo nếu chế độ Auto được nhúng
+    audioElement.addEventListener('ended', () => {
+        if (autoAdvanceEnabled && isPresenting) {
+            const total = document.querySelectorAll('.slide-container').length;
+            if (currentSlide < total - 1) {
+                nextSlide();
+            }
+        }
+    });
+}
+
+function playCurrentSlideAudio() {
+    if (!isPresenting || !audioElement) return;
+    const slideNumber = currentSlide + 1; // 1-indexed mapping
+    audioElement.src = `audio/slide_${slideNumber}.mp3`;
+    
+    // Attempt autoplay, it might fail if user has not interacted yet
+    audioElement.play().catch(e => {
+        console.log("Autoplay bị chặn bởi Browser cho slide này. Chờ user tương tác tay...");
+    });
+}
+
+function pauseSlideAudio() {
+    if (audioElement) audioElement.pause();
+}
+
+// Bắt một sự kiện click bất kì để kích hoạt quyền Autoplay của Browser
+document.body.addEventListener('click', () => {
+    if (isPresenting && audioElement && audioElement.paused && audioElement.readyState > 0 && autoAdvanceEnabled) {
+        audioElement.play().catch(e=>console.log(e));
+    }
+}, { once: true });
 
 // Init
 loadSlides().then(() => {

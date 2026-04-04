@@ -47,6 +47,27 @@
     <!-- Slides will be injected here -->
     <main id="slides_wrapper"></main>
 
+    <!-- Audio Player (Hidden by default, hover near bottom center to reveal) -->
+    <div id="audio-hover-area" style="position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 400px; height: 80px; z-index: 10000; display: none; align-items: flex-end; justify-content: center; padding-bottom: 20px;">
+        <div id="audio-container" style="display: flex; align-items: center; gap: 10px; background: rgba(0,0,0,0.7); padding: 5px 15px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); opacity: 0; transition: opacity 0.3s; pointer-events: none;">
+            <audio id="slide-audio" controls style="height: 35px; outline: none; pointer-events: auto;"></audio>
+            <div style="color: white; font-size: 14px; display: flex; align-items: center; gap: 5px; cursor: pointer; user-select: none; pointer-events: auto;" id="auto-next-toggle">
+                <input type="checkbox" id="auto-advance-checkbox" checked style="cursor: pointer;">
+                <label for="auto-advance-checkbox" style="cursor: pointer; white-space: nowrap; padding-right: 5px;">Auto</label>
+            </div>
+        </div>
+    </div>
+    <style>
+        #audio-hover-area:hover #audio-container {
+            opacity: 1 !important;
+            pointer-events: auto !important;
+        }
+        /* Mobile fallback where hover is tricky */
+        @media (hover: none) {
+            #audio-container { opacity: 0.8 !important; pointer-events: auto !important; }
+        }
+    </style>
+
     <!-- Controls -->
     <div id="controls">
         <button class="btn" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
