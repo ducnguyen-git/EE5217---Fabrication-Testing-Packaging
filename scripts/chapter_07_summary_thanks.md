@@ -1,6 +1,6 @@
 # Kịch bản Thuyết trình - Chương 07: Tổng hợp Phân tích, Đánh giá và Cảm ơn
 
-## Slide 61: Mở đầu Chương 7 (07_00_chapter.html)
+## Slide 49: Mở đầu Chương 7 (07_00_chapter.html)
 - **Hành động:** 
   Đứng thẳng, hướng mắt về toàn bộ căn phòng để chuẩn bị kết luận.
 - **Lời thoại tham khảo:**
@@ -8,7 +8,7 @@
 
 ***
 
-## Slide 62: Bảng so sánh (07_01_comparison.html)
+## Slide 50: Bảng so sánh (07_01_comparison.html)
 - **Hành động:** 
   Chỉ tay lướt qua bảng phân tích đánh đổi (Trade-off) từ trái qua phải.
 - **Lời thoại tham khảo:**
@@ -18,7 +18,7 @@
 
 ***
 
-## Slide 63: Case Study tại các Tập đoàn (07_02_casestudy.html)
+## Slide 51: Case Study tại các Tập đoàn (07_02_casestudy.html)
 - **Hành động:** 
   Chỉ vào logo ARM và Intel/IBM để làm dẫn chứng thực tế.
 - **Lời thoại tham khảo:**
@@ -28,7 +28,7 @@
 
 ***
 
-## Slide 64: Tóm tắt và Kết luận (07_03_summary.html)
+## Slide 52: Tóm tắt và Kết luận (07_03_summary.html)
 - **Hành động:** 
   Chia hai bàn tay ra 2 bên, cân nhắc Ưu và Nhược điểm.
 - **Lời thoại tham khảo:**
@@ -37,7 +37,7 @@
 
 ***
 
-## Slide 65: Tài liệu tham khảo (07_04_references.html)
+## Slide 53: Tài liệu tham khảo (07_04_references.html)
 - **Hành động:** 
   Không cần đọc từng dòng, chỉ giới thiệu nguồn tài liệu.
 - **Lời thoại tham khảo:**
@@ -45,7 +45,7 @@
 
 ***
 
-## Slide 66: Lời Cảm ơn (07_99_thanks.html)
+## Slide 54: Lời Cảm ơn (07_99_thanks.html)
 - **Hành động:** 
   Gật đầu nhẹ/cúi chào để cảm ơn thầy và các bạn.
 - **Lời thoại tham khảo:**

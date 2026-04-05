@@ -1,6 +1,6 @@
 # Kịch bản Thuyết trình - Chương 08: Phụ Lục Tự Động Hóa (DevOps)
 
-## Slide 67: Mở đầu Chương 8 (08_00_chapter.html)
+## Slide 55: Mở đầu Chương 8 (08_00_chapter.html)
 - **Hành động:** 
   Chỉ tay giới thiệu nội dung mở rộng.
 - **Lời thoại tham khảo:**
@@ -8,7 +8,7 @@
 
 ***
 
-## Slide 68: Cấu hình Báo cáo LaTeX chuẩn IEEE (08_01_latex.html)
+## Slide 56: Cấu hình Báo cáo LaTeX chuẩn IEEE (08_01_latex.html)
 - **Hành động:** 
   Nhấn mạnh chữ LaTeX.
 - **Lời thoại tham khảo:**
@@ -16,7 +16,7 @@
 
 ***
 
-## Slide 69: Đường ống CI/CD với GitHub Actions (08_02_cicd.html)
+## Slide 57: Đường ống CI/CD với GitHub Actions (08_02_cicd.html)
 - **Hành động:** 
   Chỉ vào quy trình tự động.
 - **Lời thoại tham khảo:**
@@ -24,7 +24,7 @@
 
 ***
 
-## Slide 70: Triển khai Trình chiếu lên GitHub Pages (08_03_github_pages.html)
+## Slide 58: Triển khai Trình chiếu lên GitHub Pages (08_03_github_pages.html)
 - **Hành động:** 
   Mời giáo viên truy cập đường link Website chứa slide.
 - **Lời thoại tham khảo:**
@@ -32,7 +32,7 @@
 
 ***
 
-## Slide 71: Đóng gói Artifact PDF Report (08_04_pdf.html)
+## Slide 59: Đóng gói Artifact PDF Report (08_04_pdf.html)
 - **Hành động:** 
   Chỉ vào tag Release PDF.
 - **Lời thoại tham khảo:**
@@ -40,7 +40,7 @@
 
 ***
 
-## Slide 72: Tóm lược Lợi ích thực tiễn (08_05_benefits.html)
+## Slide 60: Tóm lược Lợi ích thực tiễn (08_05_benefits.html)
 - **Hành động:** 
   Tổng kết sức mạnh.
 - **Lời thoại tham khảo:**
@@ -48,7 +48,7 @@
 
 ***
 
-## Slide 73: Lời Cảm ơn Toàn bộ (08_99_thanks.html)
+## Slide 61: Lời Cảm ơn Toàn bộ (08_99_thanks.html)
 - **Hành động:** 
   Cúi chào lần cuối kết thúc hoàn toàn.
 - **Lời thoại tham khảo:**

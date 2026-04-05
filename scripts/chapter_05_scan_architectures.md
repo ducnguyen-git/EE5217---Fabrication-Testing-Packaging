@@ -16,31 +16,8 @@
 
 ***
 
-## Slide 45: Nhược điểm của Full Scan (05_02_shadow_register.html - 1/3)
-- **Hành động:** 
-  Nhấn mạnh cụm '+120ps Delay' ở chỗ MUX.
-- **Lời thoại tham khảo:**
-  "Nhưng đáng tiếc Full Scan có điểm yếu cốt tử là gây hiện tượng chậm trễ Timing ngay trên đường truyền hệ thống gốc do cổng MUX cản trở dữ liệu."
 
-***
-
-## Slide 46: Khắc phục bằng Shadow Register (05_02_shadow_register.html - 2/3)
-- **Hành động:** 
-  Chỉ vào Data System tốc độ cao và cụm FF dự bị ở dưới.
-- **Lời thoại tham khảo:**
-  "Giải pháp sang chảnh đưa ra là Thanh ghi Bóng (Shadow Register). Thiết kể chủ trương giữ nguyên đường điện không có cổng MUX cản trở. Ta nuôi thêm một dàn thanh ghi 'hậu bị' chuyên làm nhiệm vụ Copy lén lại trạng thái FSM bị lỗi mà không hề chạm đến hệ thống gốc."
-
-***
-
-## Slide 47: Đánh đổi của Thanh ghi Bóng (05_02_shadow_register.html - 3/3)
-- **Hành động:** 
-  Lật lại và nhấn mạnh diện tích chip tăng.
-- **Lời thoại tham khảo:**
-  "Tất nhiên, sự sang chảnh này đánh đổi bằng gấp đôi diện tích thiết kế. Nhưng trên khía cạnh hiệu năng, mạch được bảo toàn Zero Delay Penalty cực kỳ quý giá cho vi xử lý siêu tốc độ."
-
-***
-
-## Slide 48: Phương pháp Scan Phân Đoạn (05_03_partial_scan.html)
+## Slide 45: Phương pháp Scan Phân Đoạn (05_03_partial_scan.html)
 - **Hành động:** 
   Chỉ vào tỷ lệ Phần trăm ở biểu đồ vòng tròn Partial Scan.
 - **Lời thoại tham khảo:**
@@ -48,7 +25,7 @@
 
 ***
 
-## Slide 49: Nút thắt Cổ chai của 1 dây chuyền MUX-DFF (05_04_multiple_scan_intro.html - 1/2)
+## Slide 46: Nút thắt Cổ chai của 1 dây chuyền MUX-DFF (05_04_multiple_scan_intro.html - 1/2)
 - **Hành động:** 
   Chỉ vào chuỗi mạch dài vòng vèo.
 - **Lời thoại tham khảo:**
@@ -56,7 +33,7 @@
 
 ***
 
-## Slide 50: Scan Đa Chuỗi Song song (05_04_multiple_scan_intro.html - 2/2)
+## Slide 47: Scan Đa Chuỗi Song song (05_04_multiple_scan_intro.html - 2/2)
 - **Hành động:** 
   Chỉ tay vào mô hình nhiều ống Pipeline song song độc lập.
 - **Lời thoại tham khảo:**
@@ -64,8 +41,3 @@
 
 ***
 
-## Slide 51: Các Phương Pháp Khác (05_05_other_scan.html)
-- **Hành động:** 
-  Trỏ tay điểm qua sơ lược LSSD và RAS.
-- **Lời thoại tham khảo:**
-  "Cuối cùng, bên cạnh chuẩn MUX-DFF, thế giới DFT còn tồn tại LSSD của hãng IBM. Nó sở hữu hai chân Clock riêng biệt tránh kẹt Timing. Hay một kỹ thuật tối tân mang tên Random Access Scan (RAS). RAS truy xuất lỗi ngẫu nhiên y như đọc RAM bộ nhớ nhúng."
