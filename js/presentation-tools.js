@@ -446,23 +446,16 @@
             const card = document.createElement('div');
             card.className = 'chapter-card';
 
-            // Find slide index
-            let slideIdx = -1;
-            let globalIdx = 0;
-            for (let i = 0; i < slideFiles.length; i++) {
-                const fname = slideFiles[i].split('/').pop();
-                if (fname === ch.slideFile) {
-                    slideIdx = globalIdx;
-                    break;
-                }
-                globalIdx++;
-            }
+            // Find slide index securely via DOM elements
+            const allSlides = Array.from(document.querySelectorAll('.slide-container'));
+            let slideIdx = allSlides.findIndex(s => s.getAttribute('data-source') === ch.slideFile);
 
             // Mark current chapter
             if (slideIdx >= 0 && typeof currentSlide !== 'undefined') {
-                let nextChIdx = slideFiles.length;
-                for (let i = slideFiles.indexOf('sections/' + ch.slideFile) + 1; i < slideFiles.length; i++) {
-                    if (slideFiles[i].includes('_00_chapter') || slideFiles[i].includes('00_cover') || slideFiles[i].includes('00_toc')) {
+                let nextChIdx = allSlides.length;
+                for (let i = slideIdx + 1; i < allSlides.length; i++) {
+                    const src = allSlides[i].getAttribute('data-source');
+                    if (src && (src.includes('_00_chapter') || src.includes('00_cover') || src.includes('00_toc'))) {
                         nextChIdx = i;
                         break;
                     }

@@ -123,24 +123,27 @@ async function loadSlides() {
     try {
         const promises = slidesList.map(url => fetch(url).then(res => {
             if (!res.ok) throw new Error(`Could not load ${url}`);
-            return res.text();
+            return res.text().then(html => ({ url, html }));
         }));
 
         const contents = await Promise.all(promises);
 
         let globalIndex = 0;
-        contents.forEach((html) => {
+        contents.forEach((item) => {
             const div = document.createElement('div');
-            div.innerHTML = html;
+            div.innerHTML = item.html;
+            const sourceName = item.url.split('/').pop();
             // Cho phép 1 file HTML có chứa NHIỀU thẻ .slide-container (phục vụ tách hình)
             const subSlides = div.querySelectorAll('.slide-container');
             if (subSlides.length > 0) {
                 subSlides.forEach(slide => {
                     slide.id = `slide-${globalIndex++}`;
+                    slide.setAttribute('data-source', sourceName);
                     wrapper.appendChild(slide);
                 });
             } else if (div.firstElementChild) {
                 div.firstElementChild.id = `slide-${globalIndex++}`;
+                div.firstElementChild.setAttribute('data-source', sourceName);
                 wrapper.appendChild(div.firstElementChild);
             }
         });
@@ -353,6 +356,7 @@ const observer = new IntersectionObserver((entries) => {
 // ====================
 const audioElement = document.getElementById('slide-audio');
 let audioModeEnabled = false;
+let autoAdvanceTimer = null;
 
 function toggleAudioMode() {
     audioModeEnabled = !audioModeEnabled;
@@ -381,7 +385,7 @@ if (audioElement) {
         if (audioModeEnabled && isPresenting) {
             const total = document.querySelectorAll('.slide-container').length;
             if (currentSlide < total - 1) {
-                setTimeout(() => {
+                autoAdvanceTimer = setTimeout(() => {
                     nextSlide();
                 }, 2000);
             }
@@ -390,6 +394,7 @@ if (audioElement) {
 }
 
 function playCurrentSlideAudio() {
+    if (autoAdvanceTimer) clearTimeout(autoAdvanceTimer);
     if (!isPresenting || !audioElement || !audioModeEnabled) return;
     const slideNumber = currentSlide + 1;
     audioElement.src = `audio/slide_${slideNumber}.mp3`;
